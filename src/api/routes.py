@@ -59,9 +59,7 @@ def create_ong():
     db.session.add(new_ong)
     db.session.commit()
 
-    return jsonify(request_body_ong), 200
-
-
+    return jsonify(nombre=nombre, codigo_ong=ong_id), 200
 
 
 

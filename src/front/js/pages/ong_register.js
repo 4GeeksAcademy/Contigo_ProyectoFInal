@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 export const Ong_register = () => {
     const  [data, setData] = useState({})
     const [ success, setSuccess] = useState(false);
+	const [codigoONG, setCodigoONG] = useState('');
+	const [nombreONG, setNombreONG] = useState('');
 
 	const handleChange = (event) => {
 		setData({...data, [event.target.id]: event.target.value})
@@ -31,6 +33,8 @@ export const Ong_register = () => {
         .then(response => {
             console.log('Exito:', response);
             setSuccess(true);
+			setCodigoONG(response.codigo_ong);
+			setNombreONG(response.nombre);
         })
 		.catch(error => console.error('Error:', error))
 	}
@@ -42,7 +46,9 @@ export const Ong_register = () => {
             { success ? (
                 <div> 
                     <p>¡Registro de la ONG realizado con éxito!</p>
-					<p>Traer el código de la ONG desde el response para mostrarlo y explicar como funciona</p>
+					<p>Este es el código de tu ONG.</p>
+					<h2>{codigoONG}</h2>
+					<p>Compártelo con el equipo de {nombreONG} para que puedan registrarse.</p>
                 </div>
             ) : (
 
