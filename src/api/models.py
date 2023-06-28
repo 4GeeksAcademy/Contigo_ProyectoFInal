@@ -5,10 +5,10 @@ db = SQLAlchemy()
 class ONG(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(50), unique=True, nullable=False)
-    cif = db.Column(db.Integer(), unique=True, nullable=False)
+    cif = db.Column(db.String(), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     url = db.Column(db.String(80), unique=True, nullable=False)
-    dirección = db.Column(db.String(80), unique=False, nullable=False)
+    direccion = db.Column(db.String(80), unique=False, nullable=False)
     codigo_postal = db.Column(db.Integer(), unique=False, nullable=False)
     telefono = db.Column(db.Integer(), unique=True, nullable=False)
     logo = db.Column(db.String(300), unique=True, nullable=False)
@@ -23,7 +23,7 @@ class ONG(db.Model):
             "nombre": self.nombre,
             "cif": self.cif,
             "url": self.url,
-            "dirección": self.dirección,
+            "direccion": self.direccion,
             "codigo_postal": self.codigo_postal,
             "telefono": self.telefono,
             "logo": self.logo
