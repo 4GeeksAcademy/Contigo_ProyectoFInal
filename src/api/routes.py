@@ -63,11 +63,19 @@ def create_ong():
 
 
 
-@api.route('/user_register', methods=['POST', 'GET'])
+@api.route('/user_registration', methods=['POST'])
 def create_user():
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+    request_body_usuario = request.get_json()
 
-    return jsonify(response_body), 200
+    nombre = request_body_usuario.get("nombre")
+    apellido = request_body_usuario.get("apellido")
+    email = request_body_usuario.get("email")
+    password = request_body_usuario.get("password")
+    ong_id = request_body_usuario.get("ong_id")
+
+    new_user = Usuario(nombre=nombre, apellido=apellido, email=email, password=password, ong_id=ong_id)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify(nombre=nombre), 200 #Debería comunicar el nombre de la ONG

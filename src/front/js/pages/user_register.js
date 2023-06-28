@@ -9,61 +9,31 @@ export const User_register = () => {
 		setData({...data, [event.target.name]: event.target.value})
 	}
 
-	const handleSubmit = async (event) => {
+	const handleSubmit = (event) => {
 		event.preventDefault();
 		console.log(data);
 
-        const codigoOng  = data.codigoOng;
+		const config = {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers: { 
+				'Content-Type': 'application/json'
+			}
+		}
 
-        const validarCodigoOng = async (codigoOng) => {
-            const url = `URL/validarCodigoOng?codigoOng=${codigoOng}`;
-           
-            try {
-                const response = await fetch(url);
-                return response.json();
-            } catch (error) {
-                console.error('Error:', error);
-                throw error;
+        fetch(URL, config)
+		.then(res => {
+            if (!res.ok) {
+                throw new Error('Error en la solicitud');
             }
-            };
-        
+            return res.json();
+        })
+        .then(response => {
+            console.log('Exito:', response);
+            setSuccess(true);
+        })
+		.catch(error => console.error('Error:', error))
 
-        try {
-            const validacionResponse = await validarCodigoOng(codigoOng);
-
-            if (validacionResponse.ok) {
-
-                const config = {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: { 
-                        'Content-Type': 'application/json'
-                    }
-                }
-
-                fetch(URL, config)
-                .then(res => {
-                    if (!res.ok) {
-                        throw new Error('Error en la solicitud');
-                    }
-                    return res.json();
-                })
-
-                .then(response => {
-                    console.log('Exito:', response);
-                    setSuccess(true);
-                })
-
-                .catch(error => console.error('Eror:', error));
-
-            } else {
-                alert('El código de ONG no existe. Verifícalo e intenta nuevamente.');
-                 }
-
-            } catch (error) {
-                console.error('Error:', error);
-            }
-            
         }
 	
 
@@ -97,8 +67,8 @@ export const User_register = () => {
 						<input type="password" className="form-control" id="password" name="password" placeholder="Password" onChange={handleChange}/>
 					</div>
 					<div className="mb-3">
-						<label htmlFor="codigoOng" className="form-label">Código ONG</label>
-						<input type="number" className="form-control" id="codigoOng" name="codigoOng" placeholder="Código de registro de ONG" onChange={handleChange}/>
+						<label htmlFor="ong_id" className="form-label">Código ONG</label>
+						<input type="text" className="form-control" id="ong_id" name="ong_id" placeholder="Código de registro de ONG" onChange={handleChange}/>
 					</div>
 					<button type="submit" className="btn btn-primary mt-3" role="button">
 						Crear Usuario

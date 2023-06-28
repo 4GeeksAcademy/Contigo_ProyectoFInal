@@ -65,7 +65,7 @@ class Recurso(db.Model):
     img = db.Column(db.String(300), unique=False, nullable=True)
     fichero = db.Column(db.String(300), unique=False, nullable=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
-    ong_id = db.Column(db.Integer, db.ForeignKey('ong.id'))
+    ong = db.Column(db.Integer, db.ForeignKey('ong.id'))
 
     def __repr__(self):
         return f'<User {self.email}>'
