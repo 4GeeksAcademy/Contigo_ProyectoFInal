@@ -5,6 +5,8 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, ONG, Usuario, Recurso, Categorias, Peticion
 from api.utils import generate_sitemap, APIException
 
+import hashlib
+
 api = Blueprint('api', __name__)
 
 
@@ -26,6 +28,15 @@ def get_ongs():
     return jsonify(all_ong), 200 
 
 
+
+def generar_hash(data):
+    hash_object = hashlib.sha256()
+    data_bytes = data.encode('utf-8')
+    hash_object.update(data_bytes)
+    hash_value = hash_object.hexdigest()
+    return hash_value[:10]
+
+
 @api.route('/ong_registration', methods=['POST'])
 
 def create_ong():
@@ -41,7 +52,10 @@ def create_ong():
     telefono = request_body_ong.get("telefono")
     logo = request_body_ong.get("logo")
 
-    new_ong = ONG(nombre=nombre, cif=cif, email=email, url=url, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, logo=logo)
+    codigo_ong = generar_hash(nombre + cif + email)
+    ong_id = codigo_ong
+
+    new_ong = ONG(nombre=nombre, cif=cif, email=email, url=url, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, logo=logo, ong_id=ong_id)
     db.session.add(new_ong)
     db.session.commit()
 

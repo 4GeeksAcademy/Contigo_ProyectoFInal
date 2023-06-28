@@ -12,6 +12,7 @@ class ONG(db.Model):
     codigo_postal = db.Column(db.Integer(), unique=False, nullable=False)
     telefono = db.Column(db.Integer(), unique=True, nullable=False)
     logo = db.Column(db.String(300), unique=True, nullable=False)
+    ong_id = db.Column(db.String(50), unique=True, nullable=True)
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -26,7 +27,8 @@ class ONG(db.Model):
             "direccion": self.direccion,
             "codigo_postal": self.codigo_postal,
             "telefono": self.telefono,
-            "logo": self.logo
+            "logo": self.logo,
+            "codigo_ong": self.ong_id
             # do not serialize the password, its a security breach
         }
     
