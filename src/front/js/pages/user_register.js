@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 export const User_register = () => {
     const  [ data, setData ] = useState({})
     const [ success, setSuccess ] = useState(false);
+	const [ nombreONG, setNombreONG] = useState();
+	const [ nombreUsuario, setNombreUsuario] = useState();
 
 	const handleChange = (event) => {
 		setData({...data, [event.target.name]: event.target.value})
@@ -31,6 +33,8 @@ export const User_register = () => {
         .then(response => {
             console.log('Exito:', response);
             setSuccess(true);
+			setNombreONG(response.ONG)
+			setNombreUsuario(response.nombre)
         })
 		.catch(error => console.error('Error:', error))
 
@@ -43,7 +47,8 @@ export const User_register = () => {
 
             { success ? (
                 <div> 
-                    <p>¡Registro realizado con éxito!</p>
+                    <p>¡Registro realizado con éxito {nombreUsuario}!</p>
+					<h2>{nombreONG}</h2>
                 </div>
             ) : (
 
