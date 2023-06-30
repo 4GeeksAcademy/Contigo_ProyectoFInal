@@ -21,7 +21,7 @@ export const User_register = () => {
 			}
 		}
 
-        fetch(URL, config)
+        fetch("https://julitar-cautious-space-funicular-j6x7xvqggvrcp47x-3001.preview.app.github.dev/api/user_registration", config)
 		.then(res => {
             if (!res.ok) {
                 throw new Error('Error en la solicitud');
@@ -51,26 +51,26 @@ export const User_register = () => {
 				<div className="col-8 m-auto">
 				<h3 className="display-6 text-primary"> Nuevo usuario de ONG </h3>
 					<div className="mb-3">
-						<label htmlFor="name" className="form-label">Nombre</label>
-						<input type="text" className="form-control" id="name" name="name" placeholder="Name" onChange={handleChange} />
+						<label htmlFor="nombre" className="form-label">Nombre</label>
+						<input type="text" className="form-control" id="nombre" name="nombre" placeholder="Name" onChange={handleChange} />
 					</div>
                     <div className="mb-3">
-						<label htmlFor="surname" className="form-label">Apellidos</label>
-						<input type="text" className="form-control" id="surname" name="surname" placeholder="Surname" onChange={handleChange} />
+						<label htmlFor="apellido" className="form-label">Apellidos</label>
+						<input type="text" className="form-control" id="apellido" name="apellido" placeholder="Apellidos" onChange={handleChange} />
 					</div>
 					<div className="mb-3">
-						<label htmlFor="Email" className="form-label">Email</label>
+						<label htmlFor="email" className="form-label">Email</label>
 						<input type="email" className="form-control" id="email" name="email" placeholder="Email" onChange={handleChange}/>
 					</div>
                     <div className="mb-3">
-						<label htmlFor="Password" className="form-label">Password</label>
+						<label htmlFor="password" className="form-label">Password</label>
 						<input type="password" className="form-control" id="password" name="password" placeholder="Password" onChange={handleChange}/>
 					</div>
 					<div className="mb-3">
-						<label htmlFor="ong_id" className="form-label">Código ONG</label>
-						<input type="text" className="form-control" id="ong_id" name="ong_id" placeholder="Código de registro de ONG" onChange={handleChange}/>
+						<label htmlFor="codigo_ong" className="form-label">Código ONG</label>
+						<input type="text" className="form-control" id="codigo_ong" name="codigo_ong" placeholder="Código de registro de ONG" onChange={handleChange}/>
 					</div>
-					<button type="submit" className="btn btn-primary mt-3" role="button">
+					<button type="submit" className="btn btn-primary mt-3" role="button" onClick={handleSubmit}>
 						Crear Usuario
 					</button>
 				</div>

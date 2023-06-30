@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, ONG, Usuario, Recurso, Categorias, Peticion
 from api.utils import generate_sitemap, APIException
+from sqlalchemy.sql import exists
 
 import hashlib
 
@@ -63,6 +64,14 @@ def create_ong():
 
 
 
+@api.route('/users', methods=['GET'])
+def get_users():
+
+    user = Usuario.query.all()
+    all_users = list(map(lambda x: x.serialize(), user))
+    return jsonify(all_users), 200 
+
+
 @api.route('/user_registration', methods=['POST'])
 def create_user():
 
@@ -72,10 +81,27 @@ def create_user():
     apellido = request_body_usuario.get("apellido")
     email = request_body_usuario.get("email")
     password = request_body_usuario.get("password")
-    ong_id = request_body_usuario.get("ong_id")
+    
+    codigo_ong = request_body_usuario.get("codigo_ong")
+    codigo_ong_exists = db.session.query(exists().where(ONG.ong_id == codigo_ong)).scalar()
 
-    new_user = Usuario(nombre=nombre, apellido=apellido, email=email, password=password, ong_id=ong_id)
-    db.session.add(new_user)
-    db.session.commit()
+    # data_ong = db.session.query(ONG.nombre, ONG.id).filter_by(ong_id=codigo_ong).first()
+    
+    if codigo_ong_exists:
+        ong = db.session.query(ONG).filter(ONG.ong_id == codigo_ong).first()
+        ong_id = ong.id
+        nombre_ong = ong.nombre
+   
+        new_user = Usuario(nombre=nombre, apellido=apellido, email=email, password=password, ong_id=ong_id)
+        db.session.add(new_user)
+        db.session.commit()
+    
+    else: 
+        return {"Error": "Código de ONG inválido, inténtalo nuevamente"}
+    
+    user_data = {
+        "nombre": new_user.nombre,
+        "ONG" : nombre_ong,
+    }
 
-    return jsonify(nombre=nombre), 200 #Debería comunicar el nombre de la ONG
+    return jsonify(user_data), 200 
