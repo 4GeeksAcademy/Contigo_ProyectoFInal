@@ -32,13 +32,19 @@ export const User_register = () => {
             return res.json();
         })
         .then(response => {
-            console.log('Exito:', response);
-            setSuccess(true);
-			setNombreONG(response.ONG)
-			setNombreUsuario(response.nombre)
+			if (response.Error) {
+				console.log('Error:', response);
+				alert(response.Error);
+			} else	{
+				console.log('Exito:', response);
+				setSuccess(true);
+				setNombreONG(response.ONG)
+				setNombreUsuario(response.nombre)
+			}
         })
-		.catch(error => console.error('Error:', error))
-
+		.catch(error => {
+			console.error('Error:', error);
+		});
         }
 	
 
@@ -67,7 +73,7 @@ export const User_register = () => {
 			<div className="container-fluid">
         		<h2 className="subtitulo col-8 m-auto py-4"> Registro de usuario </h2>
 				
-				<div className="card col-8 m-auto">
+				<div className="card col-8 m-auto shadow">
 					<div className="card-body">
 						<form className="row" onSubmit={handleSubmit}>
 							

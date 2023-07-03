@@ -67,7 +67,7 @@ export const Ong_register = () => {
 
 				<div className="container-fluid">
 					<h2 className="subtitulo col-8 m-auto py-4"> Registro de ONG </h2>
-						<div className="card col-8 m-auto">
+						<div className="card col-8 m-auto shadow">
 							<div className="card-body">
 								<form className="row" onSubmit={handleSubmit}>
 										<div className="col-md-8 my-2">
