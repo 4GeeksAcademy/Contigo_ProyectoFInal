@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "../../styles/formulario.css";
 
 export const User_register = () => {
     const  [ data, setData ] = useState({})
@@ -51,42 +52,49 @@ export const User_register = () => {
 					<h2>{nombreONG}</h2>
                 </div>
             ) : (
+			
+			<div className="container-fluid">
+        		<h2 className="subtitulo col-8 m-auto py-4"> Registro de usuario </h2>
+				
+				<div className="card col-8 m-auto">
+					<div className="card-body">
+						<form className="row" onSubmit={handleSubmit}>
+							
+								<div className="col-md-6 my-2">
+									<label htmlFor="nombre" className="form-label">Nombre</label>
+									<input type="text" className="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre" onChange={handleChange} />
+								</div>
+								<div className="col-md-6 my-2">
+									<label htmlFor="apellido" className="form-label">Apellidos</label>
+									<input type="text" className="form-control" id="apellido" name="apellido" placeholder="Escribe tus apellidos" onChange={handleChange} />
+								</div>
+								<div className="col-md-6 my-2">
+									<label htmlFor="password" className="form-label">Contraseña</label>
+									<input type="password" className="form-control" id="password" name="password" placeholder="Escribe tu contraseña" onChange={handleChange}/>
+								</div>
+								<div className="col-md-6 my-2">
+									<label htmlFor="email" className="form-label">Email</label>
+									<input type="email" className="form-control" id="email" name="email" placeholder="ejemplo@email.com" onChange={handleChange}/>
+								</div>
+								<div className="col-md-4 my-2">
+									<label htmlFor="codigo_ong" className="form-label">Código ONG</label>
+									<input type="text" className="form-control" id="codigo_ong" name="codigo_ong" placeholder="Código ONG *" onChange={handleChange}/>
+								</div>
+								<div className="col-md-8 smallText">
+									<p>* Por favor, ingresa aquí el código que se proporcionó al registrar la ONG en la plataforma. Si aún no se ha registrado la ONG en la que trabajas, realiza ese paso antes de continuar.</p>
+								</div>
+						</form>
+					</div>
+						<div class="col-md-12 card-footer text-body-secondary gap-2 d-flex justify-content-end">
+							<Link to="/"><button type="button" className="btn secundario">Cancelar</button></Link>
+							<button type="submit" className="btn primario" onClick={handleSubmit}>Crear Usuario</button>
+						</div>
 
-			<form onSubmit={handleSubmit}>
-				<div className="col-8 m-auto">
-				<h3 className="display-6 text-primary"> Nuevo usuario de ONG </h3>
-					<div className="mb-3">
-						<label htmlFor="nombre" className="form-label">Nombre</label>
-						<input type="text" className="form-control" id="nombre" name="nombre" placeholder="Name" onChange={handleChange} />
-					</div>
-                    <div className="mb-3">
-						<label htmlFor="apellido" className="form-label">Apellidos</label>
-						<input type="text" className="form-control" id="apellido" name="apellido" placeholder="Apellidos" onChange={handleChange} />
-					</div>
-					<div className="mb-3">
-						<label htmlFor="email" className="form-label">Email</label>
-						<input type="email" className="form-control" id="email" name="email" placeholder="Email" onChange={handleChange}/>
-					</div>
-                    <div className="mb-3">
-						<label htmlFor="password" className="form-label">Password</label>
-						<input type="password" className="form-control" id="password" name="password" placeholder="Password" onChange={handleChange}/>
-					</div>
-					<div className="mb-3">
-						<label htmlFor="codigo_ong" className="form-label">Código ONG</label>
-						<input type="text" className="form-control" id="codigo_ong" name="codigo_ong" placeholder="Código de registro de ONG" onChange={handleChange}/>
-					</div>
-					<button type="submit" className="btn btn-primary mt-3" role="button" onClick={handleSubmit}>
-						Crear Usuario
-					</button>
 				</div>
-			</form>
+			</div>
             )};
 
-			<div className="col-8 m-auto mt-2">
-			<Link to="/"><button type="button" className="btn btn-light">
-					Volver a inicio
-				</button></Link>
-				</div>
+			
     		</>
 	);
 }

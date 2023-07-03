@@ -1,0 +1,70 @@
+body {
+    font-family: "Open Sans", sans-serif;
+  }
+
+.subtitulo {
+    color: #333333;
+    font-size: 28px
+}
+
+label {
+    color: #333333;
+    font-size: 14px;
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+}
+
+input::placeholder {
+    color: #8F8F90 !important;
+    font-style: italic;
+    font-size: 14px;
+  }
+
+.smallText {
+    color: #333333;
+    font-size: smaller;
+    font-style: italic;
+}
+
+.smallText p {
+    margin-top: 36px;
+    margin-bottom: 0px;
+}
+
+
+/* Estilo de botones */
+
+.secundario {
+    background-color: #8F8F90;
+    color: white
+}
+
+.secundario:hover {
+    opacity: 0.5;
+    color: white;
+   
+}
+
+.secundario:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.primario {
+    background-color: #ec5548;
+    color: white;
+    opacity: 1;
+    transition: background-color 0.3s ease;
+}
+
+.primario:hover {
+    opacity: 0.5;
+    color: white;
+    
+}
+
+.primario:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
