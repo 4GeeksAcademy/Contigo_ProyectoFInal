@@ -46,12 +46,23 @@ export const Ong_register = () => {
         <>
 
             { success ? (
-                <div> 
-                    <p>¡Registro de la ONG realizado con éxito!</p>
-					<p>Este es el código de tu ONG.</p>
-					<h2>{codigoONG}</h2>
-					<p>Compártelo con el equipo de {nombreONG} para que puedan registrarse.</p>
-                </div>
+                
+				<div className="container my-5">
+					<div className="jumbotron p-5 col-10 m-auto text-center rounded-3">
+						<h3 className="display-6">Registro exitoso</h3>
+						<p className="col-10 mx-auto mb-3 fs-5 text-muted">
+							<span id="textoResaltado">{nombreONG}</span> se ha registrado exitosamente como ONG en nuestra plataforma. <br />
+							El código de registro de la ONG es <span id="textoResaltado">{codigoONG}</span> <br />
+							Comparte el código con el resto del equipo para que puedan registrarse como usuarios.
+						</p>
+						<Link to="/">
+							<button className="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
+								Volver a inicio
+							</button>
+						</Link>
+					</div>
+				</div>
+			
             ) : (
 
 				<div className="container-fluid">

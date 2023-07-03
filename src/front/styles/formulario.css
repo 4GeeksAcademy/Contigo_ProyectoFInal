@@ -1,7 +1,3 @@
-body {
-    font-family: "Open Sans", sans-serif;
-  }
-
 .subtitulo {
     color: #333333;
     font-size: 28px
@@ -31,6 +27,14 @@ input::placeholder {
     margin-bottom: 0px;
 }
 
+#textoResaltado {
+    color: #ec5548;
+    font-weight: bold;
+}
+
+.jumbotron {
+    background-color: #f0f0f0;
+}
 
 /* Estilo de botones */
 
@@ -68,3 +72,8 @@ input::placeholder {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
+.rounded-pill:hover {
+    background-color: #F4B233;
+    border: none;
+    color:#333333
+}

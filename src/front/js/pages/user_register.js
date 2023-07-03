@@ -47,10 +47,21 @@ export const User_register = () => {
         <>
 
             { success ? (
-                <div> 
-                    <p>¡Registro realizado con éxito {nombreUsuario}!</p>
-					<h2>{nombreONG}</h2>
-                </div>
+
+				<div className="container my-5">
+				<div className="jumbotron p-5 col-10 m-auto text-center rounded-3">
+					<h3 className="display-6">Registro exitoso</h3>
+					<p className="col-10 mx-auto mb-3 fs-5 text-muted">
+						<span id="textoResaltado">{nombreUsuario}</span>, te has registrado exitosamente como parte del equipo de: <span id="textoResaltado">{nombreONG}</span>
+					</p>
+						<Link to="/">
+							<button className="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
+								Volver a inicio
+							</button>
+						</Link>
+				</div>
+				</div>
+
             ) : (
 			
 			<div className="container-fluid">
@@ -85,7 +96,7 @@ export const User_register = () => {
 								</div>
 						</form>
 					</div>
-						<div class="col-md-12 card-footer text-body-secondary gap-2 d-flex justify-content-end">
+						<div className="col-md-12 card-footer text-body-secondary gap-2 d-flex justify-content-end">
 							<Link to="/"><button type="button" className="btn secundario">Cancelar</button></Link>
 							<button type="submit" className="btn primario" onClick={handleSubmit}>Crear Usuario</button>
 						</div>
@@ -93,7 +104,7 @@ export const User_register = () => {
 				</div>
 			</div>
             )};
-
+			
 			
     		</>
 	);
