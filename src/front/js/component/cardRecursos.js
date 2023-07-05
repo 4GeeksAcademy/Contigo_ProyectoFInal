@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const ResourcesCarousel = () => {
+export const CardRecursos = () => {
   const { store, actions } = useContext(Context);
 
   return (
@@ -27,11 +27,11 @@ export const ResourcesCarousel = () => {
       </ul>
     </div>
     <div className="d-flex justify-content-center">
-      <Link to="/resourceview" className="btn btn-secondary w-75 m-2">Ver</Link>
+      <Link to="/detalleRecurso" className="btn btn-secondary w-75 m-2">Ver</Link>
     </div>
   </div>
 </div>
   );
 };
 
-export default ResourcesCarousel;
+export default CardRecursos;

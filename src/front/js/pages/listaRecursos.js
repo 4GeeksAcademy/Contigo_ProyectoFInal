@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-import ResourcesCarousel  from "../component/resourcesCarousel"; 
+import CardRecursos  from "../component/cardRecursos"; 
 import { Link } from "react-router-dom";
 
-export const Recursos = () => {
+export const ListaRecursos = () => {
   const { store, actions } = useContext(Context);
 
   return (
@@ -34,7 +34,7 @@ export const Recursos = () => {
     </div>
 
   <div className= "d-flex justify-content-center">
-    <ResourcesCarousel />
+    <CardRecursos />
   </div>
   <div className="text-start m-3 ">
   <Link to="/" className="btn btn-secondary" style={{ width: '150px' }}>Volver</Link>

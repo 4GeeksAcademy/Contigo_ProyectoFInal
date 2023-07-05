@@ -6,12 +6,13 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
-import { Recursos } from "./pages/recursos";
-import { Resourceview } from "./pages/resourceview";
+
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Detallerecurso } from "./pages/detallerecurso";
+import { ListaRecursos } from "./pages/listaRecursos";
 
 //create your first component
 const Layout = () => {
@@ -29,8 +30,8 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Demo />} path="/demo" />
-                        <Route element={<Recursos />} path="/recursos" />
-                        <Route element={<Resourceview />} path="/resourceview" />
+                        <Route element={<ListaRecursos />} path="/listarecursos" />
+                        <Route element={<Detallerecurso />} path="/detallerecurso" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
