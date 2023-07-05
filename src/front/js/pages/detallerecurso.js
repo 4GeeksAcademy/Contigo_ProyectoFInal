@@ -13,7 +13,9 @@ export const Detallerecurso = () => {
 
   <div className= "d-flex justify-content-center">
     <DescripcionRecurso />
+    
   </div>
+  
   <div className="text-start m-3 ">
   <Link to="/" className="btn btn-secondary" style={{ width: '150px' }}>Volver</Link>
   </div>

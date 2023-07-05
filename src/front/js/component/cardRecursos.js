@@ -7,6 +7,9 @@ export const CardRecursos = () => {
 
   return (
 
+
+    
+
 <div className="col-3 p-3">
   <div className="card bg-light rounded">
     <h5 className="card-title text-center pt-2">Recurso</h5>
@@ -33,5 +36,6 @@ export const CardRecursos = () => {
 </div>
   );
 };
+
 
 export default CardRecursos;
