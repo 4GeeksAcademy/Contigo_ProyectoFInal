@@ -16,6 +16,9 @@ export const Navbar = () => {
         </div>
         <div class="col">
           <ul className="nav home">
+          <li className="nav-item ">
+              <Link to="/recursos">Recurso</Link>
+            </li>
             <li className="nav-item">
               <Link to="/donar">Donaciones</Link>
             </li>
