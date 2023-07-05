@@ -25,7 +25,7 @@ export const Ong_register = () => {
 			}
 		}
 
-		fetch("https://julitar-cautious-space-funicular-j6x7xvqggvrcp47x-3001.preview.app.github.dev/api/ong_registration", config)
+		fetch(process.env.BACKEND_URL + "api/ong_registration", config)
 		.then(res => {
             if (!res.ok) {
                 throw new Error('Error en la solicitud');
