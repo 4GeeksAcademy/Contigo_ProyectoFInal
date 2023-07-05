@@ -20,6 +20,14 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+@api.route('/resources', methods=[ 'GET'])
+def handle_resources():
+
+    response_body = {
+        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+    }
+
+    return jsonify(response_body), 200
 
 @api.route('/ong', methods=['GET'])
 def get_ongs():
@@ -39,7 +47,6 @@ def generar_hash(data):
 
 
 @api.route('/ong_registration', methods=['POST'])
-
 def create_ong():
 
     request_body_ong = request.get_json()
@@ -105,3 +112,4 @@ def create_user():
     }
 
     return jsonify(user_data), 200 
+
