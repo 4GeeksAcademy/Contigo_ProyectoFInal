@@ -48,7 +48,7 @@ export const Ong_register = () => {
             { success ? (
                 
 				<div className="container my-5">
-					<div className="jumbotron p-5 col-10 m-auto text-center rounded-3">
+					<div className="my_jumbotron jumbotron p-5 col-10 m-auto text-center rounded-3">
 						<h3 className="display-6">Registro exitoso</h3>
 						<p className="col-10 mx-auto mb-3 fs-5 text-muted">
 							<span id="textoResaltado">{nombreONG}</span> se ha registrado exitosamente como ONG en nuestra plataforma. <br />
@@ -71,36 +71,36 @@ export const Ong_register = () => {
 							<div className="card-body">
 								<form className="row" onSubmit={handleSubmit}>
 										<div className="col-md-8 my-2">
-											<label htmlFor="nombre" className="form-label">Nombre de la ONG</label>
-											<input type="text" className="form-control" id="nombre" name="nombre" placeholder="Nombre" onChange={handleChange} />
+											<label htmlFor="nombre" className="form-label my_label">Nombre de la ONG</label>
+											<input type="text" className="my_input form-control" id="nombre" name="nombre" placeholder="Nombre" onChange={handleChange} />
 										</div>
 										<div className="col-md-4 my-2">
-											<label htmlFor="cif" className="form-label">CIF</label>
-											<input type="text" className="form-control" id="cif" name="cif" placeholder="GXXXXXXXX" onChange={handleChange} />
+											<label htmlFor="cif" className="form-label my_label">CIF</label>
+											<input type="text" className="my_input form-control" id="cif" name="cif" placeholder="GXXXXXXXX" onChange={handleChange} />
 										</div>
 										<div className="col-md-8 my-2">
-											<label htmlFor="direccion" className="form-label">Dirección</label>
-											<input type="adress" className="form-control" id="direccion" name="direccion" placeholder="Dirección" onChange={handleChange}/>
+											<label htmlFor="direccion" className="form-label my_label">Dirección</label>
+											<input type="adress" className="my_input form-control" id="direccion" name="direccion" placeholder="Dirección" onChange={handleChange}/>
 										</div>
 										<div className="col-md-4 my-2">
-											<label htmlFor="codigo_postal" className="form-label">Código Postal</label>
-											<input type="number" className="form-control" id="codigo_postal" name="codigo_postal" placeholder="Código Postal" onChange={handleChange}/>
+											<label htmlFor="codigo_postal" className="form-label my_label">Código Postal</label>
+											<input type="number" className="my_input form-control" id="codigo_postal" name="codigo_postal" placeholder="Código Postal" onChange={handleChange}/>
 										</div>
 										<div className="col-md-8 my-2">
-											<label htmlFor="Email" className="form-label">Email</label>
-											<input type="email" className="form-control" id="email" name="email" placeholder="ejemplo@mail.com" onChange={handleChange}/>
+											<label htmlFor="Email" className="form-label my_label">Email</label>
+											<input type="email" className="my_input form-control" id="email" name="email" placeholder="ejemplo@mail.com" onChange={handleChange}/>
 										</div>
 										<div className="col-md-4 my-2">
-											<label htmlFor="telefono" className="form-label">Teléfono</label>
-											<input type="number" className="form-control" id="telefono" name="telefono" placeholder="Teléfono" onChange={handleChange}/>
+											<label htmlFor="telefono" className="form-label my_label">Teléfono</label>
+											<input type="number" className="my_input form-control" id="telefono" name="telefono" placeholder="Teléfono" onChange={handleChange}/>
 										</div>
 										<div className="col-md-5 my-2">
-											<label htmlFor="WebSite" className="form-label">Página Web</label>
-											<input type="url" className="form-control" id="url" name="url" placeholder="Escribe la url del sitio web" onChange={handleChange}/>
+											<label htmlFor="WebSite" className="form-label my_label">Página Web</label>
+											<input type="url" className="my_input form-control" id="url" name="url" placeholder="Escribe la url del sitio web" onChange={handleChange}/>
 										</div>
 										<div className="col-md-7 my-2">
-											<label htmlFor="logo" className="form-label">Logo</label>
-											<input type="url" className="form-control" id="logo" name="logo" placeholder="Pega una url de la imagen con el logo de la ong" onChange={handleChange}/>
+											<label htmlFor="logo" className="form-label my_label">Logo</label>
+											<input type="url" className="my_input form-control" id="logo" name="logo" placeholder="Pega una url de la imagen con el logo de la ong" onChange={handleChange}/>
 										</div>
 									
 								</form>

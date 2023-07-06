@@ -55,7 +55,7 @@ export const User_register = () => {
             { success ? (
 
 				<div className="container my-5">
-				<div className="jumbotron p-5 col-10 m-auto text-center rounded-3">
+				<div className="my_jumbotron jumbotron p-5 col-10 m-auto text-center rounded-3">
 					<h3 className="display-6">Registro exitoso</h3>
 					<p className="col-10 mx-auto mb-3 fs-5 text-muted">
 						<span id="textoResaltado">{nombreUsuario}</span>, te has registrado exitosamente como parte del equipo de: <span id="textoResaltado">{nombreONG}</span>
@@ -78,24 +78,24 @@ export const User_register = () => {
 						<form className="row" onSubmit={handleSubmit}>
 							
 								<div className="col-md-6 my-2">
-									<label htmlFor="nombre" className="form-label">Nombre</label>
-									<input type="text" className="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre" onChange={handleChange} />
+									<label htmlFor="nombre" className="my_label form-label">Nombre</label>
+									<input type="text" className="my_input form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre" onChange={handleChange} />
 								</div>
 								<div className="col-md-6 my-2">
-									<label htmlFor="apellido" className="form-label">Apellidos</label>
-									<input type="text" className="form-control" id="apellido" name="apellido" placeholder="Escribe tus apellidos" onChange={handleChange} />
+									<label htmlFor="apellido" className="my_label form-label">Apellidos</label>
+									<input type="text" className="my_input form-control" id="apellido" name="apellido" placeholder="Escribe tus apellidos" onChange={handleChange} />
 								</div>
 								<div className="col-md-6 my-2">
-									<label htmlFor="password" className="form-label">Contraseña</label>
-									<input type="password" className="form-control" id="password" name="password" placeholder="Escribe tu contraseña" onChange={handleChange}/>
+									<label htmlFor="password" className="my_label form-label">Contraseña</label>
+									<input type="password" className="my_input form-control" id="password" name="password" placeholder="Escribe tu contraseña" onChange={handleChange}/>
 								</div>
 								<div className="col-md-6 my-2">
-									<label htmlFor="email" className="form-label">Email</label>
-									<input type="email" className="form-control" id="email" name="email" placeholder="ejemplo@email.com" onChange={handleChange}/>
+									<label htmlFor="email" className="my_label form-label">Email</label>
+									<input type="email" className="my_input form-control" id="email" name="email" placeholder="ejemplo@email.com" onChange={handleChange}/>
 								</div>
 								<div className="col-md-4 my-2">
-									<label htmlFor="codigo_ong" className="form-label">Código ONG</label>
-									<input type="text" className="form-control" id="codigo_ong" name="codigo_ong" placeholder="Código ONG *" onChange={handleChange}/>
+									<label htmlFor="codigo_ong" className="my_label form-label">Código ONG</label>
+									<input type="text" className="my_input form-control" id="codigo_ong" name="codigo_ong" placeholder="Código ONG *" onChange={handleChange}/>
 								</div>
 								<div className="col-md-8 smallText">
 									<p>* Por favor, ingresa aquí el código que se proporcionó al registrar la ONG en la plataforma. Si aún no se ha registrado la ONG en la que trabajas, realiza ese paso antes de continuar.</p>
