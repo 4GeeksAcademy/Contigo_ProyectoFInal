@@ -3,14 +3,14 @@
     font-size: 28px
 }
 
-label {
+.my_label {
     color: #333333;
     font-size: 14px;
     margin-bottom: 0.2rem;
     font-weight: bold;
 }
 
-input::placeholder {
+.my_input::placeholder {
     color: #8F8F90 !important;
     font-style: italic;
     font-size: 14px;
@@ -32,7 +32,7 @@ input::placeholder {
     font-weight: bold;
 }
 
-.jumbotron {
+.my_jumbotron {
     background-color: #f0f0f0;
 }
 
