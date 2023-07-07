@@ -1,0 +1,34 @@
+
+.icon {
+    color: #EC5548; 
+}
+
+.jumbotron_2 {
+    border-color: #F4B233 !important;
+    border-width: 1px !important;
+}
+
+.jumbotron_3 {
+    background-color: #333333;
+    border-color: #333333
+}
+
+
+
+.terciario {
+    background-color: #F4B233;
+    border-color: #F4B233;
+    color: white;
+    opacity: 1;
+    transition: background-color 0.3s ease;
+}
+
+.terciario:hover {
+    background-color: #e79600;
+    color: white;    
+}
+
+.terciario:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
