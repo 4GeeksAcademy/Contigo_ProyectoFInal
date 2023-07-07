@@ -7,7 +7,7 @@ export const DescripcionRecurso = () => {
 
   return (
 
-    <div className="card bg-light w-75 m-5 p-3">
+    <div className="card shadow bg-light w-75 m-5 p-3">
     <div className="card-body">
       <div className="row">
         <div className="col">

@@ -9,6 +9,8 @@ export const ListaRecursos = () => {
 
   return (
 <>
+<div className= "d-flex justify-content-center">
+<div className="col-10">
   <div className="text-start m-3 ">
   <div class="dropdown">
   <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,13 +34,25 @@ export const ListaRecursos = () => {
   </ul>
 </div>
     </div>
-
-  <div className= "d-flex justify-content-center">
+    </div>
+    </div>
+    
+    <div className= "d-flex justify-content-center">
+    <div className="col-10">
+  <div className= "d-flex justify-content-start">
     <CardRecursos />
+
+    </div>
   </div>
+  </div>
+  <div className= "d-flex justify-content-center">
+<div className="col-10">
   <div className="text-start m-3 ">
   <Link to="/" className="btn btn-secondary" style={{ width: '150px' }}>Volver</Link>
   </div>
+  </div>
+  </div>
+
 </>
   );
 };

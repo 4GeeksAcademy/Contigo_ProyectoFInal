@@ -20,8 +20,8 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/resources', methods=[ 'GET'])
-def handle_resources():
+@api.route('/resources', methods=[ 'POST','GET'])
+def crear_recurso():
 
     response_body = {
         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
@@ -50,7 +50,6 @@ def generar_hash(data):
 def create_ong():
 
     request_body_ong = request.get_json()
-
     nombre = request_body_ong.get("nombre")
     cif = request_body_ong.get("cif")
     email = request_body_ong.get("email")
