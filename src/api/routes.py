@@ -6,6 +6,10 @@ from api.models import db, ONG, Usuario, Recurso, Categorias, Peticion
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.sql import exists
 
+from flask_cors import CORS
+app = Flask(__name__)
+CORS(app) 
+
 import hashlib
 
 api = Blueprint('api', __name__)
@@ -29,16 +33,15 @@ def get_recursos():
 
 @api.route('/nuevo_recurso', methods=['POST'])
 def creacion_recurso():
-
     request_body_recurso = request.get_json()
-    nombre =  request_body_recurso.get("nombre")
-    virtual =  request_body_recurso.get("virtual")
-    direccion =  request_body_recurso.get("direccion")
-    codigo_postal =  request_body_recurso.get("codigo_postal")
-    telefono =  request_body_recurso.get("telefono")
-    descripcion =  request_body_recurso.get("descripcion")
-    img =  request_body_recurso.get("img")
-    fichero =  request_body_recurso.get("fichero")
+    nombre = request_body_recurso["nombre"]
+    virtual = request_body_recurso["virtual"]
+    direccion = request_body_recurso["direccion"]
+    codigo_postal = request_body_recurso["codigo_postal"]
+    telefono = request_body_recurso["telefono"]
+    descripcion = request_body_recurso["descripcion"]
+    img = request_body_recurso["img"]
+    fichero = request_body_recurso["fichero"]
 
     nuevo_recurso = Recurso(nombre=nombre, virtual=virtual, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, descripcion=descripcion, img=img, fichero=fichero)
     db.session.add(nuevo_recurso)
