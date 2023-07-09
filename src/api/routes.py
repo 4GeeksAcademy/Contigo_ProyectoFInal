@@ -20,20 +20,38 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/resources', methods=[ 'POST','GET'])
-def crear_recurso():
+@api.route('/resources', methods=['GET'])
+def get_recursos():
+    recursos = Recurso.query.all()
+    all_recursos = [recurso.serialize() for recurso in recursos]
+    
+    return jsonify(all_recursos), 200
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+@api.route('/nuevo_recurso', methods=['POST'])
+def creacion_recurso():
 
-    return jsonify(response_body), 200
+    request_body_recurso = request.get_json()
+    nombre =  request_body_recurso.get("nombre")
+    virtual =  request_body_recurso.get("virtual")
+    direccion =  request_body_recurso.get("direccion")
+    codigo_postal =  request_body_recurso.get("codigo_postal")
+    telefono =  request_body_recurso.get("telefono")
+    descripcion =  request_body_recurso.get("descripcion")
+    img =  request_body_recurso.get("img")
+    fichero =  request_body_recurso.get("fichero")
+
+    nuevo_recurso = Recurso(nombre=nombre, virtual=virtual, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, descripcion=descripcion, img=img, fichero=fichero)
+    db.session.add(nuevo_recurso)
+    db.session.commit()
+
+    return jsonify(nombre=nombre), 200
+
 
 @api.route('/ong', methods=['GET'])
 def get_ongs():
 
     ong = ONG.query.all()
-    all_ong = list(map(lambda x: x.serialize(), ong))
+    all_ong = list(map(lambda x: x.serialize(), ong)) 
     return jsonify(all_ong), 200 
 
 

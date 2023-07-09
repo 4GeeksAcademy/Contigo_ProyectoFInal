@@ -58,14 +58,14 @@ class Recurso(db.Model):
     categoria = db.Column(db.String(80), db.ForeignKey('categorias.descripcion'))
     nombre = db.Column(db.String(80), unique=True, nullable=False)
     virtual = db.Column(db.Boolean(), unique=False, nullable=False)
-    dirección = db.Column(db.String(80), unique=False, nullable=True)
+    direccion = db.Column(db.String(80), unique=False, nullable=True)
     codigo_postal = db.Column(db.Integer(), unique=False, nullable=True)
     telefono = db.Column(db.Integer(), unique=False, nullable=False)
     descripcion = db.Column(db.String(400), unique=True, nullable=False)
     img = db.Column(db.String(300), unique=False, nullable=True)
     fichero = db.Column(db.String(300), unique=False, nullable=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
-    ong = db.Column(db.Integer, db.ForeignKey('ong.id'))
+    ong_id = db.Column(db.Integer, db.ForeignKey('ong.id'))
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -100,8 +100,6 @@ class Categorias(db.Model):
             "descripcion": self.descripcion,
             # do not serialize the password, its a security breach
         }
-
-
 
 class Peticion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
