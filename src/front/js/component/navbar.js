@@ -38,7 +38,7 @@ export const Navbar = () => {
             </li>
 
             <li>
-              <Link to="/demo">
+              <Link to="/">
                 <button className="btn lenguaje">
                   <i className="fa-solid fa-earth-europe"></i>
                 </button>

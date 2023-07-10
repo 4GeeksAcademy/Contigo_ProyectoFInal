@@ -22,7 +22,7 @@ export const Home = () => {
 				  <a href="#" className="icon" title="stethoscope">
 						<img className="rounded-circle" alt="higiene-salud"  width={'190'} height={190} src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Higiene-Salud">
 						</img>
-						<i class="fa-solid fa-stethoscope"></i>
+						<i className="fa-solid fa-stethoscope"></i>
 					</a>
 				</div>
 
@@ -30,7 +30,7 @@ export const Home = () => {
 					<a href="#" className="icon" title="shirt">
 						<img className="rounded-circle" alt="ropa"  width={'190'} height={190} src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ropa">
 						</img>
-					  	<i class="fa-solid fa-shirt"></i>
+					  	<i className="fa-solid fa-shirt"></i>
 					</a>
 				</div>
 
@@ -38,7 +38,7 @@ export const Home = () => {
 					<a href="#" className="icon" title="bed">
 						<img className="rounded-circle" alt="vivienda"  width={'190'} height={190} src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Vivienda">
 						</img>
-						<i class="fa-solid fa-bed"></i>
+						<i className="fa-solid fa-bed"></i>
 					</a>
 				</div>
 			</div>
@@ -58,7 +58,7 @@ export const Home = () => {
 					<a href="#" className="icon" title="briefcase">
 						<img className="rounded-circle" alt="empleo"  width={'190'} height={190} src="https://images.unsplash.com/photo-1589793463308-658ed42e5dfe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Empleo">
 						</img>
-						<i class="fa-solid fa-briefcase"></i>
+						<i className="fa-solid fa-briefcase"></i>
 					</a>
 				</div>
 
@@ -66,7 +66,7 @@ export const Home = () => {
 					<a href="#" className="icon" title="passport">
 						<img className="rounded-circle" alt="extranjería-legal"  width={'190'} height={190} src="https://plus.unsplash.com/premium_photo-1661542759930-9cf315dae451?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Extranjería-Legal">
 						</img>
-						<i class="fa-solid fa-passport"></i>
+						<i className="fa-solid fa-passport"></i>
 					</a>
 				</div>
 
@@ -74,7 +74,7 @@ export const Home = () => {
 					<a href="#" className="icon" title="">
 						<img className="rounded-circle" alt="ocio"  width={'190'} height={190} src="https://images.unsplash.com/photo-1603351820686-f6473ef07e4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ocio">
 						</img>
-						<i class="fa-solid fa-person-running"></i>
+						<i className="fa-solid fa-person-running"></i>
 					</a>
 				</div>
 				

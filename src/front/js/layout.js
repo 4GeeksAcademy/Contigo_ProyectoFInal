@@ -4,8 +4,6 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
 import { Ong_register } from "./pages/ong_register";
 import { User_register } from "./pages/user_register";
 
@@ -34,7 +32,6 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Ong_register />} path="/ong_registration" />
                         <Route element={<User_register />} path="/user_registration" />
@@ -42,7 +39,6 @@ const Layout = () => {
                         <Route element={<ListaRecursos />} path="/listarecursos" />
                         <Route element={<OngCard />} path="/ongcard" />
                         <Route element={<Detallerecurso />} path="/detallerecurso" />
-                        <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
