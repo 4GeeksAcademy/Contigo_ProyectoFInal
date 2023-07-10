@@ -1,9 +1,51 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/login.css";
 
 
 export const Login = () => {
+
+    const navigate = useNavigate();
+
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	useEffect(() => {
+		const token = localStorage.getItem("jwt-token");
+		console.log("Token:", token);
+	  	}, []);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			const response = await fetch(process.env.BACKEND_URL + "api/login", {
+			  method: 'POST',
+			  headers: {
+				'Content-Type': 'application/json'
+			  },
+			  body: JSON.stringify({ email, password })
+			});
+		
+			if (response.ok) {
+			  const data = await response.json();
+			  const token = data.token;
+              console.log(data)
+              console.log(token)
+              
+			  localStorage.setItem("jwt-token", token);
+
+			  navigate("/"); // cambiar esto por vista perfil
+		
+			} else {
+			  throw new Error("No se pudo iniciar sesión");
+			}
+		  } catch (error) {
+			console.error(error);
+		  }
+		};
+
+
 
     return (
     
@@ -12,16 +54,16 @@ export const Login = () => {
         <div className= "row justify-content-center">
 
             <div className="jumbotron_1 col-lg-3 col-md-6 h-100 p-5 mx-5 mb-3 bg-light border rounded-3 text-center align-self-center shadow">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <h1 className="icon mb-4"><i className="fa-regular fa-circle-user"></i></h1>
                     
                     <div class="form-floating my-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com"/>
-                        <label className="my_label" for="floatingInput">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <label className="my_label" htmlFor="email">Email</label>
                     </div>
                     <div class="form-floating my-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña"/>
-                        <label className="my_label" for="floatingPassword">Contraseña</label>
+                        <input type="password" class="form-control" id="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <label className="my_label" htmlFor="password">Contraseña</label>
                     </div>
                     
                     <div class="checkbox mb-3">
