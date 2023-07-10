@@ -8,6 +8,7 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { Ong_register } from "./pages/ong_register";
 import { User_register } from "./pages/user_register";
+import { Enviar_peticion } from "./pages/enviar_peticion";
 
 import injectContext from "./store/appContext";
 
@@ -38,6 +39,7 @@ const Layout = () => {
                         <Route element={<User_register />} path="/user_registration" />
                         <Route element={<ListaRecursos />} path="/listarecursos" />
                         <Route element={<Detallerecurso />} path="/detallerecurso" />
+                        <Route element={<Enviar_peticion />} path="/enviar_peticion" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

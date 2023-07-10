@@ -1,0 +1,48 @@
+.subtitulo {
+  color: #333333;
+  font-size: 28px;
+}
+
+.my_label {
+  color: #333333;
+  font-size: 14px;
+  margin-bottom: 0.2rem;
+  font-weight: bold;
+}
+
+.my_input::placeholder {
+  color: #8f8f90 !important;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.contenido-peticion {
+  margin-bottom: 60px;
+}
+
+/* Estilo de botones */
+
+.enviar-mensaje {
+  background-color: white;
+  border: none;
+  padding-top: 20px;
+}
+
+.button-enviar:hover {
+  background-color: #f4b233;
+  color: #333333;
+  transition: 0.3s;
+}
+
+.button-volver {
+  width: 100px;
+  margin: 50px 0px 0px 205px;
+}
+
+.preferencias {
+  margin-top: 5px;
+}
+
+.seleccion-preferencias {
+  padding-top: 10px;
+}
