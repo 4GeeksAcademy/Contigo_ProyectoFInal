@@ -5,11 +5,13 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, ONG, Usuario, Recurso, Categorias, Peticion
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.sql import exists
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 
 import hashlib
 
 api = Blueprint('api', __name__)
+
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -131,3 +133,31 @@ def create_user():
 
     return jsonify(user_data), 200 
 
+
+@api.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    if not email or not password:
+        return jsonify({"message": "Error email y password son requeridos"})
+
+    user = Usuario.query.filter_by(email=email, password=password).first()
+
+    if not user:
+            return jsonify({"message": "Error, datos incorrectos"})
+    
+    token = create_access_token(identity=user.id)
+
+    return jsonify({"token": token})
+
+
+@api.route('/perfil', methods=['POST'])
+@jwt_required()
+def private():
+    data = request.json
+    user = get_jwt_identity()
+    print(user)
+
+    return jsonify("Acceso permitido")

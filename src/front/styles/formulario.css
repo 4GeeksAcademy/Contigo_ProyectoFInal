@@ -62,9 +62,8 @@
 }
 
 .primario:hover {
-    opacity: 0.5;
+    background-color: #e03222;
     color: white;
-    
 }
 
 .primario:active {
