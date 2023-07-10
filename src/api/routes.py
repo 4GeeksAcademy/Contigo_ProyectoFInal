@@ -6,9 +6,6 @@ from api.models import db, ONG, Usuario, Recurso, Categorias, Peticion
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.sql import exists
 
-from flask_cors import CORS
-app = Flask(__name__)
-CORS(app) 
 
 import hashlib
 
@@ -32,6 +29,7 @@ def get_recursos():
     return jsonify(all_recursos), 200
 
 @api.route('/nuevo_recurso', methods=['POST'])
+
 def creacion_recurso():
     request_body_recurso = request.get_json()
     nombre = request_body_recurso["nombre"]
