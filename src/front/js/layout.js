@@ -16,6 +16,8 @@ import { Footer } from "./component/footer";
 import { Login } from "./pages/login";
 import { Detallerecurso } from "./pages/detallerecurso";
 import { ListaRecursos } from "./pages/listaRecursos";
+import { OngCard } from "./pages/ongCard";
+import { Perfil } from "./pages/perfil";
 
 //create your first component
 const Layout = () => {
@@ -36,7 +38,9 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<Ong_register />} path="/ong_registration" />
                         <Route element={<User_register />} path="/user_registration" />
+                        <Route element={<Perfil />} path="/perfil" />
                         <Route element={<ListaRecursos />} path="/listarecursos" />
+                        <Route element={<OngCard />} path="/ongcard" />
                         <Route element={<Detallerecurso />} path="/detallerecurso" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

@@ -6,6 +6,7 @@ from api.models import db, ONG, Usuario, Recurso, Categorias, Peticion
 from api.utils import generate_sitemap, APIException
 from sqlalchemy.sql import exists
 
+
 import hashlib
 
 api = Blueprint('api', __name__)
@@ -20,20 +21,38 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/resources', methods=[ 'GET'])
-def handle_resources():
+@api.route('/resources', methods=['GET'])
+def get_recursos():
+    recursos = Recurso.query.all()
+    all_recursos = [recurso.serialize() for recurso in recursos]
+    
+    return jsonify(all_recursos), 200
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
+@api.route('/nuevo_recurso', methods=['POST'])
 
-    return jsonify(response_body), 200
+def creacion_recurso():
+    request_body_recurso = request.get_json()
+    nombre = request_body_recurso["nombre"]
+    virtual = request_body_recurso["virtual"]
+    direccion = request_body_recurso["direccion"]
+    codigo_postal = request_body_recurso["codigo_postal"]
+    telefono = request_body_recurso["telefono"]
+    descripcion = request_body_recurso["descripcion"]
+    img = request_body_recurso["img"]
+    fichero = request_body_recurso["fichero"]
+
+    nuevo_recurso = Recurso(nombre=nombre, virtual=virtual, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, descripcion=descripcion, img=img, fichero=fichero)
+    db.session.add(nuevo_recurso)
+    db.session.commit()
+
+    return jsonify(nombre=nombre), 200
+
 
 @api.route('/ong', methods=['GET'])
 def get_ongs():
 
     ong = ONG.query.all()
-    all_ong = list(map(lambda x: x.serialize(), ong))
+    all_ong = list(map(lambda x: x.serialize(), ong)) 
     return jsonify(all_ong), 200 
 
 
@@ -50,7 +69,6 @@ def generar_hash(data):
 def create_ong():
 
     request_body_ong = request.get_json()
-
     nombre = request_body_ong.get("nombre")
     cif = request_body_ong.get("cif")
     email = request_body_ong.get("email")

@@ -6,15 +6,15 @@ import "../../styles/navbar.css";
 export const Navbar = () => {
   return (
     <div className="container">
-      <div class="row">
-        <div class="col">
+      <div className="row">
+        <div className="col">
           <Link to="/">
             <span className="navbar logo">
               <img src={logoContigoUrl} />
             </span>
           </Link>
         </div>
-        <div class="col">
+        <div className="col">
           <ul className="nav home">
           <li className="nav-item ">
               <Link to="/listaRecursos">Recurso</Link>

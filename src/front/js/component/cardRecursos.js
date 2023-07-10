@@ -7,14 +7,11 @@ export const CardRecursos = () => {
 
   return (
 
-
-    
-
 <div className="col-3 p-3">
-  <div className="card bg-light rounded">
+  <div className="card shadow bg-light rounded">
     <h5 className="card-title text-center pt-2">Recurso</h5>
     <div className="p-3">
-      <img src="https://loremflickr.com/800/500/cars" className="card-img-top" alt="..." />
+      <img src="https://loremflickr.com/800/500/people" className="card-img-top" alt="..." />
     </div>
     <div className="row">
       <ul className="list-unstyled text-start mt-0 m-3 ">

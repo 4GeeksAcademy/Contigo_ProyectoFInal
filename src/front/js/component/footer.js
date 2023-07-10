@@ -33,19 +33,19 @@ export const Footer = () => {
         </div>
         <div className="col icons align-self-center">
           <Link to="https://www.instagram.com/">
-            <i class="fa-brands fa-instagram"></i>
+            <i className="fa-brands fa-instagram"></i>
           </Link>
           <Link to="https://www.facebook.com/">
-            <i class="fa-brands fa-facebook"></i>
+            <i className="fa-brands fa-facebook"></i>
           </Link>
           <Link to="https://twitter.com/">
-            <i class="fa-brands fa-twitter"></i>
+            <i className="fa-brands fa-twitter"></i>
           </Link>
           <Link to="https://www.youtube.com/">
-            <i class="fa-brands fa-youtube"></i>
+            <i className="fa-brands fa-youtube"></i>
           </Link>
           <Link to="https://www.tiktok.com/en/">
-            <i class="fa-brands fa-tiktok"></i>
+            <i className="fa-brands fa-tiktok"></i>
           </Link>
         </div>
       </div>
