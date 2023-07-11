@@ -9,13 +9,13 @@ export const Home = () => {
 	return (
 
 		<div className="container-fluid contenido">
-			<div className="row categorias text-center">
+			<div className="row categorias text-center align-items-center justify-content-center m-auto">
       			<div className="col-md-3 images">
-					<a href="#" className="icon" title="utensils">
+				  	<Link to={`/listarecursos/categoria`} className="icon" title="utensils">
 				  		<img className="rounded-circle" alt="alimentos"  width={'190'} height={190} src="https://images.unsplash.com/photo-1599059813005-11265ba4b4ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Alimentos">
   						</img>
 						<i className="fa-solid fa-utensils"></i>
-					</a>
+					</Link>
 				</div>
 
       			<div className="col-md-3 images">

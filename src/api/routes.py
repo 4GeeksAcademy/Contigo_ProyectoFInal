@@ -13,7 +13,7 @@ import hashlib
 api = Blueprint('api', __name__)
 
 
-@api.route('/resources', methods=['GET'])
+@api.route('/recursos', methods=['GET'])
 def get_recursos():
     recursos = Recurso.query.all()
     all_recursos = [recurso.serialize() for recurso in recursos]
