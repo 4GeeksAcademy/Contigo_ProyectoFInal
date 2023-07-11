@@ -13,27 +13,56 @@ import hashlib
 api = Blueprint('api', __name__)
 
 
-@api.route('/recursos', methods=['GET'])
+@api.route('/todos_los_recursos', methods=['GET'])
 def get_recursos():
     recursos = Recurso.query.all()
     all_recursos = [recurso.serialize() for recurso in recursos]
     
     return jsonify(all_recursos), 200
 
-@api.route('/nuevo_recurso', methods=['POST'])
+@api.route('/api/recursos', methods=['GET'])
+def obtener_recursos_por_categoria():
+    categoria = request.args.get('categoria')
+    recursos = Recurso.query.filter_by(categoria=categoria).all()
+    resultados = []
 
-def creacion_recurso():
-    request_body_recurso = request.get_json()
-    nombre = request_body_recurso["nombre"]
-    virtual = request_body_recurso["virtual"]
-    direccion = request_body_recurso["direccion"]
-    codigo_postal = request_body_recurso["codigo_postal"]
-    telefono = request_body_recurso["telefono"]
-    descripcion = request_body_recurso["descripcion"]
-    img = request_body_recurso["img"]
-    fichero = request_body_recurso["fichero"]
+    for recurso in recursos:
+        resultado = {
+            'id': recurso.id,
+            'categoria': recurso.categoria,
+            'nombre': recurso.nombre,
+            'virtual': recurso.virtual,
+            'direccion': recurso.direccion,
+            'codigo_postal': recurso.codigo_postal,
+            'telefono': recurso.telefono,
+            'descripcion': recurso.descripcion,
+            'fichero': recurso.fichero,
+            'img': recurso.img,
+            'usuario': recurso.usuario,
+            'ong_id': recurso.ong_id,
+        }
 
-    nuevo_recurso = Recurso(nombre=nombre, virtual=virtual, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, descripcion=descripcion, img=img, fichero=fichero)
+        resultados.append(resultado)
+    return jsonify(resultados)
+
+
+@api.route('/recursos', methods=['POST'])
+
+def post_recurso():
+    data = request.get_json()
+    nombre = data.get('nombre')
+    categoria = data.get('categoria')
+    virtual = data.get('virtual')
+    direccion = data.get('direccion')
+    codigo_postal = data.get('codigo_postal')
+    telefono = data.get('telefono')
+    descripcion = data.get('descripcion')
+    img = data.get('img')
+    fichero = data.get('fichero')
+    usuario_id = data.get('usuario_id')
+    ong_id = data.get('ong_id')
+
+    nuevo_recurso = Recurso(categoria=categoria, usuario_id=usuario_id, ong_id=ong_id, nombre=nombre, virtual=virtual, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, descripcion=descripcion, img=img, fichero=fichero)
     db.session.add(nuevo_recurso)
     db.session.commit()
 
@@ -46,7 +75,6 @@ def get_ongs():
     ong = ONG.query.all()
     all_ong = list(map(lambda x: x.serialize(), ong)) 
     return jsonify(all_ong), 200 
-
 
 
 def generar_hash(data):

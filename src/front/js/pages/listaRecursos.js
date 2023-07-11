@@ -6,11 +6,26 @@ import { Link, useParams } from "react-router-dom";
 
 export const ListaRecursos = () => {
   const { store, actions } = useContext(Context);
-  const params = useParams();
+  const { categoria } = useParams();
+  const [recursos, setRecursos] = useState([]);
 
-	/* useEffect(()=> {
-		actions.getPlanet(params.id)
-	}, []) */
+  useEffect(() => {
+    const obtenerRecursosPorCategoria = async () => {
+      try {
+        const response = await fetch(process.env.BACKEND_URL + `api/recursos?categoria=${categoria}`);
+        if (!response.ok) {
+          throw new Error('Error al obtener los recursos por categoría');
+        }
+        const data = await response.json();
+        setRecursos(data)
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    obtenerRecursosPorCategoria();
+  }, [categoria]);
+
 
   return (
   <>
@@ -23,12 +38,12 @@ export const ListaRecursos = () => {
               </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#">Alimentos</a></li>
-                    <li><a class="dropdown-item" href="#">Higiene - Salud</a></li>
+                    <li><a class="dropdown-item" href="#">Salud</a></li>
                     <li><a class="dropdown-item" href="#">Ropa</a></li>
                     <li><a class="dropdown-item" href="#">Vivienda</a></li>
                     <li><a class="dropdown-item" href="#">Formación</a></li>
                     <li><a class="dropdown-item" href="#">Empleo</a></li>
-                    <li><a class="dropdown-item" href="#">Extranjería - Legal</a></li>
+                    <li><a class="dropdown-item" href="#">Legales</a></li>
                     <li><a class="dropdown-item" href="#">Ocio</a></li>
                   </ul>
             </div>
