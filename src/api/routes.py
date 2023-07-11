@@ -20,7 +20,8 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/resources', methods=[ 'GET'])
+
+@api.route('/resources', methods=['GET'])
 def handle_resources():
 
     response_body = {
@@ -29,13 +30,13 @@ def handle_resources():
 
     return jsonify(response_body), 200
 
+
 @api.route('/ong', methods=['GET'])
 def get_ongs():
 
     ong = ONG.query.all()
     all_ong = list(map(lambda x: x.serialize(), ong))
-    return jsonify(all_ong), 200 
-
+    return jsonify(all_ong), 200
 
 
 def generar_hash(data):
@@ -63,12 +64,12 @@ def create_ong():
     codigo_ong = generar_hash(nombre + cif + email)
     ong_id = codigo_ong
 
-    new_ong = ONG(nombre=nombre, cif=cif, email=email, url=url, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, logo=logo, ong_id=ong_id)
+    new_ong = ONG(nombre=nombre, cif=cif, email=email, url=url, direccion=direccion,
+                  codigo_postal=codigo_postal, telefono=telefono, logo=logo, ong_id=ong_id)
     db.session.add(new_ong)
     db.session.commit()
 
     return jsonify(nombre=nombre, codigo_ong=ong_id), 200
-
 
 
 @api.route('/users', methods=['GET'])
@@ -76,7 +77,7 @@ def get_users():
 
     user = Usuario.query.all()
     all_users = list(map(lambda x: x.serialize(), user))
-    return jsonify(all_users), 200 
+    return jsonify(all_users), 200
 
 
 @api.route('/user_registration', methods=['POST'])
@@ -88,28 +89,60 @@ def create_user():
     apellido = request_body_usuario.get("apellido")
     email = request_body_usuario.get("email")
     password = request_body_usuario.get("password")
-    
+
     codigo_ong = request_body_usuario.get("codigo_ong")
-    codigo_ong_exists = db.session.query(exists().where(ONG.ong_id == codigo_ong)).scalar()
+    codigo_ong_exists = db.session.query(
+        exists().where(ONG.ong_id == codigo_ong)).scalar()
 
     # data_ong = db.session.query(ONG.nombre, ONG.id).filter_by(ong_id=codigo_ong).first()
-    
+
     if codigo_ong_exists:
         ong = db.session.query(ONG).filter(ONG.ong_id == codigo_ong).first()
         ong_id = ong.id
         nombre_ong = ong.nombre
-   
-        new_user = Usuario(nombre=nombre, apellido=apellido, email=email, password=password, ong_id=ong_id)
+
+        new_user = Usuario(nombre=nombre, apellido=apellido,
+                           email=email, password=password, ong_id=ong_id)
         db.session.add(new_user)
         db.session.commit()
-    
-    else: 
+
+    else:
         return {"Error": "Código de ONG inválido, inténtalo nuevamente"}
-    
+
     user_data = {
         "nombre": new_user.nombre,
-        "ONG" : nombre_ong,
+        "ONG": nombre_ong,
     }
 
-    return jsonify(user_data), 200 
+    return jsonify(user_data), 200
 
+
+# crear route para escoger recurso
+@api.route('/peticion_recurso', methods=['GET'])
+def get_recurso_id():
+
+    recurso_id = Peticion.query.all()
+    all_recurso_id = list(map(lambda x: x.serialize(), recurso_id))
+    return jsonify(all_recurso_id), 200
+
+
+# Crear route de enviar peticion
+@api.route('/peticion', methods=['POST'])
+def email_peticion():
+
+    request_body_peticion = request.get_json()
+
+    nombre = request_body_peticion.get("nombre")
+    apellido = request_body_peticion.get("apellido")
+    telefono = request_body_peticion.get("telefono")
+    email = request_body_peticion.get("email")
+    texto = request_body_peticion.get("texto")
+    preferencia = request_body_peticion.get("preferencia")
+
+    recibir_peticion = Peticion(nombre=nombre, apellido=apellido, telefono=telefono, email=email,
+                                texto=texto, preferencia=preferencia)
+
+    db.session.add(recibir_peticion)
+    db.session.commit()
+
+    return "Mensaje recibido", 200

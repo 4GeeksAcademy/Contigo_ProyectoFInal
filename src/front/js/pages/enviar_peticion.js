@@ -81,7 +81,7 @@ export const Enviar_peticion = () => {
                 for="exampleFormControlTextarea1"
                 className="my_label form-label"
               >
-                Example textarea
+                Escribe tu mensaje aqui
               </label>
               <textarea
                 className="form-control"
