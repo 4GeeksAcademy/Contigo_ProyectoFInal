@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import "../../styles/formulario.css";
 
@@ -6,6 +6,9 @@ export const Perfil = () => {
   const [data, setData] = useState({});
   const [virtual, setVirtual] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  const [mostrarTarjetas, setMostrarTarjetas] = useState(false);
+  const [mostrarDatos, setMostrarDatos] = useState(false);
 
   const handleChange = (event) => {
     setData({ ...data, [event.target.id]: event.target.value });
@@ -18,39 +21,112 @@ export const Perfil = () => {
     const requestData = { ...data, virtual };
 
     const config = {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(requestData),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
 
-    fetch(process.env.BACKEND_URL + "api/nuevo_recurso", config)
+    fetch(process.env.BACKEND_URL + 'api/nuevo_recurso', config)
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Error en la solicitud");
+          throw new Error('Error en la solicitud');
         }
         return res.json();
       })
       .then((response) => {
-        console.log("Éxito:", response);
+        console.log('Éxito:', response);
         setSuccess(true);
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => console.error('Error:', error));
   };
+
 
   return (
     <>
       <div className="container-fluid m-5">
-        <h2 className="subtitulo col-8 m-auto py-4"> Nuevo Recurso </h2>
-        <div className="card col-8 m-auto shadow">
-          <div className="card-body">
-          {success && (
-              <div className="alert alert-success" role="alert">
-                El recurso se cargó correctamente.
+      <div className="mt-5">
+          <button type="button" className="btn btn-primary m-3"
+            onClick={() => {
+              setMostrarFormulario(true);
+              setMostrarTarjetas(false);
+              setMostrarDatos(false);
+            }}
+          >
+            Gestionar recurso
+          </button>
+          <button type="button" className="btn btn-primary m-3"
+            onClick={() => {
+              setMostrarFormulario(false);
+              setMostrarTarjetas(true);
+              setMostrarDatos(false);
+            }}
+          >
+           Gestionar peticiones
+          </button>
+          <button type="button" className="btn btn-primary m-3"
+            onClick={() => {
+              setMostrarFormulario(false);
+              setMostrarTarjetas(false);
+              setMostrarDatos(true);
+            }}
+          >
+           Datos usuario
+          </button>
+          {mostrarTarjetas && !mostrarFormulario && !mostrarDatos && (
+            <div>
+              <div className="col-3 p-3">
+              <div className="card shadow bg-light rounded">
+                    <div className="row">
+                  <ul className="list-unstyled text-start mt-0 m-3 ">
+                    <li>
+                      <p className="mb-1">Descripcion: direccion de api </p>
+                    </li>
+                    <li>
+                      <p className="mb-1">ONG: direccion de api </p>
+                    </li>
+                    <li>
+                      <p className="mb-1">Ubicacion: direccion de api </p>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            )}
-            <form className="row" onSubmit={handleSubmit}>
+            </div>
+            </div>
+          )}
+          {mostrarDatos && !mostrarFormulario && !mostrarTarjetas && (
+            <div>
+                     <div className="col-3 p-3">
+              <div className="card shadow bg-light rounded">
+                    <div className="row">
+                  <ul className="list-unstyled text-start mt-0 m-3 ">
+                    <li>
+                      <p className="mb-1">Datos </p>
+                    </li>
+                    <li>
+                      <p className="mb-1">Datos </p>
+                    </li>
+                    <li>
+                      <p className="mb-1">Datos </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            </div>
+          )}
+        </div>
+        {mostrarFormulario && !mostrarTarjetas && !mostrarDatos && (
+          
+          <div className="card col-8 m-auto shadow">
+            <div className="card-body">
+              {success && (
+                <div className="alert alert-success" role="alert">
+                  El recurso se cargó correctamente.
+                </div>
+              )}
+              <form className="row" onSubmit={handleSubmit}>
               <div className="col-md-8 my-2">
                 <label htmlFor="nombre" className="form-label my_label">
                   Nombre del Recurso
@@ -193,10 +269,16 @@ export const Perfil = () => {
                   Guardar recurso
                 </button>
               </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
+        )}
+
+        
       </div>
     </>
   );
 };
+
+
+export default Perfil;
