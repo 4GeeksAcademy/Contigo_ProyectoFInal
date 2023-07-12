@@ -17,19 +17,23 @@ api = Blueprint('api', __name__)
 def get_recursos():
     recursos = Recurso.query.all()
     all_recursos = [recurso.serialize() for recurso in recursos]
-    
     return jsonify(all_recursos), 200
 
-@api.route('/api/recursos', methods=['GET'])
-def obtener_recursos_por_categoria():
-    categoria = request.args.get('categoria')
+
+@api.route('/detallerecurso/<id>', methods=['GET'])
+def info_recurso(id):
+    recurso = Recurso.query.get(id)
+    return jsonify(recurso.serialize()), 200
+
+
+@api.route('/recursos/<categoria>', methods=['GET'])
+def obtener_recursos_por_categoria(categoria):
     recursos = Recurso.query.filter_by(categoria=categoria).all()
     recursos_por_categoria = [recurso.serialize() for recurso in recursos]
     return jsonify(recursos_por_categoria), 200 
 
 
 @api.route('/recursos', methods=['POST'])
-
 def post_recurso():
     data = request.get_json()
     nombre = data.get('nombre')

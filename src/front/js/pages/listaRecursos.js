@@ -12,7 +12,7 @@ export const ListaRecursos = () => {
   useEffect(() => {
     const obtenerRecursosPorCategoria = async () => {
       try {
-        const response = await fetch(process.env.BACKEND_URL + `api/recursos?categoria=${categoria}`);
+        const response = await fetch(process.env.BACKEND_URL + `api/recursos/${categoria}`);
         if (!response.ok) {
           throw new Error('Error al obtener los recursos por categoría');
         }
@@ -67,21 +67,21 @@ export const ListaRecursos = () => {
         </div>
       </div>
     
-        {recursos.map((recurso) => ( // Map hecho para cuando funcione
-        <CardRecursos
-          key={recurso.id}
-          id={recurso.id}
-          nombre={recurso.nombre}
-          descripcion={recurso.descripcion}
-          ong={recurso.ong}
-          direccion={recurso.direccion}
-        />
-      ))}
-
-      <div className= "row d-flex justify-content-center">
-        <div className="col-10 mx-5">
-            <CardRecursos /> 
-        </div> 
+      
+      <div className= "row d-flex mx-5">
+          {recursos.map((recurso) => ( 
+            <div className="col-12 col-md-4 col-lg-3 justify-content-center m-auto" key={recurso.id}>
+              <CardRecursos
+                key={recurso.id}
+                id={recurso.id}
+                nombre={recurso.nombre}
+                descripcion={recurso.descripcion}
+                ong={recurso.ong}
+                direccion={recurso.direccion}
+              />
+            </div> 
+        ))}
+        
       </div>
         
       <div className= "d-flex justify-content-center">
