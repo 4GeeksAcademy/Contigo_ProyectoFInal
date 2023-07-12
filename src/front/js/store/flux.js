@@ -1,11 +1,19 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			
-
+			recursos: [],
+			ong: [],
+			all_ong: [],
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
+			getRecursos: (categoria) => {
+				fetch(`url${categoria}`)
+				.then(response => response.json())
+				.then((response)=> {
+					console.log(response);
+					setStore({ recursos: response });
+				});
+			},
 			
 		}
 	};

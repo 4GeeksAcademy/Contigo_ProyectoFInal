@@ -1,23 +1,12 @@
 .footer {
-    height: 250px;
-    background-color: #585858;
-    color: #8f8f90;
+    background-color: #333333;
+    color: #8F8F90;
   }
-  
-  .logo-corazon {
-    margin-top: 40px;
-    margin-left: 50px;
+
+  .img_corazon {
+    max-width: 150px;
   }
-  
-  ul {
-    list-style: none;
-    margin-top: 60px;
-    padding-left: 0;
-  }
-  
-  li {
-    padding: 5px;
-  }
+
   
   li:hover {
     color: #f4b233;
@@ -26,7 +15,7 @@
   
   .fa-brands {
     font-size: 30px;
-    padding: 15px;
+    padding: 10px;
   }
   
   a:hover {

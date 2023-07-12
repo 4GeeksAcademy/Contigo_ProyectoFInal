@@ -13,27 +13,42 @@ import hashlib
 api = Blueprint('api', __name__)
 
 
-@api.route('/resources', methods=['GET'])
+@api.route('/todos_los_recursos', methods=['GET'])
 def get_recursos():
     recursos = Recurso.query.all()
     all_recursos = [recurso.serialize() for recurso in recursos]
-    
     return jsonify(all_recursos), 200
 
-@api.route('/nuevo_recurso', methods=['POST'])
 
-def creacion_recurso():
-    request_body_recurso = request.get_json()
-    nombre = request_body_recurso["nombre"]
-    virtual = request_body_recurso["virtual"]
-    direccion = request_body_recurso["direccion"]
-    codigo_postal = request_body_recurso["codigo_postal"]
-    telefono = request_body_recurso["telefono"]
-    descripcion = request_body_recurso["descripcion"]
-    img = request_body_recurso["img"]
-    fichero = request_body_recurso["fichero"]
+@api.route('/detallerecurso/<id>', methods=['GET'])
+def info_recurso(id):
+    recurso = Recurso.query.get(id)
+    return jsonify(recurso.serialize()), 200
 
-    nuevo_recurso = Recurso(nombre=nombre, virtual=virtual, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, descripcion=descripcion, img=img, fichero=fichero)
+
+@api.route('/recursos/<categoria>', methods=['GET'])
+def obtener_recursos_por_categoria(categoria):
+    recursos = Recurso.query.filter_by(categoria=categoria).all()
+    recursos_por_categoria = [recurso.serialize() for recurso in recursos]
+    return jsonify(recursos_por_categoria), 200 
+
+
+@api.route('/recursos', methods=['POST'])
+def post_recurso():
+    data = request.get_json()
+    nombre = data.get('nombre')
+    categoria = data.get('categoria')
+    virtual = data.get('virtual')
+    direccion = data.get('direccion')
+    codigo_postal = data.get('codigo_postal')
+    telefono = data.get('telefono')
+    descripcion = data.get('descripcion')
+    img = data.get('img')
+    fichero = data.get('fichero')
+    usuario_id = data.get('usuario_id')
+    ong_id = data.get('ong_id')
+
+    nuevo_recurso = Recurso(categoria=categoria, usuario_id=usuario_id, ong_id=ong_id, nombre=nombre, virtual=virtual, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, descripcion=descripcion, img=img, fichero=fichero)
     db.session.add(nuevo_recurso)
     db.session.commit()
 
@@ -46,7 +61,6 @@ def get_ongs():
     ong = ONG.query.all()
     all_ong = list(map(lambda x: x.serialize(), ong)) 
     return jsonify(all_ong), 200 
-
 
 
 def generar_hash(data):

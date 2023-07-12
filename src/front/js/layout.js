@@ -38,9 +38,9 @@ const Layout = () => {
                         <Route element={<Ong_register />} path="/ong_registration" />
                         <Route element={<User_register />} path="/user_registration" />
                         <Route element={<Perfil />} path="/perfil" />
-                        <Route element={<ListaRecursos />} path="/listarecursos" />
+                        <Route element={<ListaRecursos />} path="/listarecursos/:categoria" />
                         <Route element={<OngCard />} path="/ongcard" />
-                        <Route element={<Detallerecurso />} path="/detallerecurso" />
+                        <Route element={<Detallerecurso />} path="/detallerecurso/:id" />
                         <Route element={<Enviar_peticion />} path="/enviar_peticion" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

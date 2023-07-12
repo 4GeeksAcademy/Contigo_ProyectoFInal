@@ -61,7 +61,7 @@ class Recurso(db.Model):
     direccion = db.Column(db.String(80), unique=False, nullable=True)
     codigo_postal = db.Column(db.Integer(), unique=False, nullable=True)
     telefono = db.Column(db.Integer(), unique=False, nullable=False)
-    descripcion = db.Column(db.String(400), unique=True, nullable=False)
+    descripcion = db.Column(db.String(400), unique=False, nullable=False)
     img = db.Column(db.String(300), unique=False, nullable=True)
     fichero = db.Column(db.String(300), unique=False, nullable=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))

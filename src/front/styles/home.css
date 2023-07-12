@@ -6,15 +6,19 @@
     on that page only (the ones not reused in other pages).
 */
 
+.mi_titulo {
+    color: #EC5548;
+    font-weight: bold;
+}
+
+.mi_subtitulo {
+    color: #333333;
+}
+
 .contenido {
     padding: 50px 60px;
     border-top: 3px solid #b3b3b3;
     margin: 0;
-    
-}
-
-.categorias {
-    padding: 50px 30px 0px 30px;  
 }
 
 .col-md-3 {
@@ -24,49 +28,16 @@
 
 .categorias img {
    object-fit: cover;
-   
-    
-}
-    .categorias img:hover {
-        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-        transition: 0.2s;
-        opacity: 0.8;
-    }
-
-.login-ong {
-    text-align: center;
-    align-items: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    padding-top: 40px;
-    border-style: none;
-    width: 600px;
-    height: 100px;
-    background-color: #D9D9D9;
-    border-radius: 5px;
-
 }
 
-.login-ong:hover {
-    background-color: #f4b233;
-    transition: 0.4s;
-}
-
-.click-ong {
-    color: #333333;
-}
-
-.click-ong:hover {
-    color: black;
+.categorias img:hover {
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    transition: 0.2s;
+    opacity: 0.8;
 }
 
 
 
-
-
-
-
-  
   
 
 
