@@ -6,6 +6,7 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
 import { Ong_register } from "./pages/ong_register";
 import { User_register } from "./pages/user_register";
+import { Enviar_peticion } from "./pages/enviar_peticion";
 
 import injectContext from "./store/appContext";
 
@@ -16,6 +17,7 @@ import { Detallerecurso } from "./pages/detallerecurso";
 import { ListaRecursos } from "./pages/listaRecursos";
 import { OngCard } from "./pages/ongCard";
 import { Perfil } from "./pages/perfil";
+
 
 //create your first component
 const Layout = () => {
@@ -39,6 +41,7 @@ const Layout = () => {
                         <Route element={<ListaRecursos />} path="/listarecursos/:categoria" />
                         <Route element={<OngCard />} path="/ongcard" />
                         <Route element={<Detallerecurso />} path="/detallerecurso/:id" />
+                        <Route element={<Enviar_peticion />} path="/enviar_peticion" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

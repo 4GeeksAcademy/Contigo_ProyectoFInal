@@ -165,3 +165,35 @@ def private():
     print(user)
 
     return jsonify("Acceso permitido")
+
+
+# crear route para escoger recurso
+@api.route('/peticion', methods=['GET'])
+def get_recurso_id():
+
+    recurso_id = Peticion.query.all()
+    all_recurso_id = list(map(lambda x: x.serialize(), recurso_id))
+    return jsonify(all_recurso_id), 200
+
+
+# Crear route de enviar peticion
+@api.route('/peticion', methods=['POST'])
+def email_peticion():
+
+    request_body_peticion = request.get_json()
+
+    nombre = request_body_peticion.get("nombre")
+    apellido = request_body_peticion.get("apellido")
+    telefono = request_body_peticion.get("telefono")
+    email = request_body_peticion.get("email")
+    texto = request_body_peticion.get("texto")
+    preferencia = request_body_peticion.get("preferencia")
+
+    recibir_peticion = Peticion(nombre=nombre, apellido=apellido, telefono=telefono, email=email,
+                                texto=texto, preferencia=preferencia)
+
+    db.session.add(recibir_peticion)
+    db.session.commit()
+
+    return jsonify({"message": "Mensaje recibido"}), 200
+
