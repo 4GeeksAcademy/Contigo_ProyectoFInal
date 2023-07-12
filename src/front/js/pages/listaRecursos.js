@@ -38,39 +38,50 @@ export const ListaRecursos = () => {
       <div className= "row d-flex justify-content-center">
         
         <div className="col-10 text-start m-3">
-          <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <div className="dropdown">
+            <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <span className="fs-3">Categorías</span>
             </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Alimentos</a></li>
-                  <li><a class="dropdown-item" href="#">Salud</a></li>
-                  <li><a class="dropdown-item" href="#">Ropa</a></li>
-                  <li><a class="dropdown-item" href="#">Vivienda</a></li>
-                  <li><a class="dropdown-item" href="#">Formación</a></li>
-                  <li><a class="dropdown-item" href="#">Empleo</a></li>
-                  <li><a class="dropdown-item" href="#">Legales</a></li>
-                  <li><a class="dropdown-item" href="#">Ocio</a></li>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a className="dropdown-item" href="#">Alimentos</a></li>
+                  <li><a className="dropdown-item" href="#">Salud</a></li>
+                  <li><a className="dropdown-item" href="#">Ropa</a></li>
+                  <li><a className="dropdown-item" href="#">Vivienda</a></li>
+                  <li><a className="dropdown-item" href="#">Formación</a></li>
+                  <li><a className="dropdown-item" href="#">Empleo</a></li>
+                  <li><a className="dropdown-item" href="#">Legales</a></li>
+                  <li><a className="dropdown-item" href="#">Ocio</a></li>
                 </ul>
           </div>
 
-          <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <div className="dropdown">
+            <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <span className="fs-4">Buscar por ubicación</span>
             </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a className="dropdown-item" href="#">Action</a></li>
+                <li><a className="dropdown-item" href="#">Another action</a></li>
+                <li><a className="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </div>
         </div>
       </div>
     
+        {recursos.map((recurso) => ( // Map hecho para cuando funcione
+        <CardRecursos
+          key={recurso.id}
+          id={recurso.id}
+          nombre={recurso.nombre}
+          descripcion={recurso.descripcion}
+          ong={recurso.ong}
+          direccion={recurso.direccion}
+        />
+      ))}
+
       <div className= "row d-flex justify-content-center">
         <div className="col-10 mx-5">
-            <CardRecursos />
-        </div>
+            <CardRecursos /> 
+        </div> 
       </div>
         
       <div className= "d-flex justify-content-center">

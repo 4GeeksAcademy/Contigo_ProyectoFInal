@@ -23,8 +23,8 @@ def get_recursos():
 @api.route('/api/recursos', methods=['GET'])
 def obtener_recursos_por_categoria():
     categoria = request.args.get('categoria')
-    recurso = Recurso.query.filter_by(categoria=categoria).all()
-    recursos_por_categoria = list(map(lambda x: x.serialize(), recurso))
+    recursos = Recurso.query.filter_by(categoria=categoria).all()
+    recursos_por_categoria = [recurso.serialize() for recurso in recursos]
     return jsonify(recursos_por_categoria), 200 
 
 
