@@ -153,13 +153,13 @@ def private():
     return jsonify("Acceso permitido")
 
 
-# # crear route para escoger recurso
-# @api.route('/peticion', methods=['GET'])
-# def get_recurso_id():
+# crear route para escoger recurso
+@api.route('/peticion', methods=['GET'])
+def get_recurso_id():
 
-#     recurso_id = Peticion.query.all()
-#     all_recurso_id = list(map(lambda x: x.serialize(), recurso_id))
-#     return jsonify(all_recurso_id), 200
+    recurso_id = Peticion.query.all()
+    all_recurso_id = list(map(lambda x: x.serialize(), recurso_id))
+    return jsonify(all_recurso_id), 200
 
 
 # Crear route de enviar peticion

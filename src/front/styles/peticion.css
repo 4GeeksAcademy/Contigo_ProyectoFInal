@@ -47,8 +47,8 @@
     padding-top: 10px;
   }
 
-#numero-telefono::-webkit-outer-spin-button,
-#numero-telefono::-webkit-inner-spin-button {
+#telefono::-webkit-outer-spin-button,
+#telefono::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }

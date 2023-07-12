@@ -59,7 +59,7 @@ export const Enviar_peticion = () => {
               <input
                 type="text"
                 className="my_input form-control"
-                id=" nombre"
+                id="nombre"
                 name="nombre"
                 placeholder="Escribe tu nombre"
                 required
@@ -87,8 +87,8 @@ export const Enviar_peticion = () => {
               <input
                 type="number"
                 className="my_input  form-control"
-                id="numero-telefono"
-                name="numero-telefono"
+                id="telefono"
+                name="telefono"
                 placeholder="Teléfono"
                 required
                 onChange={handleChange}
@@ -119,7 +119,7 @@ export const Enviar_peticion = () => {
               </label>
               <textarea
                 className="form-control"
-                id="exampleFormControlTextarea1"
+                id="texto"
                 rows="6"
                 onChange={handleChange}
               ></textarea>
@@ -132,34 +132,39 @@ export const Enviar_peticion = () => {
               ¿Como prefieres que te contactemos?
               <div className="form-check seleccion-preferencias">
                 <input
+                  value="telefono"
                   className="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
-                  id="flexRadioDefault1"
+                  id="preferencia"
                 />
-                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                <label className="form-check-label" htmlFor="preferencia">
                   Teléfono
                 </label>
               </div>
               <div className="form-check seleccion-preferencias">
                 <input
+                  value="email"
                   className="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
-                  id="flexRadioDefault2"
+                  id="preferencia"
+                  
                 />
-                <label className="form-check-label" htmlFor="flexRadioDefault2">
+                <label className="form-check-label" htmlFor="preferencia">
                   Email
                 </label>
               </div>
               <div className="form-check seleccion-preferencias">
                 <input
+                  value="ambos"
                   className="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
-                  id="flexRadioDefault2"
+                  id="preferencia"
+                  
                 />
-                <label className="form-check-label" htmlFor="flexRadioDefault3">
+                <label className="form-check-label" htmlFor="preferencia">
                   Ambos
                 </label>
               </div>
