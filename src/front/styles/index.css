@@ -4,3 +4,13 @@
 body {
     font-family: "Open Sans", sans-serif;
   }
+
+
+.jumbotron_4 {
+    border-color: #F4B233 !important;
+    border-width: 2px !important;
+}
+
+.texto_especial {
+    text-transform: uppercase;
+}

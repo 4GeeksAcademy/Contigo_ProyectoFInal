@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const DescripcionRecurso = () => {
+export const DescripcionRecurso = (nombre, descripcion, ong, direccion, ong_id, fichero, img, telefono, codigo_postal, virtual, categoria) => {
   const { store, actions } = useContext(Context);
 
   return (

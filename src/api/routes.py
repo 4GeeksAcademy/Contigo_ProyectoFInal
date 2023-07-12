@@ -23,27 +23,9 @@ def get_recursos():
 @api.route('/api/recursos', methods=['GET'])
 def obtener_recursos_por_categoria():
     categoria = request.args.get('categoria')
-    recursos = Recurso.query.filter_by(categoria=categoria).all()
-    resultados = []
-
-    for recurso in recursos:
-        resultado = {
-            'id': recurso.id,
-            'categoria': recurso.categoria,
-            'nombre': recurso.nombre,
-            'virtual': recurso.virtual,
-            'direccion': recurso.direccion,
-            'codigo_postal': recurso.codigo_postal,
-            'telefono': recurso.telefono,
-            'descripcion': recurso.descripcion,
-            'fichero': recurso.fichero,
-            'img': recurso.img,
-            'usuario': recurso.usuario,
-            'ong_id': recurso.ong_id,
-        }
-
-        resultados.append(resultado)
-    return jsonify(resultados)
+    recurso = Recurso.query.filter_by(categoria=categoria).all()
+    recursos_por_categoria = list(map(lambda x: x.serialize(), recurso))
+    return jsonify(recursos_por_categoria), 200 
 
 
 @api.route('/recursos', methods=['POST'])

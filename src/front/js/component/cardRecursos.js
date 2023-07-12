@@ -1,36 +1,27 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../store/appContext";
 
-export const CardRecursos = () => {
-  const { store, actions } = useContext(Context);
 
+export const CardRecursos = ({nombre, descripcion, ong, direccion, id }) => {
+  
   return (
 
-<div className="col-3 p-3">
-  <div className="card shadow bg-light rounded">
-    <h5 className="card-title text-center pt-2">Recurso</h5>
-    <div className="p-3">
-      <img src="https://loremflickr.com/800/500/people" className="card-img-top" alt="..." />
+    <div className="col-4">
+      <div className="card shadow" style={{width: '18rem'}}>
+          <img src="https://loremflickr.com/800/500/people" className="card-img-top" alt="imagen"/>
+        <div className="card-body">
+          <h5 className="card-title">Nombre: {nombre}</h5>
+            <p className="card-text">Descripcion {descripcion}</p>
+        </div>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">ONG {ong}</li>
+          <li className="list-group-item">Dirección {direccion}</li>
+        </ul>
+        <div className="card-body text-center">
+          <Link to={`/detalleRecurso/${id}`} className="btn primario w-50 m-2">Ver</Link>
+        </div>
+      </div>
     </div>
-    <div className="row">
-      <ul className="list-unstyled text-start mt-0 m-3 ">
-        <li>
-          <p className="mb-1">Descripcion: direccion de api </p>
-        </li>
-        <li>
-          <p className="mb-1">ONG: direccion de api </p>
-        </li>
-        <li>
-          <p className="mb-1">Ubicacion: direccion de api </p>
-        </li>
-      </ul>
-    </div>
-    <div className="d-flex justify-content-center">
-      <Link to="/detalleRecurso" className="btn btn-secondary w-75 m-2">Ver</Link>
-    </div>
-  </div>
-</div>
   );
 };
 

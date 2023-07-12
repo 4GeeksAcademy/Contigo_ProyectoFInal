@@ -93,7 +93,7 @@ export const Home = () => {
 					<p className="mx-auto mb-3 fs-5 text-muted">
 						Inicia sesión para gestionar recursos y leer mensajes privados
 					</p>
-					<Link to="/">
+					<Link to="/login">
 						<button className="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
 						Iniciar Sesión
 						</button>
