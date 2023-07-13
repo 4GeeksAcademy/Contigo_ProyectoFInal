@@ -18,7 +18,7 @@ export const Enviar_peticion = () => {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application.json",
+        "Content-Type": "application/json",
       },
     };
 
@@ -43,18 +43,17 @@ export const Enviar_peticion = () => {
   };
 
   return (
-    <div className="container-fluid contenido-peticion">
+    <div className="container-fluid mb-4">
       <h2 className="subtitulo col-8 m-auto text-center py-4">
-        {" "}
-        ¿Quieres que la ONG se ponga en contacto contigo?{" "}
+        ¿Quieres que la ONG se ponga en contacto contigo?
       </h2>
 
       <div className="card col-8 m-auto shadow">
         <div className="card-body">
           <form className="row" onSubmit={handleSubmit}>
-            <div className="col my-2">
+            <div className="col-md-6 my-2">
               <label htmlFor="nombre" className="my_label form-label">
-                Nombres
+                Nombre
               </label>
               <input
                 type="text"
@@ -62,11 +61,10 @@ export const Enviar_peticion = () => {
                 id="nombre"
                 name="nombre"
                 placeholder="Escribe tu nombre"
-                required
                 onChange={handleChange}
               />
             </div>
-            <div className="col-12 my-2">
+            <div className="col-md-6 my-2">
               <label htmlFor="apellido" className="my_label form-label">
                 Apellidos
               </label>
@@ -76,11 +74,10 @@ export const Enviar_peticion = () => {
                 id="apellido"
                 name="apellido"
                 placeholder="Escribe tus apellidos"
-                required
                 onChange={handleChange}
               />
             </div>
-            <div className="col-md-4 my-2">
+            <div className="col-md-6 my-2">
               <label htmlFor="teléfono" className="my_label form-label">
                 Teléfono
               </label>
@@ -95,7 +92,7 @@ export const Enviar_peticion = () => {
               />
             </div>
 
-            <div className="col-md-8 my-2">
+            <div className="col-md-6 my-2">
               <label htmlFor="email" className="my_label form-label">
                 Email
               </label>
@@ -170,30 +167,15 @@ export const Enviar_peticion = () => {
               </div>
             </div>
           </form>
-
-          <div className="col-md-12 enviar-mensaje card-footer gap-2 d-flex justify-content-center">
-            <Link to="">
-              <button
-                type="submit"
-                className="btn button-enviar btn-outline-secondary"
-                onClick={handleSubmit}
-              >
-                Enviar Mensaje
-              </button>
-            </Link>
-          </div>
         </div>
-      </div>
-      <div>
-        <Link to="/">
-          <button
-            type="button"
-            className="btn btn-outline-secondary button-volver"
-          >
-            Volver
-          </button>
-        </Link>
-      </div>
+
+            <div className="col-md-12 card-footer text-body-secondary gap-2 d-flex justify-content-end">
+							<Link to="/"><button type="button" className="btn secundario">Cancelar</button></Link>
+							<button type="submit" className="btn primario" onClick={handleSubmit}>Enviar</button>
+						</div>
+
+        </div>
+
     </div>
   );
 };
