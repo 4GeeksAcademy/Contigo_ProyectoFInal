@@ -28,7 +28,7 @@ export const Navbar = () => {
                 <Link to="/informacion">Sobre Nosotros</Link>
               </li>
               <li className="nav-item ">
-                <Link to="/contacto">Contactanos</Link>
+                <Link to="/enviar_peticion">Contactanos</Link>
               </li>
               <li className="nav-item">
                 <Link to="/login"><i className="fa-solid fa-user"></i></Link>
