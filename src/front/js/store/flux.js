@@ -1,17 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			recursos: [],
-			ong: [],
-			all_ong: [],
+			ongs: [],
+			
 		},
 		actions: {
-			getRecursos: (categoria) => {
-				fetch(`url${categoria}`)
+			getAllOng: () => {
+				fetch(process.env.BACKEND_URL + `api/ong`)
 				.then(response => response.json())
 				.then((response)=> {
 					console.log(response);
-					setStore({ recursos: response });
+					setStore({ ongs: response });
 				});
 			},
 			

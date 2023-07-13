@@ -17,6 +17,8 @@ import { Detallerecurso } from "./pages/detallerecurso";
 import { ListaRecursos } from "./pages/listaRecursos";
 import { OngCard } from "./pages/ongCard";
 import { Perfil } from "./pages/perfil";
+import { About_us } from "./pages/about_us";
+import { Asociaciones } from "./pages/asociaciones";
 
 
 //create your first component
@@ -39,9 +41,11 @@ const Layout = () => {
                         <Route element={<User_register />} path="/user_registration" />
                         <Route element={<Perfil />} path="/perfil" />
                         <Route element={<ListaRecursos />} path="/listarecursos/:categoria" />
-                        <Route element={<OngCard />} path="/ongcard" />
+                        <Route element={<OngCard />} path="/ongcard/:id" />
                         <Route element={<Detallerecurso />} path="/detallerecurso/:id" />
                         <Route element={<Enviar_peticion />} path="/enviar_peticion" />
+                        <Route element={<About_us />} path="/about_us" />
+                        <Route element={<Asociaciones />} path="/asociaciones" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
