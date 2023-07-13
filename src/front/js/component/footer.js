@@ -20,10 +20,10 @@ export const Footer = () => {
         </div>
         <div className="col-xs-12 col-md-6 col-lg-3">
           <ul className="list-unstyled">
-            <Link to="/ong">
+            <Link to="/asociaciones">
               <li>ASOCIACIONES y ONG</li>
             </Link>
-            <Link to="/informacion">
+            <Link to="/about_us">
               <li>SOBRE NOSOTROS</li>
             </Link>
             <Link to="/privacidad">

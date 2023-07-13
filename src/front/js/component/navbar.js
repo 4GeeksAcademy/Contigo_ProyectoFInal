@@ -21,11 +21,11 @@ export const Navbar = () => {
         <div className="justify-content-end d-flex">
           <div className="collapse navbar-collapse" id="navbarContent">
             <ul className="navbar-nav ml-auto mb-2 mb-lg-0 ">
-              <li className="nav-item">
-                <Link to="/donar">Donaciones</Link>
+            <li className="nav-item">
+                <Link to="/asociaciones">Asociaciones</Link>
               </li>
               <li className="nav-item">
-                <Link to="/informacion">Sobre Nosotros</Link>
+                <Link to="/about_us">Sobre Nosotros</Link>
               </li>
               <li className="nav-item ">
                 <Link to="/enviar_peticion">Contactanos</Link>
