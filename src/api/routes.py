@@ -94,6 +94,11 @@ def create_ong():
     return jsonify(nombre=nombre, codigo_ong=ong_id), 200
 
 
+@api.route('/ong/<id>', methods=['GET'])
+def obtener_ong_por_id(id):
+    ong = ONG.query.get(id)
+    return jsonify(ong.serialize()), 200
+
 
 @api.route('/users', methods=['GET'])
 def get_users():

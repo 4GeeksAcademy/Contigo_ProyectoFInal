@@ -2,37 +2,37 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-export const DescripcionRecurso = ({nombre, descripcion, ong, direccion, ong_id, fichero, img, telefono, codigo_postal, virtual, categoria}) => {
+export const DescripcionRecurso = ({nombre, descripcion, direccion, ong_id, fichero, img, telefono, codigo_postal, virtual }) => {
   const { store, actions } = useContext(Context);
 
   return (
 
-    <div className="card shadow bg-light w-75 m-5 p-3">
-    <div className="card-body">
-      <div className="row">
-        <div className="col">
-            <div className="d-flex align-items-center">
-              <h2 className="card-title">{nombre}</h2>
+    <>
+      <div className="row g-0 container-fluid m-3 d-flex justify-content-center">
+        <div className="col-10 card shadow">
+          <div className="row g-0">
+            <div className="col-md-4">
+              <img src="https://loremflickr.com/800/500/dogs" className="img-fluid rounded-top" style={{ objectFit: 'cover', height: '100%' }} alt="imagen_recurso" />
             </div>
-          <p>L{descripcion}</p>
-          <ul className="list-group mt-3">
-            
-            <li>{ong}</li>
-            <li>{direccion}</li>
-          </ul>
-        </div>
-        <div className="col ">
-          <div className="text-center mt-5">
-          <img src="https://loremflickr.com/800/500/logotype " alt="Imagen" className=" img-fluid rounded w-50  "/>
+            <div className="col-md-8 card-body">
+              <h5 className="card-title">{nombre}</h5>
+              <p className="card-text"><small className="text-muted">{descripcion}</small></p>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item"><strong>ONG:</strong> {ong_id}</li>
+                <li className="list-group-item"><strong>Dirección:</strong> {direccion} - {codigo_postal}</li>
+                <li className="list-group-item"><strong>Tel:</strong> {telefono}</li>
+                <li className="list-group-item"><strong>Descargar información</strong> <i class="fas fa-file-download"></i></li>
+              </ul>
+            </div>
+          </div>
+          <div className="card-footer">
+            <Link to={`/OngCard/${ong_id}`} className="btn primario mx-2" style={{ width: '120px' }}>Ver ONG</Link>
+            <Link to={`/enviar_peticion/${ong_id}`} className="btn primario" style={{ width: '120px' }}>Contactar <i className="far fa-envelope"></i></Link>
           </div>
         </div>
-        <div className="col">
-          <img src="https://loremflickr.com/800/500/dogs" alt="Imagen" className="img-fluid rounded" />
-        </div>
       </div>
-    </div>
-  </div>
-);
+    </>
+  );
 };
 
 export default DescripcionRecurso;

@@ -41,14 +41,15 @@ export const Detallerecurso = () => {
               id={info.id}
               nombre={info.nombre}
               descripcion={info.descripcion}
-              ong={info.ong}
+              ong_id={info.ong_id}
               direccion={info.direccion}
+              fichero={info.fichero}
+              img={info.img}
+              telefono={info.telefono}
+              codigo_postal={info.codigo_postal}
+              virtual={info.virtual}
             />
 
-          <div className="row px-5 justify-content-center">
-              <Link to="/OngCard" className="btn primario mx-2" style={{ width: '150px' }}>Ver ONG</Link>
-              <Link to="/enviar_peticion" className="btn primario" style={{ width: '150px' }}>Contactar <i className="far fa-envelope"></i></Link>
-          </div>
 
           <div className="row px-5 py-3 ml-3">
             <Link to="/" className="btn secundario" style={{ width: '150px' }}>Volver</Link>

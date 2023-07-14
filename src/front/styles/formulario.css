@@ -55,14 +55,14 @@
 }
 
 .primario {
-    background-color: #ec5548;
+    background-color: #F4B233;
     color: white;
     opacity: 1;
     transition: background-color 0.3s ease;
 }
 
 .primario:hover {
-    background-color: #e03222;
+    background-color: #f8a100;
     color: white;
 }
 
