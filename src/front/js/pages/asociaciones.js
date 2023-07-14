@@ -29,7 +29,7 @@ export const Asociaciones = () => {
 
             <div className= "row d-flex mx-5 align-items-center justify-content-center">
             {store.ongs.map((ong) => ( 
-            <div className="col-sm-10 col-md-4 col-lg-4 p-2" key={ong.index}>
+            <div className="col-sm-10 col-md-6 col-lg-4 p-2" key={ong.id}>
                 <LogoOng
                     id={ong.id}
                     logo={ong.logo}
