@@ -162,14 +162,32 @@ def login():
     return jsonify({"token": token})
 
 
-@api.route('/perfil', methods=['POST'])
+# Últimas modificaciones con Marcos para perfil y peticiones
+
+@api.route('/perfil', methods=['GET'])
 @jwt_required()
 def private():
-    data = request.json
-    user = get_jwt_identity()
-    print(user)
+    user_id = get_jwt_identity()
+    user = Usuario.query.filter_by(id=user_id).first()
 
-    return jsonify("Acceso permitido")
+    if not user:
+        return jsonify({"message": "Error, no existe el usuario"})
+
+    return jsonify(user.serialize())
+
+
+@api.route('/peticiones', methods=['GET'])
+@jwt_required()
+def peticiones():
+    user_id = get_jwt_identity()
+
+    user = Usuario.query.filter_by(id=user_id).first()
+    ong = ONG.query.get(user.ong_id)
+    recursos = Recurso.query.filter_by(ong_id=ong.id)
+    recursos_ids = [recurso.id for recurso in recursos]
+    peticiones = Peticion.query.filter_by(recurso_id=recursos_ids) # Investigar cómo buscar dentro de un listado
+
+    return jsonify(peticiones) # serialize cada una de las peticiones
 
 
 # crear route para ver las peticiones

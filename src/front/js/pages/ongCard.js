@@ -33,21 +33,16 @@ export const OngCard = () => {
           <div class="card-header">
             <h4>{info.nombre}</h4>
           </div>
-          <div className="card-body">
-            <div className="row">
+          <div className="row card-body">
               <div className="col">
-              <div className="text-lef m-3">
-                <img src={info.logo} alt="Imagen" className=" img-fluid rounded w-50  "/>
+              <div className="text-center m-3">
+                <img src={info.logo} alt="Imagen" className="img-fluid" style={{ maxWidth : '250px'}}/>
                 </div> 
               </div>
               <div className="col">
               <div className="d-flex align-items-center">
                     <h2 className="card-title"></h2>
                     <h5 className="card-text ms-3">Web</h5>
-                  </div>
-                  <div class="d-flex flex-column align-items-left">
-                  <p>Descripción:</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id dignissim tortor, eget placerat nunc. Maecenas nisi tellus, euismod et justo non, dignissim rutrum purus.</p>
                   </div>
               </div>
               <div className="col align-self-start">
@@ -58,9 +53,7 @@ export const OngCard = () => {
           <li>Teléfono:</li>
         </ul>
       </div>
-            </div>
-            
-          </div>
+      </div>
  </div>
         <div className="row">
           <div className="d-flex justify-content-center m-2 mt-5">
