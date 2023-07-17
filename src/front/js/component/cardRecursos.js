@@ -6,8 +6,7 @@ export const CardRecursos = ({nombre, descripcion, ong, direccion, id }) => {
   
   return (
 
-    <div className="col-4">
-      <div className="card shadow" style={{width: '18rem'}}>
+      <div className="card shadow justify-content-center m-auto" style={{width: '18rem'}}>
           <img src="https://loremflickr.com/800/500/people" className="card-img-top" alt="imagen"/>
         <div className="card-body">
           <h5 className="card-title"><strong>{nombre}</strong></h5>
@@ -21,7 +20,6 @@ export const CardRecursos = ({nombre, descripcion, ong, direccion, id }) => {
           <Link to={`/detalleRecurso/${id}`} className="btn primario w-50 m-2">Ver</Link>
         </div>
       </div>
-    </div>
   );
 };
 

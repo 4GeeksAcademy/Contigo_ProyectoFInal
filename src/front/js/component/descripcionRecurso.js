@@ -7,7 +7,7 @@ export const DescripcionRecurso = ({nombre, descripcion, direccion, ong_id, fich
 
     <>
       <div className="row g-0 container-fluid m-3 d-flex justify-content-center">
-        <div className="col-10 card shadow">
+        <div className="col-lg-6 col-md-10 col-sm-11 card shadow">
           <div className="row g-0">
             <div className="col-md-4">
               <img src="https://loremflickr.com/800/500/dogs" className="img-fluid rounded-top" style={{ objectFit: 'cover', height: '100%' }} alt="imagen_recurso" />

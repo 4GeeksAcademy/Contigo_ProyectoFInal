@@ -56,30 +56,44 @@ export const ListaRecursos = () => {
             </div>
         </div>
       </div>
-    
       
-      <div className= "row d-flex mx-5">
-          {store.recursosCategoria.map((recurso) => ( 
-            <div className="col-12 col-md-4 col-lg-3 justify-content-center m-auto" key={recurso.id}>
-              <CardRecursos
-                key={recurso.id}
-                id={recurso.id}
-                nombre={recurso.nombre}
-                descripcion={recurso.descripcion}
-                ong={recurso.ong}
-                direccion={recurso.direccion}
-              />
-            </div> 
-        ))}
-        
-      </div>
-        
-      <div className= "d-flex justify-content-center">
-        <div className="col-10 text-start m-3">
-          <button className="btn secundario" style={{ width: '150px' }} onClick={() => navigate(-1)}>Volver</button>
+      <div className="row">
+        <div id="carouselExample" className="col-lg-6 col-sm-12 align-items-center justify-content-center m-auto carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
+          <div className="carousel-inner">
+            {store.recursosCategoria.map((recurso, index) => ( 
+              <div className= {`carousel-item my-3${index === 0 ? ' active' : ''}`} key={recurso.id}>
+                <CardRecursos
+                  key={recurso.id}
+                  id={recurso.id}
+                  nombre={recurso.nombre}
+                  descripcion={recurso.descripcion}
+                  ong={recurso.ong}
+                  direccion={recurso.direccion}
+                />
+              </div> 
+            ))}
+
+          </div>
+
+          <button className="carousel-control-prev w-auto" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button className="carousel-control-next w-auto" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+
+        </div>
+      </div>  
+
+        <div className= "d-flex justify-content-center">
+          <div className="col-10 text-start m-3">
+            <button className="btn secundario" style={{ width: '150px' }} onClick={() => navigate(-1)}>Volver</button>
+          </div>
         </div>
       </div>
-      </div>
+
     </>
   );
 };
