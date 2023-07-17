@@ -9,6 +9,11 @@ import LogoOng from "../component/logoOng";
 export const Asociaciones = () => { 
     const { store, actions } = useContext(Context);
 
+    useEffect(() => {
+        actions.getAllOng();
+      }, []);
+
+
     return (
         <>
             <div className="row">

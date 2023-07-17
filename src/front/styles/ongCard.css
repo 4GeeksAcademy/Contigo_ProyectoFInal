@@ -1,0 +1,8 @@
+.titulo_1 {
+    color: #ec5548;
+  }
+
+.enlace:hover {
+    color: #f4b233;
+    transition: 0.3s;
+}

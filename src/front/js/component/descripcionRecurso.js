@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../store/appContext";
 
 export const DescripcionRecurso = ({nombre, descripcion, direccion, ong_id, fichero, img, telefono, codigo_postal, virtual }) => {
-  const { store, actions } = useContext(Context);
 
   return (
 
@@ -21,7 +19,7 @@ export const DescripcionRecurso = ({nombre, descripcion, direccion, ong_id, fich
                 <li className="list-group-item"><strong>ONG:</strong> {ong_id}</li>
                 <li className="list-group-item"><strong>Dirección:</strong> {direccion} - {codigo_postal}</li>
                 <li className="list-group-item"><strong>Tel:</strong> {telefono}</li>
-                <li className="list-group-item"><strong>Descargar información</strong> <i class="fas fa-file-download"></i></li>
+                <li className="list-group-item"><strong>Descargar información</strong> <i className="fas fa-file-download"></i></li>
               </ul>
             </div>
           </div>

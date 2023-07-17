@@ -1,73 +1,68 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
+import "../../styles/ongCard.css";
 import CardRecursos  from "../component/cardRecursos"; 
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export const OngCard = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
-  const [info, setInfo] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const obtenerInformacionOng = async () => {
-      try {
-        const response = await fetch(process.env.BACKEND_URL + `api/ong/${id}`);
-        if (!response.ok) {
-          throw new Error('Error al cargar la información');
-        }
-        const data = await response.json();
-        setInfo(data)
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-
-    obtenerInformacionOng();
+    actions.get_ong_por_id(id);
   }, [id]);
 
+  useEffect(() => {
+    actions.get_recurso_ong(id);
+  }, [id]);
 
   return (
     <>
-      <div className="row d-flex justify-content-center m-5 card shadow">
-          <div class="card-header">
-            <h4>{info.nombre}</h4>
-          </div>
-          <div className="row card-body">
-              <div className="col">
-              <div className="text-center m-3">
-                <img src={info.logo} alt="Imagen" className="img-fluid" style={{ maxWidth : '250px'}}/>
+      <div className="row  d-flex justify-content-center">
+        <div className="col-8">
+          <div className="row d-flex justify-content-center m-5 card shadow">
+            <div className="card-header">
+              <h4 className="titulo_1 text-center"><strong>{store.infoOng.nombre}</strong></h4>
+            </div>
+            <div className="row card-body">
+              <div className="col-lg-6 col-md-12">
+                <div className="text-center m-3">
+                  <img src={store.infoOng.logo} alt="Imagen" className="img-fluid" style={{ maxWidth : '250px'}}/>
                 </div> 
               </div>
-              <div className="col">
-              <div className="d-flex align-items-center">
-                    <h2 className="card-title"></h2>
-                    <h5 className="card-text ms-3">Web</h5>
-                  </div>
+              <div className="col-lg-6 col-md-12">
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item"><strong><i className="fas fa-at"></i> Email:</strong> {store.infoOng.email}</li>
+                  <li className="list-group-item"><strong><i className="fas fa-map-marker-alt"></i> Dirección:</strong> {store.infoOng.direccion} - {store.infoOng.codigo_postal}</li>
+                  <li className="list-group-item"><strong><i className="fas fa-phone"></i> Tel:</strong> {store.infoOng.telefono}</li>
+                  <li className="list-group-item"><strong><i className="fas fa-external-link-alt"></i> Web:</strong> <a href={store.infoOng.url} target="_blank">{store.infoOng.url}</a></li>
+                </ul>
               </div>
-              <div className="col align-self-start">
-        <ul className="list-group d-flex align-items-start">
-          <li><h5>Contacto:</h5></li>
-          <li>Nombre Ong:</li>
-          <li>Dirección:</li>
-          <li>Teléfono:</li>
-        </ul>
-      </div>
-      </div>
- </div>
-        <div className="row">
-          <div className="d-flex justify-content-center m-2 mt-5">
-            <CardRecursos/>
-            <CardRecursos/>
-            <CardRecursos/>
             </div>
+          </div>
         </div>
+      </div>
         
-       
-
-        <div className="text-start m-5 ">
-        <Link to="/" className="btn secundario" style={{ width: '150px' }}>Volver</Link>
-        </div>
-      </>
+      <div className= "row d-flex mx-5">
+          {store.recursosOng.map((recurso) => ( 
+            <div className="col-12 col-md-4 col-lg-3 justify-content-center m-auto" key={recurso.id}>
+              <CardRecursos
+                key={recurso.id}
+                id={recurso.id}
+                nombre={recurso.nombre}
+                descripcion={recurso.descripcion}
+                ong={recurso.ong}
+                direccion={recurso.direccion}
+              />
+            </div> 
+        ))}
+        
+      </div>
+        
+      <div className="text-start m-5 ">
+        <button className="btn secundario" style={{ width: '150px' }} onClick={()=> navigate(-1)}>Volver</button>
+      </div>
+    </>
   );
 };

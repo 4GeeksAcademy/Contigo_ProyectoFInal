@@ -8,7 +8,7 @@
   }
 
   
-  li:hover {
+  .destacado:hover {
     color: #f4b233;
     transition: 0.3s;
   }

@@ -13,7 +13,28 @@
     border-color: #333333
 }
 
-.terciario {
+
+
+/* Estilo de botones */
+
+.boton_1 {
+    background-color: #EC5548;
+    color: white;
+    opacity: 1;
+    transition: background-color 0.3s ease;
+}
+
+.boton_1:hover {
+    background-color: #e42312;
+    color: white;
+}
+
+.boton_1:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.boton_3 {
     background-color: #F4B233;
     border-color: #F4B233;
     color: white;
@@ -21,12 +42,12 @@
     transition: background-color 0.3s ease;
 }
 
-.terciario:hover {
+.boton_3:hover {
     background-color: #e79600;
     color: white;    
 }
 
-.terciario:active {
+.boton_3:active {
     transform: scale(0.9);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }

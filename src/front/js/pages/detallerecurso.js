@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { DescripcionRecurso } from "../component/descripcionRecurso";
 
 export const Detallerecurso = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
   const [info, setInfo] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const obtenerInformacionRecurso = async () => {
@@ -52,7 +53,7 @@ export const Detallerecurso = () => {
 
 
           <div className="row px-5 py-3 ml-3">
-            <Link to="/" className="btn secundario" style={{ width: '150px' }}>Volver</Link>
+            <button className="btn secundario" style={{ width: '150px' }} onClick={()=> navigate(-1)}>Volver</button>
           </div>
         </div>
       </div>

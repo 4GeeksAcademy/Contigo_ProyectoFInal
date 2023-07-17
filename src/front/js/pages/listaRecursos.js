@@ -1,31 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import CardRecursos  from "../component/cardRecursos"; 
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export const ListaRecursos = () => {
   const { store, actions } = useContext(Context);
   const { categoria } = useParams();
-  const [recursos, setRecursos] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const obtenerRecursosPorCategoria = async () => {
-      try {
-        const response = await fetch(process.env.BACKEND_URL + `api/recursos/${categoria}`);
-        if (!response.ok) {
-          throw new Error('Error al obtener los recursos por categoría');
-        }
-        const data = await response.json();
-        setRecursos(data)
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-
-    obtenerRecursosPorCategoria();
+    actions.get_recurso_categoria(categoria)
   }, [categoria]);
 
+  const seleccionarCategoria = (nuevaCategoria) => {
+    navigate(`/listarecursos/${nuevaCategoria}`);
+  };
 
   return (
   <>
@@ -43,14 +33,14 @@ export const ListaRecursos = () => {
               <span className="fs-3">Categorías</span>
             </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a className="dropdown-item" href="#">Alimentos</a></li>
-                  <li><a className="dropdown-item" href="#">Salud</a></li>
-                  <li><a className="dropdown-item" href="#">Ropa</a></li>
-                  <li><a className="dropdown-item" href="#">Vivienda</a></li>
-                  <li><a className="dropdown-item" href="#">Formación</a></li>
-                  <li><a className="dropdown-item" href="#">Empleo</a></li>
-                  <li><a className="dropdown-item" href="#">Legales</a></li>
-                  <li><a className="dropdown-item" href="#">Ocio</a></li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('alimentos')}>Alimentos</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('salud')}>Salud</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('ropa')}>Ropa</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('vivienda')}>Vivienda</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('formacion')}>Formación</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('empleo')}>Empleo</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('legales')}>Legales</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('ocio')}>Ocio</li>
                 </ul>
           </div>
 
@@ -69,7 +59,7 @@ export const ListaRecursos = () => {
     
       
       <div className= "row d-flex mx-5">
-          {recursos.map((recurso) => ( 
+          {store.recursosCategoria.map((recurso) => ( 
             <div className="col-12 col-md-4 col-lg-3 justify-content-center m-auto" key={recurso.id}>
               <CardRecursos
                 key={recurso.id}
@@ -86,7 +76,7 @@ export const ListaRecursos = () => {
         
       <div className= "d-flex justify-content-center">
         <div className="col-10 text-start m-3">
-          <Link to="/" className="btn secundario" style={{ width: '150px' }}>Volver</Link>
+          <button className="btn secundario" style={{ width: '150px' }} onClick={() => navigate(-1)}>Volver</button>
         </div>
       </div>
       </div>

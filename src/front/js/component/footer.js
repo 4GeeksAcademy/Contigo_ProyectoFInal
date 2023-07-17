@@ -13,21 +13,21 @@ export const Footer = () => {
 
         <div className="col-xs-12 col-md-6 col-lg-3">
           <ul className="list-unstyled">
-            <li>Dirección</li>
-            <li>Email</li>
-            <li>Teléfono</li>
+            <li className="destacado">Dirección</li>
+            <li className="destacado">Email</li>
+            <li className="destacado">Teléfono</li>
           </ul>
         </div>
         <div className="col-xs-12 col-md-6 col-lg-3">
           <ul className="list-unstyled">
             <Link to="/asociaciones">
-              <li>ASOCIACIONES y ONG</li>
+              <li className="destacado">ASOCIACIONES y ONG</li>
             </Link>
             <Link to="/about_us">
-              <li>SOBRE NOSOTROS</li>
+              <li className="destacado">SOBRE NOSOTROS</li>
             </Link>
             <Link to="/privacidad">
-              <li>POLITICA DE PRIVACIDAD</li>
+              <li className="destacado">POLITICA DE PRIVACIDAD</li>
             </Link>
           </ul>
         </div>

@@ -33,6 +33,13 @@ def obtener_recursos_por_categoria(categoria):
     return jsonify(recursos_por_categoria), 200 
 
 
+@api.route('/recursos/<int:ong_id>', methods=['GET'])
+def obtener_recursos_por_ong(ong_id):
+    recursos = Recurso.query.filter_by(ong_id=ong_id).all()
+    recursos_por_ong = [recurso.serialize() for recurso in recursos]
+    return jsonify(recursos_por_ong), 200 
+
+
 @api.route('/recursos', methods=['POST'])
 def post_recurso():
     data = request.get_json()
