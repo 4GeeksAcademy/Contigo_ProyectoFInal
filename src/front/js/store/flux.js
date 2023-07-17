@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			infoOng: [],
 			recursosOng: [],
 			recursosCategoria: [],
+			detalleRecurso: [],
 			
 		},
 		actions: {
@@ -37,6 +38,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then((response)=> {
 						setStore({ recursosCategoria: response });
+				});
+			},
+
+			get_info_recurso: (id) => {
+				fetch(process.env.BACKEND_URL + `api/detallerecurso/${id}`)
+					.then(response => response.json())
+					.then((response)=> {
+						setStore({ detalleRecurso: response });
 				});
 			}
 
