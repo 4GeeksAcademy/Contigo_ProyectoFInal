@@ -59,7 +59,7 @@ export const OngCard = () => {
                 id={recurso.id}
                 nombre={recurso.nombre}
                 descripcion={recurso.descripcion}
-                ong={recurso.ong}
+                ong_id={recurso.ong_id}
                 direccion={recurso.direccion}
               />
             </div> 

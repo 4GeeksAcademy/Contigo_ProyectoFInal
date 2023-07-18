@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const DescripcionRecurso = ({nombre, descripcion, direccion, ong_id, fichero, img, telefono, codigo_postal, virtual }) => {
+
+  const [ongName, setOngName] = useState('');
+
+  useEffect(() => {
+    fetch(process.env.BACKEND_URL + `api/nombreong/${ong_id}`)
+        .then(response => response.json())
+        .then(data => {
+          setOngName(data.nombre);
+        });
+    }, []);
 
   return (
 
@@ -16,7 +26,7 @@ export const DescripcionRecurso = ({nombre, descripcion, direccion, ong_id, fich
               <h5 className="card-title">{nombre}</h5>
               <p className="card-text"><small className="text-muted">{descripcion}</small></p>
               <ul className="list-group list-group-flush">
-                <li className="list-group-item"><strong>ONG:</strong> {ong_id}</li>
+                <li className="list-group-item"><strong>ONG:</strong> {ongName}</li>
                 <li className="list-group-item"><strong>Dirección:</strong> {direccion} - {codigo_postal}</li>
                 <li className="list-group-item"><strong>Tel:</strong> {telefono}</li>
                 <li className="list-group-item"><strong>Descargar información</strong> <i className="fas fa-file-download"></i></li>

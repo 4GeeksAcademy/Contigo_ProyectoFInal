@@ -6,8 +6,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			recursosOng: [],
 			recursosCategoria: [],
 			detalleRecurso: [],
-			
+			nombreOng: [],
 		},
+
 		actions: {
 			getAllOng: () => {
 				fetch(process.env.BACKEND_URL + `api/ong`)
@@ -47,8 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((response)=> {
 						setStore({ detalleRecurso: response });
 				});
-			}
-
+			},
 
 			}
 		}

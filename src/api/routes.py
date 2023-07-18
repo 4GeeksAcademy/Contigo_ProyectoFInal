@@ -39,6 +39,16 @@ def obtener_recursos_por_ong(ong_id):
     recursos_por_ong = [recurso.serialize() for recurso in recursos]
     return jsonify(recursos_por_ong), 200 
 
+# Encontrar nombre de ONG en la tabla ong a través de ONG_id de tabla recurso
+
+@api.route('/nombreong/<int:ong_id>', methods=['GET'])
+def nombre_ong(ong_id):
+    ong = ONG.query.get(ong_id)
+    if ong is not None:
+        return jsonify({"nombre": ong.nombre})
+    else:
+        return jsonify({"error": "ONG no encontrada"}), 404
+
 
 @api.route('/recursos', methods=['POST'])
 def post_recurso():
