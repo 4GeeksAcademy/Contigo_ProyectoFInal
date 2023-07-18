@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const DescripcionRecurso = ({nombre, descripcion, direccion, ong_id, fichero, img, telefono, codigo_postal, virtual }) => {
+export const DescripcionRecurso = ({id, nombre, descripcion, direccion, ong_id, fichero, img, telefono, codigo_postal, virtual }) => {
 
   const [ongName, setOngName] = useState('');
 
@@ -35,7 +35,7 @@ export const DescripcionRecurso = ({nombre, descripcion, direccion, ong_id, fich
           </div>
           <div className="card-footer">
             <Link to={`/OngCard/${ong_id}`} className="btn primario mx-2" style={{ width: '120px' }}>Ver ONG</Link>
-            <Link to={`/enviar_peticion/${ong_id}`} className="btn primario" style={{ width: '120px' }}>Contactar <i className="far fa-envelope"></i></Link>
+            <Link to={`/enviar_peticion/${id}`} className="btn primario" style={{ width: '120px' }}>Contactar <i className="far fa-envelope"></i></Link>
           </div>
         </div>
       </div>

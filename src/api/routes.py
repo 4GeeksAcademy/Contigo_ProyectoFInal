@@ -228,9 +228,10 @@ def email_peticion():
     email = request_body_peticion.get("email")
     texto = request_body_peticion.get("texto")
     preferencia = request_body_peticion.get("preferencia")
+    recurso_id = request_body_peticion.get("recurso_id")
 
     recibir_peticion = Peticion(nombre=nombre, apellido=apellido, telefono=telefono, email=email,
-                                texto=texto, preferencia=preferencia)
+                                texto=texto, preferencia=preferencia, recurso_id=recurso_id)
 
     db.session.add(recibir_peticion)
     db.session.commit()

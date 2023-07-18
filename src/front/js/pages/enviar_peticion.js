@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/peticion.css";
-import { useState } from "react";
+import { useParams } from "react-router-dom";
+
 
 export const Enviar_peticion = () => {
   const [data, setData] = useState({});
+  const { recurso_id } = useParams();
 
   const handleChange = (event) => {
-    setData({ ...data, [event.target.id]: event.target.value });
+    setData({ ...data, [event.target.id]: event.target.value, recurso_id: recurso_id });
   };
 
   const handleSubmit = (event) => {
