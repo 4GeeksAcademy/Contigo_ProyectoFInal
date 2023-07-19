@@ -27,22 +27,18 @@ export const Login = () => {
 			  body: JSON.stringify({ email, password })
 			});
 		
-			if (response.ok) {
-			  const data = await response.json();
-			  const token = data.token;
-              console.log(data)
-              console.log(token)
-              
-			  localStorage.setItem("jwt-token", token);
+            const data = await response.json();
 
-			  navigate("/perfil");
-		
-			} else {
-			  throw new Error("No se pudo iniciar sesión");
+			if (response.status === 200) {
+				const token = data.token;
+				localStorage.setItem("jwt-token", token);
+				navigate("/perfil");
+			  } else {
+				alert(data.message);
+			  }
+			} catch (error) {
+				console.error(error);
 			}
-		  } catch (error) {
-			console.error(error);
-		  }
 		};
 
 

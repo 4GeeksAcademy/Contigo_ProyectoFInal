@@ -163,20 +163,20 @@ def create_user():
 @api.route('/login', methods=['POST'])
 def login():
     data = request.json
-    email = data.get('email')
-    password = data.get('password')
+    email = data.get('email', None)
+    password = data.get('password', None)
 
     if not email or not password:
-        return jsonify({"message": "Error email y password son requeridos"})
+        return jsonify({"message": "Error email y password son requeridos"}), 400
 
     user = Usuario.query.filter_by(email=email, password=password).first()
 
-    if not user:
-            return jsonify({"message": "Error, datos incorrectos"})
+    if user is None:
+        return jsonify({"message": "Error, datos incorrectos"}), 401
     
     token = create_access_token(identity=user.id)
 
-    return jsonify({"token": token})
+    return jsonify({"token": token}), 200
 
 
 # Últimas modificaciones con Marcos para perfil y peticiones
