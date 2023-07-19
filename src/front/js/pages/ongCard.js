@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/ongCard.css";
 import CardRecursos  from "../component/cardRecursos"; 
 import { useParams, useNavigate } from "react-router-dom";
+import MapComponent from "../component/mapa";
 
 export const OngCard = () => {
   const { store, actions } = useContext(Context);
@@ -42,6 +43,13 @@ export const OngCard = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="row m-4 text-center">
+        <MapComponent 
+          direccion={store.infoOng.direccion}
+        />
+
       </div>
         
       <div className="row m-3">
