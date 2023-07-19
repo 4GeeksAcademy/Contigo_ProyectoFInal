@@ -35,7 +35,7 @@ export const Login = () => {
               
 			  localStorage.setItem("jwt-token", token);
 
-			  navigate("/"); // cambiar esto por vista perfil
+			  navigate("/perfil");
 		
 			} else {
 			  throw new Error("No se pudo iniciar sesión");

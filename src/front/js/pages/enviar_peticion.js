@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/peticion.css";
-import { useState } from "react";
+import { useParams } from "react-router-dom";
+
 
 export const Enviar_peticion = () => {
   const [data, setData] = useState({});
+  const { recurso_id } = useParams();
+  const [ success, setSuccess] = useState(false);
 
   const handleChange = (event) => {
-    setData({ ...data, [event.target.id]: event.target.value });
+    setData({ ...data, [event.target.id]: event.target.value, recurso_id: recurso_id });
   };
 
   const handleSubmit = (event) => {
@@ -35,6 +38,7 @@ export const Enviar_peticion = () => {
           alert(response.Error);
         } else {
           console.log("Exito:", response);
+          setSuccess(true);
         }
       })
       .catch((error) => {
@@ -43,6 +47,26 @@ export const Enviar_peticion = () => {
   };
 
   return (
+    <>
+    
+    { success ? (
+                
+      <div className="container my-5">
+        <div className="my_jumbotron jumbotron p-5 col-10 m-auto text-center rounded-3">
+          <h3 className="display-6">Envío exitoso</h3>
+          <p className="col-10 mx-auto mb-3 fs-5 text-muted">
+            Tu mensaje se ha enviado a la ONG. Pronto se pondrán en contacto contigo.
+          </p>
+          <Link to="/">
+            <button className="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
+              Volver a inicio
+            </button>
+          </Link>
+        </div>
+      </div>
+              
+    ) : (
+
     <div className="container-fluid mb-4">
       <h2 className="subtitulo col-8 m-auto text-center py-4">
         ¿Quieres que la ONG se ponga en contacto contigo?
@@ -176,6 +200,9 @@ export const Enviar_peticion = () => {
 
         </div>
 
-    </div>
+    </div>  
+    
+    )};
+    </>
   );
 };
