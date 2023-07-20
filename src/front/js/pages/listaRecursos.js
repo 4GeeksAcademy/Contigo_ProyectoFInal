@@ -30,7 +30,7 @@ export const ListaRecursos = () => {
         <div className="col-10 text-start m-3">
           <div className="dropdown">
             <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <span className="fs-3">Categorías</span>
+              <span className="fs-5">Elegir otra categoría</span>
             </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li className="dropdown-item" onClick={() => seleccionarCategoria('alimentos')}>Alimentos</li>
@@ -43,17 +43,6 @@ export const ListaRecursos = () => {
                   <li className="dropdown-item" onClick={() => seleccionarCategoria('ocio')}>Ocio</li>
                 </ul>
           </div>
-
-          <div className="dropdown">
-            <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <span className="fs-4">Buscar por ubicación</span>
-            </button>
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
         </div>
       </div>
       

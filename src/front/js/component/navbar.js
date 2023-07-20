@@ -4,6 +4,7 @@ import logoContigoUrl from "../../img/Logo_Contigo_Home.png";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container d-flex">
@@ -27,14 +28,15 @@ export const Navbar = () => {
               <li className="nav-item">
                 <Link to="/about_us">Sobre Nosotros</Link>
               </li>
-              <li className="nav-item ">
-                <Link to="/enviar_peticion">Contactanos</Link>
-              </li>
+
+            
               <li className="nav-item">
                 <Link to="/login">
                   <i className="fa-solid fa-user"></i>
                 </Link>
               </li>
+              
+
               <li className="nav-item ">
                 <Link to="/">
                   <i className="fa-solid fa-earth-europe"></i>

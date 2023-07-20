@@ -163,20 +163,20 @@ def create_user():
 @api.route('/login', methods=['POST'])
 def login():
     data = request.json
-    email = data.get('email')
-    password = data.get('password')
+    email = data.get('email', None)
+    password = data.get('password', None)
 
     if not email or not password:
-        return jsonify({"message": "Error email y password son requeridos"})
+        return jsonify({"message": "Error email y password son requeridos"}), 400
 
     user = Usuario.query.filter_by(email=email, password=password).first()
 
-    if not user:
-            return jsonify({"message": "Error, datos incorrectos"})
+    if user is None:
+        return jsonify({"message": "Error, datos incorrectos"}), 401
     
     token = create_access_token(identity=user.id)
 
-    return jsonify({"token": token})
+    return jsonify({"token": token}), 200
 
 
 # Últimas modificaciones con Marcos para perfil y peticiones
@@ -188,10 +188,40 @@ def private():
     user = Usuario.query.filter_by(id=user_id).first()
 
     if not user:
-        return jsonify({"message": "Error, no existe el usuario"})
+        return jsonify({"message": "Error, no existe el usuario"}), 400
 
-    return jsonify(user.serialize())
+    return jsonify(user.serialize()), 200
 
+
+@api.route('/perfil', methods=['PUT'])
+@jwt_required()
+def update_user_profile():
+    try:
+        user_id = get_jwt_identity()
+        user = Usuario.query.filter_by(id=user_id).first()
+
+        if not user:
+            return jsonify({"message": "Error, no existe el usuario"}), 400
+
+        data = request.get_json()
+        
+        if 'nombre' in data:
+            user.nombre = data['nombre']
+        if 'apellido' in data:
+            user.apellido = data['apellido']
+        if 'email' in data:
+            user.email = data['email']
+        if 'password' in data:
+            user.contraseña = data['contraseña']
+        
+        db.session.add(user)
+        db.session.commit()
+
+        return jsonify({"message": "Datos del usuario actualizados correctamente"}), 200
+
+    except Exception as e:
+        return jsonify({"message": "Error al actualizar los datos del usuario", "error": str(e)}), 500
+    
 
 @api.route('/peticiones', methods=['GET'])
 @jwt_required()
