@@ -188,9 +188,9 @@ def private():
     user = Usuario.query.filter_by(id=user_id).first()
 
     if not user:
-        return jsonify({"message": "Error, no existe el usuario"})
+        return jsonify({"message": "Error, no existe el usuario"}), 400
 
-    return jsonify(user.serialize())
+    return jsonify(user.serialize()), 200
 
 
 @api.route('/peticiones', methods=['GET'])

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "../../styles/formulario.css";
 import FormularioRecurso from '../component/formularioRecurso';
@@ -8,6 +8,10 @@ export const Perfil = () => {
   const [mostrarTarjetas, setMostrarTarjetas] = useState(false);
   const [mostrarDatos, setMostrarDatos] = useState(false);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
+	const [authenticated, setAuthenticated] = useState(false);
+	const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem('jwt-token');
+
 
 
   const mostrarFormularioRecurso = () => {
@@ -15,11 +19,74 @@ export const Perfil = () => {
     setMostrarFormulario(true);
   };
 
+
+  const checkToken = async () => {
+		try {
+			if (!token) {
+			setAuthenticated(false);
+			setLoading(false);
+			} else {
+			const response = await fetch((process.env.BACKEND_URL + "api/perfil"), {
+				method: "GET",
+				headers: {
+				"Authorization": `Bearer ${token}`,
+				},
+			});
+	
+			if (!response.ok) {
+				throw new Error("Error al acceder al área privada");
+			}
+	
+			setAuthenticated(true);
+			setLoading(false);
+			}
+		} catch (error) {
+			console.error(error);
+			setAuthenticated(false);
+			setLoading(false);
+		}
+		};
+	
+
+		useEffect(() => {
+		checkToken();
+		}, []); 
+
+
   return (
     <>
-    <div className="container-fluid m-5">
-    <h5>Te damos la Bienvenida, "Nombre"</h5>
-    </div>
+
+    { loading ? (
+    
+      <div className="row justify-content-center text-center m-5">
+          <div className="spinner-border text-warning" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+      ) : !authenticated ? (
+
+        <div className="row m-5 justify-content-center">
+          <div className="col-8 m-5 text-center">
+              <div className="alert alert-warning" role="alert">
+                ¡Inicia Sesión para acceder a tu área privada!
+              </div>
+
+              <div className="row justify-content-center">
+                <div className="col-8 m-3">
+                  <Link to="/login"><button type="button" className="btn btn-warning mx-2">Iniciar Sesión</button></Link>
+                </div>
+              </div>
+          </div>
+			  </div>
+      ) : (
+
+        <>
+    
+      <div className="container-fluid m-5">
+        <h5>Te damos la Bienvenida, "Nombre"</h5>
+      </div>
+
       <div className="container-fluid m-5">
         <div className="mt-5">
           <button
@@ -44,7 +111,7 @@ export const Perfil = () => {
               setMostrarFormulario(false);
             }}
           >
-            Gestionar recurso
+            Gestionar recursos
           </button>
           <button
             type="button"
@@ -56,13 +123,16 @@ export const Perfil = () => {
               setMostrarFormulario(false);
             }}
           >
-            Datos usuario
+            Datos personales
           </button>
+
+          </div>
+
           {mostrarTarjetas && !mostrarPeticiones && !mostrarDatos && (
             <div className="col-8 m-3 justify-content-center">
               <div className="row">
                 <div className="card shadow bg-light rounded p-4">
-                  <h5>Gestionar Recurso</h5>
+                  <h5>Gestionar Recursos</h5>
                   <div className="card bg-white mt-3 d-flex">
                     <div className="card-body d-flex justify-content-between">
                       <div>
@@ -95,6 +165,7 @@ export const Perfil = () => {
               </div>
             </div>
           )}
+
           {mostrarDatos && !mostrarPeticiones && !mostrarTarjetas && (
             <div className="col-8 m-3 d-flex justify-content-start">
               <div className="row">
@@ -146,48 +217,56 @@ export const Perfil = () => {
               </div>
             </div>
           )}
-        </div>
+
+        
+
         {mostrarPeticiones && !mostrarTarjetas && !mostrarDatos && (
           <div className="col-8 m-3 d-flex justify-content-center">
-          <div className="row">
-            <div className="card shadow bg-light rounded p-4">
-              <h5>Gestionar Mensajes</h5>
-              <div className="card bg-white mt-3 d-flex">
-                <div className="card-body d-flex justify-content-between">
-                  <div>
-                    <h5 className="card-title">Nombre</h5>
-                    <p className="card-text">
-                      Peticion: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor dui quis
-                      imperdiet iaculis. Suspendisse potenti. Suspendisse iaculis urna orci. Suspendisse potenti.
-                      Suspendisse iaculis urna orci
-                    </p>
-                    <div className="d-flex align-items-center">
-                      <p className="mb-0 me-3">Telefono</p>
-                      <p className="mb-0 me-3">Mail</p>
-                      <p className="mb-0">Preferencia</p>
+            <div className="row">
+              <div className="card shadow bg-light rounded p-4">
+                <h5>Gestionar Mensajes</h5>
+                  <div className="card bg-white mt-3 d-flex">
+                    <div className="card-body d-flex justify-content-between">
+                      <div>
+                        <h5 className="card-title">Nombre</h5>
+                          <p className="card-text">
+                            Peticion: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor dui quis
+                            imperdiet iaculis. Suspendisse potenti. Suspendisse iaculis urna orci. Suspendisse potenti.
+                            Suspendisse iaculis urna orci
+                          </p>
+                        <div className="d-flex align-items-center">
+                          <p className="mb-0 me-3">Telefono</p>
+                          <p className="mb-0 me-3">Mail</p>
+                          <p className="mb-0">Preferencia</p>
+                        </div>
+                      </div>
+                      <div className="d-inline-flex align-items-center">
+                        <button className="btn btn-warning me-2 ">
+                        <i className="fa-solid fa-star"></i>
+                        </button>
+                        <button className="btn btn-success ">
+                        <i className="fa-sharp fa-solid fa-circle-check"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <div className="d-inline-flex align-items-center">
-                    <button className="btn btn-warning me-2 ">
-                    <i class="fa-solid fa-star"></i>
-                    </button>
-                    <button className="btn btn-success ">
-                    <i class="fa-sharp fa-solid fa-circle-check"></i>
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-         <div className="col-10  d-flex justify-content-center">
-        {mostrarFormulario && (
-          <FormularioRecurso />
         )}
+
+         <div className="col-10  d-flex justify-content-center">
+          {mostrarFormulario && (
+            <FormularioRecurso />
+          )}
         </div>
+
       </div>
+</>
+
+          )}
     </>
+
   );
 };
 
