@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "../../styles/formulario.css";
 import FormularioRecurso from '../component/formularioRecurso';
+import DatosPersonales from '../component/datosPersonales';
+
 
 export const Perfil = () => {
   const [mostrarPeticiones, setMostrarPeticiones] = useState(false);
@@ -10,6 +12,7 @@ export const Perfil = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 	const [authenticated, setAuthenticated] = useState(false);
 	const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
   const token = localStorage.getItem('jwt-token');
 
 
@@ -26,25 +29,28 @@ export const Perfil = () => {
 			setAuthenticated(false);
 			setLoading(false);
 			} else {
-			const response = await fetch((process.env.BACKEND_URL + "api/perfil"), {
-				method: "GET",
-				headers: {
-				"Authorization": `Bearer ${token}`,
-				},
-			});
+        const response = await fetch((process.env.BACKEND_URL + "api/perfil"), {
+          method: "GET",
+          headers: {
+          "Authorization": `Bearer ${token}`,
+          },
+        });
 	
-			if (!response.ok) {
-				throw new Error("Error al acceder al área privada");
-			}
-	
-			setAuthenticated(true);
-			setLoading(false);
-			}
-		} catch (error) {
-			console.error(error);
-			setAuthenticated(false);
-			setLoading(false);
-		}
+        if (!response.ok) {
+          throw new Error("Error al acceder al área privada");
+        }
+
+        const userData = await response.json(); // Convertir la respuesta a JSON
+        setUserData(userData);
+        setAuthenticated(true);
+        setLoading(false);
+      }
+
+      } catch (error) {
+        console.error(error);
+        setAuthenticated(false);
+        setLoading(false);
+      }
 		};
 	
 
@@ -84,7 +90,7 @@ export const Perfil = () => {
         <>
     
       <div className="container-fluid m-5">
-        <h5>Te damos la Bienvenida, "Nombre"</h5>
+        <h5>Te damos la Bienvenida, {userData.nombre}</h5>
       </div>
 
       <div className="container-fluid m-5">
@@ -190,30 +196,8 @@ export const Perfil = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="card shadow bg-light rounded m-3 p-3">
-                  <h5>Datos de tu ONG</h5>
-                  <div className="row mt-1">
-                    <ul className="col-6 list-unstyled text-start">
-                      <li>
-                        <p className="mb-1">Nombre</p>
-                      </li>
-                      <li>
-                        <p className="mb-1">CIF</p>
-                      </li>
-                      <li>
-                        <p className="mb-1">Teléfono</p>
-                      </li>
-                    </ul>
-                    <ul className="col-6 list-unstyled text-start">
-                      <li>
-                        <p className="mb-1">Correo Electrónico</p>
-                      </li>
-                      <li>
-                        <p className="mb-1">Dirección</p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+
+                < DatosPersonales userData={userData} />
               </div>
             </div>
           )}
