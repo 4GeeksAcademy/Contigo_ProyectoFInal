@@ -59,6 +59,12 @@ export const Perfil = () => {
 		}, []); 
 
 
+    const handleLogout = () => {
+      localStorage.removeItem('jwt-token');
+      navigate('/');
+      };
+
+
   return (
     <>
 
@@ -89,15 +95,23 @@ export const Perfil = () => {
 
         <>
     
-      <div className="container-fluid m-5">
-        <h5>Te damos la Bienvenida, {userData.nombre}</h5>
+      <div className="row justify-content-center d-flex m-5">
+        <div className="col-8 text-start">
+        <h5 className="mi_titulo">Te damos la Bienvenida, {userData.nombre} <i class="fa-regular fa-face-smile"></i></h5>
+        </div>
+        <div className="col-4 text-end">
+          <Link to="/">
+						<button className="btn btn-danger" onClick={handleLogout}><i className="fas fa-sign-out-alt"></i></button>
+					</Link>
+        </div>
+
       </div>
 
-      <div className="container-fluid m-5">
-        <div className="mt-5">
+      <div className="row justify-content-center d-flex m-lg-5 my-3">
+        <div className="col-lg-4 col-sm-10 m-auto text-center">
           <button
             type="button"
-            className="btn btn primario m-3"
+            className="btn btn-lg primario m-3"
             onClick={() => {
               setMostrarPeticiones(true);
               setMostrarTarjetas(false);
@@ -107,9 +121,11 @@ export const Perfil = () => {
           >
             Gestionar peticiones
           </button>
+        </div>
+        <div className="col-lg-4 col-sm-10 m-auto text-center">
           <button
             type="button"
-            className="btn btn primario m-3"
+            className="btn btn-lg btn primario m-3"
             onClick={() => {
               setMostrarPeticiones(false);
               setMostrarTarjetas(true);
@@ -119,9 +135,11 @@ export const Perfil = () => {
           >
             Gestionar recursos
           </button>
+          </div>
+          <div className="col-lg-4 col-sm-10 m-auto text-center">
           <button
             type="button"
-            className="btn btn primario m-3"
+            className="btn btn-lg primario m-3"
             onClick={() => {
               setMostrarPeticiones(false);
               setMostrarTarjetas(false);
@@ -131,11 +149,14 @@ export const Perfil = () => {
           >
             Datos personales
           </button>
+          </div>
 
           </div>
 
+
           {mostrarTarjetas && !mostrarPeticiones && !mostrarDatos && (
-            <div className="col-8 m-3 justify-content-center">
+          <div className="row justify-content-center d-flex m-lg-5">
+            <div className="col-8 justify-content-center">
               <div className="row">
                 <div className="card shadow bg-light rounded p-4">
                   <h5>Gestionar Recursos</h5>
@@ -170,67 +191,41 @@ export const Perfil = () => {
                 </div>
               </div>
             </div>
-          )}
-
-          {mostrarDatos && !mostrarPeticiones && !mostrarTarjetas && (
-            <div className="col-8 m-3 d-flex justify-content-start">
-              <div className="row">
-                <div className="card shadow bg-light rounded m-3 p-3">
-                  <h5>Tus datos de usuario</h5>
-                  <div className="row mt-1">
-                    <ul className="col-6 list-unstyled text-start">
-                      <li>
-                        <p className="mb-1">Nombre completo</p>
-                      </li>
-                      <li>
-                        <p className="mb-1">DNI-NIE</p>
-                      </li>
-                    </ul>
-                    <ul className="col-6 list-unstyled text-start">
-                      <li>
-                        <p className="mb-1">Correo Electrónico</p>
-                      </li>
-                      <li>
-                        <p className="mb-1">Cambiar contraseña</p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                < DatosPersonales userData={userData} />
-              </div>
             </div>
           )}
+
 
         
 
         {mostrarPeticiones && !mostrarTarjetas && !mostrarDatos && (
-          <div className="col-8 m-3 d-flex justify-content-center">
-            <div className="row">
-              <div className="card shadow bg-light rounded p-4">
-                <h5>Gestionar Mensajes</h5>
-                  <div className="card bg-white mt-3 d-flex">
-                    <div className="card-body d-flex justify-content-between">
-                      <div>
-                        <h5 className="card-title">Nombre</h5>
-                          <p className="card-text">
-                            Peticion: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor dui quis
-                            imperdiet iaculis. Suspendisse potenti. Suspendisse iaculis urna orci. Suspendisse potenti.
-                            Suspendisse iaculis urna orci
-                          </p>
-                        <div className="d-flex align-items-center">
-                          <p className="mb-0 me-3">Telefono</p>
-                          <p className="mb-0 me-3">Mail</p>
-                          <p className="mb-0">Preferencia</p>
+          <div className="row justify-content-center d-flex m-lg-5">
+            <div className="col-8 m-3 d-flex justify-content-center">
+              <div className="row">
+                <div className="card shadow bg-light rounded p-4">
+                  <h5>Gestionar Mensajes</h5>
+                    <div className="card bg-white mt-3 d-flex">
+                      <div className="card-body d-flex justify-content-between">
+                        <div>
+                          <h5 className="card-title">Nombre</h5>
+                            <p className="card-text">
+                              Peticion: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor dui quis
+                              imperdiet iaculis. Suspendisse potenti. Suspendisse iaculis urna orci. Suspendisse potenti.
+                              Suspendisse iaculis urna orci
+                            </p>
+                          <div className="d-flex align-items-center">
+                            <p className="mb-0 me-3">Telefono</p>
+                            <p className="mb-0 me-3">Mail</p>
+                            <p className="mb-0">Preferencia</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="d-inline-flex align-items-center">
-                        <button className="btn btn-warning me-2 ">
-                        <i className="fa-solid fa-star"></i>
-                        </button>
-                        <button className="btn btn-success ">
-                        <i className="fa-sharp fa-solid fa-circle-check"></i>
-                        </button>
+                        <div className="d-inline-flex align-items-center">
+                            <button className="btn btn-warning me-2 ">
+                              <i className="fa-solid fa-star"></i>
+                            </button>
+                            <button className="btn btn-success ">
+                              <i className="fa-sharp fa-solid fa-circle-check"></i>
+                            </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -245,10 +240,21 @@ export const Perfil = () => {
           )}
         </div>
 
-      </div>
-</>
 
+        {mostrarDatos && !mostrarPeticiones && !mostrarTarjetas && (
+          <div className="row justify-content-center d-flex m-lg-5 my-5">
+            <div className="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+              < DatosPersonales userData={userData} />
+            </div>
+          </div>
+          
           )}
+
+      
+        </>
+
+        )}
+
     </>
 
   );

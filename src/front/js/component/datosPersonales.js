@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const DatosPersonales = ({ userData }) => {
+const token = localStorage.getItem('jwt-token');
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
@@ -27,82 +28,111 @@ export const DatosPersonales = ({ userData }) => {
     });
   };
 
-  const handleSaveChanges = () => {
-    // Aquí es donde enviarías la petición PUT para guardar los cambios en el backend.
-    // Puedes usar la variable formData para obtener los nuevos valores del usuario.
 
-    // Una vez que la petición PUT sea exitosa, puedes mostrar un mensaje de éxito o realizar otras acciones necesarias.
-    // Por simplicidad, en este ejemplo, solo cambiaremos el estado de edición a falso.
-    setEditMode(false);
+  const handleSaveChanges = async () => {
+    try {
+      const response = await fetch((process.env.BACKEND_URL + "api/perfil"), {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al guardar los cambios");
+      }
+      alert("Cambios guardados exitosamente")
+      setEditMode(false);
+    } catch (error) {
+      console.error(error);
+      alert(error)
+    }
   };
 
   return ( 
 
     <>
     
-    <div>
-      <h2>Datos Personales</h2>
-      <form>
-        <div>
-          <label>Nombre:</label>
-          {!editMode ? (
-            <input type="text" value={formData.nombre} readOnly />
-          ) : (
-            <input
-              type="text"
-              name="nombre"
-              value={formData.nombre}
-              onChange={handleInputChange}
-            />
-          )}
-        </div>
-        <div>
-          <label>Apellido:</label>
-          {!editMode ? (
-            <input type="text" value={formData.apellido} readOnly />
-          ) : (
-            <input
-              type="text"
-              name="apellido"
-              value={formData.apellido}
-              onChange={handleInputChange}
-            />
-          )}
-        </div>
-        <div>
-          <label>Email:</label>
-          {!editMode ? (
-            <input type="email" value={formData.email} readOnly />
-          ) : (
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-          )}
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          {!editMode ? (
-            <input type="password" value="********" readOnly />
-          ) : (
-            <input
-              type="password"
-              name="contraseña"
-              value={formData.contraseña}
-              onChange={handleInputChange}
-            />
-          )}
-        </div>
-      </form>
-      {editMode ? (
-        <button onClick={handleSaveChanges}>Guardar cambios</button>
-      ) : (
-        <button onClick={() => setEditMode(true)}>Cambiar datos</button>
-      )}
-    </div>
-    
+        <div className="container-fluid">
+            <h3 className="mi_titulo col-12 mb-3"> Tus datos de usuario </h3>
+			    <div className="card col-12 m-auto shadow">
+				    <div className="card-body ">
+                        <form className="row m-3 justify-content-center" onSubmit={handleSaveChanges}>
+                            <div className="col-10">
+                            <label htmlFor="nombre" className="form-label my_label">Nombre:</label>
+                                {!editMode ? (
+                                    <input className="my_input form-control" type="text" value={formData.nombre} readOnly />
+                                ) : (
+                                    <input
+                                    type="text"
+                                    name="nombre"
+                                    value={formData.nombre}
+                                    onChange={handleInputChange}
+                                    className="my_input form-control"
+                                    />
+                                )}
+                            </div>
+                            <div className="col-10 my-2">
+                                <label htmlFor="apellido" className="form-label my_label">Apellido:</label>
+                                {!editMode ? (
+                                    <input className="my_input form-control" type="text" value={formData.apellido} readOnly />
+                                ) : (
+                                    <input
+                                    type="text"
+                                    name="apellido"
+                                    value={formData.apellido}
+                                    onChange={handleInputChange}
+                                    className="my_input form-control"
+                                    />
+                                )}
+                            </div>
+                            <div className="col-10 my-2">
+                                <label htmlFor="email" className="form-label my_label">Email:</label>
+                                {!editMode ? (
+                                    <input className="my_input form-control" type="email" value={formData.email} readOnly />
+                                ) : (
+                                    <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    className="my_input form-control"
+                                    />
+                                )}
+                            </div>
+                            <div className="col-10 my-2">
+                                <label htmlFor="password" className="form-label my_label">Contraseña:</label>
+                                {!editMode ? (
+                                    <input className="my_input form-control" type="password" value="*********" readOnly />
+                                ) : (
+                                    <input
+                                    type="password"
+                                    name="password"
+                                    value={formData.contraseña}
+                                    onChange={handleInputChange}
+                                    className="my_input form-control"
+                                    />
+                                )}
+                            </div>
+                        </form>
+
+                        <div className="row justify-content-center">
+                            <div className="col-lg-4 col-sm-10 col-xs-12 text-center">
+                
+                            {editMode ? (
+                                <button type="button" className="btn secundario my-3" onClick={handleSaveChanges}>Guardar cambios <i class="far fa-check-circle"></i></button>
+                            ) : (
+                                <button type="button" className="btn secundario m7-3" onClick={() => setEditMode(true)}>Cambiar datos <i class="fas fa-edit"></i></button>
+                            )}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
     </>
 
   );

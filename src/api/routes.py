@@ -193,6 +193,36 @@ def private():
     return jsonify(user.serialize()), 200
 
 
+@api.route('/perfil', methods=['PUT'])
+@jwt_required()
+def update_user_profile():
+    try:
+        user_id = get_jwt_identity()
+        user = Usuario.query.filter_by(id=user_id).first()
+
+        if not user:
+            return jsonify({"message": "Error, no existe el usuario"}), 400
+
+        data = request.get_json()
+        
+        if 'nombre' in data:
+            user.nombre = data['nombre']
+        if 'apellido' in data:
+            user.apellido = data['apellido']
+        if 'email' in data:
+            user.email = data['email']
+        if 'password' in data:
+            user.contraseña = data['contraseña']
+        
+        db.session.add(user)
+        db.session.commit()
+
+        return jsonify({"message": "Datos del usuario actualizados correctamente"}), 200
+
+    except Exception as e:
+        return jsonify({"message": "Error al actualizar los datos del usuario", "error": str(e)}), 500
+    
+
 @api.route('/peticiones', methods=['GET'])
 @jwt_required()
 def peticiones():
