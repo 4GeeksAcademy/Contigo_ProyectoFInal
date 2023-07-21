@@ -13,9 +13,9 @@ export const Footer = () => {
 
         <div className="col-xs-12 col-md-6 col-lg-3">
           <ul className="list-unstyled">
-            <li className="destacado">Dirección</li>
-            <li className="destacado">Email</li>
-            <li className="destacado">Teléfono</li>
+            <li className="destacado">Avenida 25, 1A - Madrid</li>
+            <li className="destacado">contigo@contigo.org</li>
+            <li className="destacado">Tel. 645 00 12 00</li>
           </ul>
         </div>
         <div className="col-xs-12 col-md-6 col-lg-3">

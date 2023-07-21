@@ -9,6 +9,9 @@ export const OngCard = () => {
   const { store, actions } = useContext(Context);
   const { id } = useParams();
   const navigate = useNavigate();
+  const direccionConMadrid = `${store.infoOng.direccion}, Madrid`;
+  const encodedAddress = encodeURIComponent(direccionConMadrid);
+  const mapURL = `https://www.google.com/maps?q=${encodedAddress}`;
 
   useEffect(() => {
     actions.get_ong_por_id(id);
@@ -35,7 +38,7 @@ export const OngCard = () => {
               <div className="col-lg-6 col-md-12 col-sm-12">
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item"><strong><i className="fas fa-at"></i> Email:</strong> {store.infoOng.email}</li>
-                  <li className="list-group-item"><strong><i className="fas fa-map-marker-alt"></i> Dirección:</strong> {store.infoOng.direccion} - {store.infoOng.codigo_postal}</li>
+                  <li className="list-group-item"><strong><i className="fas fa-map-marker-alt"></i> Dirección:</strong><a href={mapURL} target="_blank" rel="noopener noreferrer"> {store.infoOng.direccion} - {store.infoOng.codigo_postal}</a></li>
                   <li className="list-group-item"><strong><i className="fas fa-phone"></i> Tel:</strong> {store.infoOng.telefono}</li>
                   <li className="list-group-item"><strong><i className="fas fa-external-link-alt"></i> Web:</strong> <a href={store.infoOng.url} target="_blank">{store.infoOng.url}</a></li>
                 </ul>
