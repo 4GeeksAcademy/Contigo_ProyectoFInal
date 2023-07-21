@@ -52,24 +52,48 @@ def nombre_ong(ong_id):
 
 @api.route('/recursos', methods=['POST'])
 def post_recurso():
-    data = request.get_json()
-    nombre = data.get('nombre')
-    categoria = data.get('categoria')
-    virtual = data.get('virtual')
-    direccion = data.get('direccion')
-    codigo_postal = data.get('codigo_postal')
-    telefono = data.get('telefono')
-    descripcion = data.get('descripcion')
-    img = data.get('img')
-    fichero = data.get('fichero')
-    usuario_id = data.get('usuario_id')
-    ong_id = data.get('ong_id')
+    # Obtain form fields using request.form
+    nombre = request.form.get('nombre')
+    categoria = request.form.get('categoria')
+    virtual = request.form.get('virtual')
+    direccion = request.form.get('direccion')
+    codigo_postal = request.form.get('codigo_postal')
+    telefono = request.form.get('telefono')
+    descripcion = request.form.get('descripcion')
+    img = request.form.get('img')
+    usuario_id = request.form.get('usuario_id')
+    ong_id = request.form.get('ong_id')
 
-    nuevo_recurso = Recurso(categoria=categoria, usuario_id=usuario_id, ong_id=ong_id, nombre=nombre, virtual=virtual, direccion=direccion, codigo_postal=codigo_postal, telefono=telefono, descripcion=descripcion, img=img, fichero=fichero)
+    # Convertir el valor "virtual" a un booleano
+    if virtual:
+        virtual = virtual.lower() == 'true'
+    else:
+        virtual = False
+
+    fichero = request.files.get('fichero')
+    if fichero:
+        result = cloudinary.uploader.upload(fichero, folder='recursos')
+        fichero_url = result['secure_url'] if result.get('secure_url') else None
+    else:
+        fichero_url = None
+
+    nuevo_recurso = Recurso(
+        categoria=categoria, 
+        usuario_id=usuario_id, 
+        ong_id=ong_id, 
+        nombre=nombre, 
+        virtual=virtual, 
+        direccion=direccion, 
+        codigo_postal=codigo_postal, 
+        telefono=telefono, 
+        descripcion=descripcion, 
+        img=img,
+        fichero=fichero_url,  
+    )
     db.session.add(nuevo_recurso)
     db.session.commit()
 
-    return jsonify(nombre=nombre), 200
+    return jsonify({'message': 'Recurso creado correctamente'}), 200
 
 
 @api.route('/ong', methods=['GET'])

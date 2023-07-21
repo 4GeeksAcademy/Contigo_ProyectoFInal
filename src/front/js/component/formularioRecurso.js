@@ -6,23 +6,43 @@ export const FormularioRecurso = () => {
   const [data, setData] = useState({});
   const [virtual, setVirtual] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [fichero, setFichero] = useState(null);
 
   const handleChange = (event) => {
-    setData({ ...data, [event.target.id]: event.target.value });
+    const { id, type, value, checked, files } = event.target;
+    const fieldValue = type === "checkbox" ? checked : type === "file" ? files[0] : value;
+
+    if (type === "file") {
+      setFichero(files[0]); // Asociar el archivo seleccionado a la variable "fichero"
+    } else {
+      setData((prevData) => ({
+        ...prevData,
+        [id]: fieldValue,
+      }));
+
+      if (id === "virtual") {
+        setVirtual(checked);
+      }
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(data);
 
-    const requestData = { ...data, virtual };
+    // Convertir el valor de "virtual" a booleano
+    const requestData = { ...data, virtual: virtual };
+
+    const formData = new FormData();
+
+    for (const key in requestData) {
+      formData.append(key, requestData[key]);
+    }
+
+    formData.append("fichero", fichero);
 
     const config = {
       method: "POST",
-      body: JSON.stringify(requestData),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: formData,
     };
 
     fetch(process.env.BACKEND_URL + "api/recursos", config)
@@ -38,19 +58,18 @@ export const FormularioRecurso = () => {
       })
       .catch((error) => console.error("Error:", error));
   };
-
   return (
     <>
       <div className="container-fluid m-5">
         <h2 className="subtitulo col-8 m-auto py-4"> Nuevo Recurso </h2>
         <div className="card col-8 m-auto shadow">
           <div className="card-body">
-          {success && (
+            {success && (
               <div className="alert alert-success" role="alert">
                 El recurso se cargó correctamente.
               </div>
             )}
-            <form className="row" onSubmit={handleSubmit}>
+            <form className="row" onSubmit={handleSubmit} encType="multipart/form-data">
               <div className="col-md-8 my-2">
                 <label htmlFor="nombre" className="form-label my_label">
                   Nombre del Recurso
@@ -95,7 +114,7 @@ export const FormularioRecurso = () => {
                     type="checkbox"
                     id="virtual"
                     checked={virtual}
-                    onChange={(event) => setVirtual(event.target.checked)}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -104,7 +123,7 @@ export const FormularioRecurso = () => {
                   Dirección
                 </label>
                 <input
-                  type="adress"
+                  type="address"
                   className="my_input form-control"
                   id="direccion"
                   name="direccion"
@@ -146,7 +165,7 @@ export const FormularioRecurso = () => {
                   Cargar imagen
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   className="my_input form-control"
                   id="img"
                   name="img"
@@ -185,11 +204,7 @@ export const FormularioRecurso = () => {
                     Cancelar
                   </button>
                 </Link>
-                <button
-                  type="submit"
-                  className="btn primario"
-                  onClick={handleSubmit}
-                >
+                <button type="submit" className="btn primario" onClick={handleSubmit}>
                   Guardar recurso
                 </button>
               </div>
