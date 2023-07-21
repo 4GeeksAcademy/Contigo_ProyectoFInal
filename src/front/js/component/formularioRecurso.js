@@ -78,8 +78,8 @@ export const FormularioRecurso = () => {
                   <option value="">Selecciona la categoría</option>
                   <option value="Alimentos">Alimentos</option>
                   <option value="Empleo">Empleo</option>
-                  <option value="Extranjería-Legal">Extranjería-Legal</option>
-                  <option value="Higiene-Salud">Higiene-Salud</option>
+                  <option value="Legales">Legales</option>
+                  <option value="Salud">Salud</option>
                   <option value="Ocio">Ocio</option>
                   <option value="Ropa">Ropa</option>
                   <option value="Vivienda">Vivienda</option>
