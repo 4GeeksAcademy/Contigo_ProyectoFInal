@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import CardRecursos  from "../component/cardRecursos"; 
@@ -8,9 +8,12 @@ export const ListaRecursos = () => {
   const { store, actions } = useContext(Context);
   const { categoria } = useParams();
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     actions.get_recurso_categoria(categoria)
+    setLoading(false)
   }, [categoria]);
 
   const seleccionarCategoria = (nuevaCategoria) => {
@@ -19,6 +22,7 @@ export const ListaRecursos = () => {
 
   return (
   <>
+
       <div className="container-fluid">
       <div className="row text-center align-items-center justify-content-center m-auto">
 				<div className="col-10 jumbotron_4 p-3 mt-4 border rounded-3 mb-3">
@@ -49,7 +53,12 @@ export const ListaRecursos = () => {
       <div className="row">
         <div id="carouselExample" className="col-lg-6 col-sm-12 align-items-center justify-content-center m-auto carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
           <div className="carousel-inner">
-            {store.recursosCategoria.map((recurso, index) => ( 
+
+          {loading ? (
+            <p>Cargando recursos...</p>
+          ) : store.recursosCategoria.length > 0 ? (
+
+            store.recursosCategoria.map((recurso, index) => ( 
               <div className= {`carousel-item my-3${index === 0 ? ' active' : ''}`} key={recurso.id}>
                 <CardRecursos
                   key={recurso.id}
@@ -60,7 +69,19 @@ export const ListaRecursos = () => {
                   direccion={recurso.direccion}
                 />
               </div> 
-            ))}
+            ))
+
+            ) : (
+              <div className="container my-5">
+              <div className="my_jumbotron jumbotron p-5 col-10 m-auto text-center rounded-3">
+                <h3 className="display-6">¡Ups! <i class="fas fa-surprise"></i></h3>
+                <p className="col-10 mx-auto mb-3 fs-5 text-muted">
+                  No hay recursos para mostrar de esta categoría, sigue explorando otras.
+                </p>
+              </div>
+            </div>  
+            
+            )}
 
           </div>
 
@@ -82,7 +103,7 @@ export const ListaRecursos = () => {
           </div>
         </div>
       </div>
-
+   
     </>
   );
 };

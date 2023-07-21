@@ -1,9 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logoContigoUrl from "../../img/Logo_Contigo_Home.png";
 import "../../styles/navbar.css";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+  const token = store.token
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -29,19 +33,27 @@ export const Navbar = () => {
                 <Link to="/about_us">Sobre Nosotros</Link>
               </li>
 
-            
-              <li className="nav-item">
+              { token == null ? ( <li className="nav-item">
                 <Link to="/login">
-                  <i className="fa-solid fa-user"></i>
+                  Login
                 </Link>
-              </li>
-              
+              </li>) : (
 
-              <li className="nav-item ">
+                <>
+                <li className="nav-item">
+                <Link to="/perfil">Perfil</Link>
+                </li>
+
+                <li className="nav-item">
                 <Link to="/">
-                  <i className="fa-solid fa-earth-europe"></i>
-                </Link>
+					      	<button className="btn" onClick={() => {actions.logout();
+                  navigate("/")}}><i className="fas fa-sign-out-alt"></i></button>
+					      </Link>
               </li>
+               </>
+              )
+            }
+             
             </ul>
           </div>
           </div>

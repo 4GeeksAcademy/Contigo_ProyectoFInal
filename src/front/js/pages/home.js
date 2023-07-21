@@ -21,7 +21,7 @@ export const Home = () => {
       <div className="row categorias text-center justify-content-center m-auto">
         <div className="col-sm-12 py-1 col-md-4 col-lg-3 py-md-4 images">
           <Link
-            to={`/listarecursos/alimentos`}
+            to={`/listarecursos/Alimentos`}
             className="icon"
             title="Alimentos"
           >
@@ -42,7 +42,7 @@ export const Home = () => {
         </div>
 
         <div className="col-sm-12 py-1 col-md-4 col-lg-3 py-md-4 images">
-          <Link to={`/listarecursos/salud`} className="icon" title="Salud">
+          <Link to={`/listarecursos/Salud`} className="icon" title="Salud">
             <img
               className="rounded-circle"
               alt="higiene-salud"
@@ -60,7 +60,7 @@ export const Home = () => {
         </div>
 
         <div className="col-sm-12 py-1 col-md-4 col-lg-3 py-md-4 images">
-          <Link to={`/listarecursos/ropa`} className="icon" title="Ropa">
+          <Link to={`/listarecursos/Ropa`} className="icon" title="Ropa">
             <img
               className="rounded-circle"
               alt="ropa"
@@ -79,7 +79,7 @@ export const Home = () => {
 
         <div className="col-sm-12 py-sm-1 col-md-4 col-lg-3 py-md-4 images">
           <Link
-            to={`/listarecursos/vivienda`}
+            to={`/listarecursos/Vivienda`}
             className="icon"
             title="Vivienda"
           >
@@ -101,7 +101,7 @@ export const Home = () => {
 
         <div className="col-sm-12 py-1 col-md-4 col-lg-3 py-md-4 images">
           <Link
-            to={`/listarecursos/formacion`}
+            to={`/listarecursos/Formacion`}
             className="icon"
             title="Formación"
           >
@@ -122,7 +122,7 @@ export const Home = () => {
         </div>
 
         <div className="col-sm-12 py-1 col-md-4 col-lg-3 py-md-4 images">
-          <Link to={`/listarecursos/empleo`} className="icon" title="Empleo">
+          <Link to={`/listarecursos/Empleo`} className="icon" title="Empleo">
             <img
               className="rounded-circle"
               alt="empleo"
@@ -140,7 +140,7 @@ export const Home = () => {
         </div>
 
         <div className="col-sm-12 py-1 col-md-4 col-lg-3 py-md-4 images">
-          <Link to={`/listarecursos/legales`} className="icon" title="Legales">
+          <Link to={`/listarecursos/Legales`} className="icon" title="Legales">
             <img
               className="rounded-circle"
               alt="legales"
@@ -158,7 +158,7 @@ export const Home = () => {
         </div>
 
         <div className="col-sm-12 py-1 col-md-4 col-lg-3 py-md-4 images">
-          <Link to={`/listarecursos/ocio`} className="icon" title="Ocio">
+          <Link to={`/listarecursos/Ocio`} className="icon" title="Ocio">
             <img
               className="rounded-circle"
               alt="ocio"

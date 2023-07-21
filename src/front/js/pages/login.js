@@ -1,47 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../store/appContext";
+
 import "../../styles/login.css";
 
 
 export const Login = () => {
-
+    const { store, actions } = useContext(Context);
     const navigate = useNavigate();
-
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-
-	useEffect(() => {
-		const token = localStorage.getItem("jwt-token");
-		console.log("Token:", token);
-	  	}, []);
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-
-		try {
-			const response = await fetch(process.env.BACKEND_URL + "api/login", {
-			  method: 'POST',
-			  headers: {
-				'Content-Type': 'application/json'
-			  },
-			  body: JSON.stringify({ email, password })
-			});
-		
-            const data = await response.json();
-
-			if (response.status === 200) {
-				const token = data.token;
-				localStorage.setItem("jwt-token", token);
-				navigate("/perfil");
-			  } else {
-				alert(data.message);
-			  }
-			} catch (error) {
-				console.error(error);
-			}
-		};
+    const token = store.token
 
 
+    const handleSubmit = () => {
+        if (actions.login(email, password) && token != "")
+            { navigate("/perfil");
+            } else {
+                alert("Error en login")
+            }
+        }
 
     return (
     

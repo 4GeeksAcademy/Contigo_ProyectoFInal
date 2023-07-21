@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const DescripcionRecurso = ({id, nombre, descripcion, direccion, ong_id, fichero, img, telefono, codigo_postal, virtual }) => {
-
+  const direccionConMadrid = `${direccion}, Madrid`;
+  const encodedAddress = encodeURIComponent(direccionConMadrid);
+  const mapURL = `https://www.google.com/maps?q=${encodedAddress}`;
   const [ongName, setOngName] = useState('');
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export const DescripcionRecurso = ({id, nombre, descripcion, direccion, ong_id, 
               <p className="card-text"><small className="text-muted">{descripcion}</small></p>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item"><strong>ONG:</strong> {ongName}</li>
-                <li className="list-group-item"><strong>Dirección:</strong> {direccion} - {codigo_postal}</li>
+                <li className="list-group-item"><strong>Dirección:</strong><a href={mapURL} target="_blank" rel="noopener noreferrer"> {direccion} - {codigo_postal} <i className="fas fa-map-marked-alt"></i></a></li>
                 <li className="list-group-item"><strong>Tel:</strong> {telefono}</li>
                 <li className="list-group-item"><strong>Descargar información</strong> <i className="fas fa-file-download"></i></li>
               </ul>
