@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/formulario.css";
 import FormularioRecurso from '../component/formularioRecurso';
 import DatosPersonales from '../component/datosPersonales';
+import { Context } from "../store/appContext";
 
 
 export const Perfil = () => {
+  const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
   const [mostrarPeticiones, setMostrarPeticiones] = useState(false);
   const [mostrarTarjetas, setMostrarTarjetas] = useState(false);
   const [mostrarDatos, setMostrarDatos] = useState(false);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
-	const [authenticated, setAuthenticated] = useState(false);
 	const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
   const token = localStorage.getItem('jwt-token');
-
 
 
   const mostrarFormularioRecurso = () => {
@@ -26,7 +27,6 @@ export const Perfil = () => {
   const checkToken = async () => {
 		try {
 			if (!token) {
-			setAuthenticated(false);
 			setLoading(false);
 			} else {
         const response = await fetch((process.env.BACKEND_URL + "api/perfil"), {
@@ -42,13 +42,11 @@ export const Perfil = () => {
 
         const userData = await response.json(); // Convertir la respuesta a JSON
         setUserData(userData);
-        setAuthenticated(true);
         setLoading(false);
       }
 
       } catch (error) {
         console.error(error);
-        setAuthenticated(false);
         setLoading(false);
       }
 		};
@@ -76,7 +74,7 @@ export const Perfil = () => {
           </div>
         </div>
 
-      ) : !authenticated ? (
+      ) : store.token == null ? (
 
         <div className="row m-5 justify-content-center">
           <div className="col-8 m-5 text-center">
@@ -99,11 +97,7 @@ export const Perfil = () => {
         <div className="col-8 text-start">
         <h5 className="mi_titulo">Te damos la Bienvenida, {userData.nombre} <i class="fa-regular fa-face-smile"></i></h5>
         </div>
-        <div className="col-4 text-end">
-          <Link to="/">
-						<button className="btn btn-danger" onClick={handleLogout}><i className="fas fa-sign-out-alt"></i></button>
-					</Link>
-        </div>
+       
 
       </div>
 

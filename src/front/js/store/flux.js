@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			token: null,
 			ongs: [],
 			infoOng: [],
 			recursosOng: [],
@@ -50,8 +51,45 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 
+			login: async ( email, password ) => { 
+				const config = {
+					method: 'POST',
+					headers: {
+					  'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ email, password })
+				  }
+				  
+				  try {const response = await fetch(process.env.BACKEND_URL + "api/login", config)
+					
+
+					const data = await response.json();
+
+					if (response.status === 200) {
+						const token = data.token;
+						localStorage.setItem("jwt-token", token);
+						setStore({ token: token });
+
+					  } else {
+						alert(data.message);
+					  }
+					} catch (error) {
+						console.error(error);
+					}
+				},
+
+			
+				logout: () => {
+					const token = sessionStorage.removeItem("jwt-token");
+					setStore({ token: null })
+				}
+
+
 			}
-		}
+
+			
+			}
+		
 	};
 
 
