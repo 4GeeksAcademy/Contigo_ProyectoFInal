@@ -15,7 +15,6 @@ export const Perfil = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 	const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState(null);
-  const token = localStorage.getItem('jwt-token');
 
 
   const mostrarFormularioRecurso = () => {
@@ -26,13 +25,10 @@ export const Perfil = () => {
 
   const checkToken = async () => {
 		try {
-			if (!token) {
-			setLoading(false);
-			} else {
         const response = await fetch((process.env.BACKEND_URL + "api/perfil"), {
           method: "GET",
           headers: {
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${localStorage.getItem("jwt-token")}`,
           },
         });
 	
@@ -45,7 +41,7 @@ export const Perfil = () => {
         setLoading(false);
       }
 
-      } catch (error) {
+       catch (error) {
         console.error(error);
         setLoading(false);
       }
@@ -53,20 +49,16 @@ export const Perfil = () => {
 	
 
 		useEffect(() => {
-		checkToken();
-		}, []); 
-
-
-    const handleLogout = () => {
-      localStorage.removeItem('jwt-token');
-      navigate('/');
-      };
+      if(store.token) {
+        		checkToken();
+      }
+		}, [store.token]); 
 
 
   return (
     <>
 
-    { loading ? (
+    { loading && !userData ? (
     
       <div className="row justify-content-center text-center m-5">
           <div className="spinner-border text-warning" role="status">
@@ -95,7 +87,7 @@ export const Perfil = () => {
     
       <div className="row justify-content-center d-flex m-5">
         <div className="col-8 text-start">
-        <h5 className="mi_titulo">Te damos la Bienvenida, {userData.nombre} <i class="fa-regular fa-face-smile"></i></h5>
+        <h5 className="mi_titulo">Te damos la Bienvenida, {userData.nombre} <i className="fa-regular fa-face-smile"></i></h5>
         </div>
        
 

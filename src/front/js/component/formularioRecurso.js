@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/formulario.css";
 
+
 export const FormularioRecurso = () => {
   const [data, setData] = useState({});
   const [virtual, setVirtual] = useState(false);
@@ -43,6 +44,9 @@ export const FormularioRecurso = () => {
     const config = {
       method: "POST",
       body: formData,
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("jwt-token")}`,
+        },
     };
 
     fetch(process.env.BACKEND_URL + "api/recursos", config)
@@ -58,6 +62,8 @@ export const FormularioRecurso = () => {
       })
       .catch((error) => console.error("Error:", error));
   };
+
+
   return (
     <>
       <div className="container-fluid m-5">
@@ -97,6 +103,7 @@ export const FormularioRecurso = () => {
                   <option value="">Selecciona la categoría</option>
                   <option value="Alimentos">Alimentos</option>
                   <option value="Empleo">Empleo</option>
+                  <option value="Formacion">Formación</option>
                   <option value="Legales">Legales</option>
                   <option value="Salud">Salud</option>
                   <option value="Ocio">Ocio</option>

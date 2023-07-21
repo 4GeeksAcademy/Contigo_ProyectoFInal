@@ -9,6 +9,14 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 
 
 import hashlib
+import cloudinary
+import cloudinary.uploader
+
+cloudinary.config(
+    cloud_name='dwe4vkk3t',
+    api_key='623794587665274',
+    api_secret='lyyd3tnSRtiUGmnXJC5bgNctd8Y'
+)
 
 api = Blueprint('api', __name__)
 
@@ -51,7 +59,13 @@ def nombre_ong(ong_id):
 
 
 @api.route('/recursos', methods=['POST'])
+@jwt_required()
 def post_recurso():
+
+    user_id = get_jwt_identity()
+    user = Usuario.query.filter_by(id=user_id).first()
+    ong = ONG.query.get(user.ong_id)
+
     # Obtain form fields using request.form
     nombre = request.form.get('nombre')
     categoria = request.form.get('categoria')
@@ -61,8 +75,8 @@ def post_recurso():
     telefono = request.form.get('telefono')
     descripcion = request.form.get('descripcion')
     img = request.form.get('img')
-    usuario_id = request.form.get('usuario_id')
-    ong_id = request.form.get('ong_id')
+    usuario_id = user.id
+    ong_id = ong.id
 
     # Convertir el valor "virtual" a un booleano
     if virtual:
@@ -257,8 +271,9 @@ def peticiones():
     recursos = Recurso.query.filter_by(ong_id=ong.id)
     recursos_ids = [recurso.id for recurso in recursos]
     peticiones = Peticion.query.filter_by(recurso_id=recursos_ids) # Investigar cómo buscar dentro de un listado
-
-    return jsonify(peticiones) # serialize cada una de las peticiones
+    data = [peticion.serialize() for peticion in peticiones]
+    
+    return jsonify(data), 200
 
 
 # crear route para ver las peticiones

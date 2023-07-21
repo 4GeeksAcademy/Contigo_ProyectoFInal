@@ -80,8 +80,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			
 				logout: () => {
-					const token = sessionStorage.removeItem("jwt-token");
+					localStorage.removeItem("jwt-token");
 					setStore({ token: null })
+				},
+
+				updateLogin: () => {
+					if (localStorage.getItem("jwt-token"))
+					setStore({ token: localStorage.getItem("jwt-token") });
 				}
 
 
