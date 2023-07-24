@@ -57,6 +57,15 @@ def nombre_ong(ong_id):
     else:
         return jsonify({"error": "ONG no encontrada"}), 404
 
+@api.route('/recursos_ong_usuario', methods=['GET'])
+@jwt_required()
+def obtener_recursos_ong_usuario():
+    user_id = get_jwt_identity()
+    user = Usuario.query.filter_by(id=user_id).first() 
+    ong = ONG.query.get(user.ong_id)
+    recursos = Recurso.query.filter_by(ong_id=ong.id)
+    recursos_por_usuario = [recurso.serialize() for recurso in recursos]
+    return jsonify(recursos_por_usuario), 200
 
 @api.route('/recursos', methods=['POST'])
 @jwt_required()

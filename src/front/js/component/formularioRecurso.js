@@ -8,10 +8,16 @@ export const FormularioRecurso = () => {
   const [virtual, setVirtual] = useState(false);
   const [success, setSuccess] = useState(false);
   const [fichero, setFichero] = useState(null);
+  const [error, setError] = useState(null);
+
+  const handleCancelar = () => {
+    window.location.reload();
+  };
+
 
   const handleChange = (event) => {
-    const { id, type, value, checked, files } = event.target;
-    const fieldValue = type === "checkbox" ? checked : type === "file" ? files[0] : value;
+  const { id, type, value, checked, files } = event.target;
+  const fieldValue = type === "checkbox" ? checked : type === "file" ? files[0] : value;
 
     if (type === "file") {
       setFichero(files[0]); // Asociar el archivo seleccionado a la variable "fichero"
@@ -30,7 +36,7 @@ export const FormularioRecurso = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Convertir el valor de "virtual" a booleano
+
     const requestData = { ...data, virtual: virtual };
 
     const formData = new FormData();
@@ -60,7 +66,10 @@ export const FormularioRecurso = () => {
         console.log("Éxito:", response);
         setSuccess(true);
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => {
+        console.error("Error:", error);
+        setError("Hubo un error al guardar el recurso. Por favor, inténtalo nuevamente.");
+      });
   };
 
 
@@ -75,6 +84,11 @@ export const FormularioRecurso = () => {
                 El recurso se cargó correctamente.
               </div>
             )}
+            {error && (
+  <div className="alert alert-danger" role="alert">
+    {error}
+  </div>
+)}
             <form className="row" onSubmit={handleSubmit} encType="multipart/form-data">
               <div className="col-md-8 my-2">
                 <label htmlFor="nombre" className="form-label my_label">
@@ -172,7 +186,7 @@ export const FormularioRecurso = () => {
                   Cargar imagen
                 </label>
                 <input
-                  type="text"
+                  type="url"
                   className="my_input form-control"
                   id="img"
                   name="img"
@@ -206,14 +220,10 @@ export const FormularioRecurso = () => {
                 ></textarea>
               </div>
               <div className="col-md-12 card-footer text-body-secondary gap-2 d-flex justify-content-end">
-                <Link to="/">
-                  <button type="button" className="btn secundario">
-                    Cancelar
-                  </button>
-                </Link>
-                <button type="submit" className="btn primario" onClick={handleSubmit}>
-                  Guardar recurso
-                </button>
+               <button type="button" className="btn secundario" onClick={handleCancelar}>
+                Cancelar
+                </button>         
+                <button type="submit" className="btn primario">Guardar recurso</button>
               </div>
             </form>
           </div>

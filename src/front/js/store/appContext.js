@@ -29,6 +29,7 @@ const injectContext = PassedComponent => {
 			 * store, instead use actions, like this:
 			 **/
 			state.actions.updateLogin()
+			state.actions.getrecursoOngUsuario();
 			
 			
 		}, []);
