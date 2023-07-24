@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const CardRecursos = ({nombre, descripcion, ong_id, direccion, id }) => {
+export const CardRecursos = ({nombre, descripcion, ong_id, direccion, id, img }) => {
   const [ongName, setOngName] = useState('');
   const direccionConMadrid = `${direccion}, Madrid`;
   const encodedAddress = encodeURIComponent(direccionConMadrid);
@@ -18,7 +18,7 @@ export const CardRecursos = ({nombre, descripcion, ong_id, direccion, id }) => {
 
   return (
       <div className="card shadow justify-content-center m-auto col-md-6" style={{width: '18rem'}}>
-          <img src="https://loremflickr.com/800/500/people" className="card-img-top" alt="imagen"/>
+          <img src={img} className="card-img-top" alt="imagen"/>
         <div className="card-body">
           <h5 className="card-title"><strong>{nombre}</strong></h5>
             <p className="card-text">{descripcion}</p>
