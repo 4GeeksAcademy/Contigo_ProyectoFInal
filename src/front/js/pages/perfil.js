@@ -4,6 +4,7 @@ import "../../styles/formulario.css";
 import FormularioRecurso from '../component/formularioRecurso';
 import DatosPersonales from '../component/datosPersonales';
 import { Context } from "../store/appContext";
+import GestionRecurso from '../component/gestionRecurso';
 
 
 export const Perfil = () => {
@@ -145,26 +146,9 @@ export const Perfil = () => {
             <div className="col-8 justify-content-center">
               <div className="row">
                 <div className="card shadow bg-light rounded p-4">
-                  <h5>Gestionar Recursos</h5>
-                  <div className="card bg-white mt-3 d-flex">
-                    <div className="card-body d-flex justify-content-between">
-                      <div>
-                        <h5 className="card-title">Recurso</h5>
-                        <p className="card-text">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor dui quis
-                          imperdiet iaculis. Suspendisse potenti. Suspendisse iaculis urna orci. Suspendisse potenti.
-                          Suspendisse iaculis urna orci
-                        </p>
-                      </div>
-                      <div className="d-inline-flex align-items-center">
-                        <button className="btn btn-danger me-2">
-                          <i className="fa-solid fa-trash"></i>
-                        </button>
-                        <button className="btn btn-primary">
-                          <i className="fa-solid fa-pen-to-square"></i>
-                        </button>
-                      </div>
-                    </div>
+                  <h5>Recursos Cargados</h5>
+                  <div className="card bg-white mt-3 p-2 d-flex">
+                  <GestionRecurso/>
                   </div>
                   <div className="col-12 mt-3 text-center">
                     <button
