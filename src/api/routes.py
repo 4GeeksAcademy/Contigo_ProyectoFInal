@@ -349,13 +349,14 @@ def peticiones():
     ong = ONG.query.get(user.ong_id)
     recursos = Recurso.query.filter_by(ong_id=ong.id)
     recursos_ids = [recurso.id for recurso in recursos]
-    peticiones = Peticion.query.filter_by(recurso_id=recursos_ids) # Investigar cómo buscar dentro de un listado
+    # peticiones = Peticion.query.filter_by(recurso_id=recursos_ids) 
+    peticiones = Peticion.query.filter(Peticion.recurso_id.in_(recursos_ids))
     data = [peticion.serialize() for peticion in peticiones]
     
     return jsonify(data), 200
 
 
-# crear route para ver las peticiones
+
 @api.route('/peticion', methods=['GET'])
 def get_peticion():
 
