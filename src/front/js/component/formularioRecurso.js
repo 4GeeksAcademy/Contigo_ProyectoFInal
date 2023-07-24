@@ -10,10 +10,6 @@ export const FormularioRecurso = () => {
   const [fichero, setFichero] = useState(null);
   const [error, setError] = useState(null);
 
-  const handleCancelar = () => {
-    window.location.reload();
-  };
-
 
   const handleChange = (event) => {
   const { id, type, value, checked, files } = event.target;
@@ -224,9 +220,8 @@ export const FormularioRecurso = () => {
           </div>
 
           <div className="col-md-12 card-footer text-body-secondary gap-2 d-flex justify-content-end">
-            <button type="button" className="btn secundario" onClick={handleCancelar}>
-              Cancelar
-            </button>         
+            <Link to="/perfil"><button type="button" className="btn secundario">
+              Cancelar</button></Link>         
             <button type="submit" className="btn primario"  onClick={handleSubmit}>Guardar recurso</button>
           </div>
               

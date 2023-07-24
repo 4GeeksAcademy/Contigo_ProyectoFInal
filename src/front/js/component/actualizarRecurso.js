@@ -89,12 +89,12 @@ export const ActualizarRecurso = ({ recurso, onCancel, onSubmit }) => {
   return (
     <>
       <div className="row m-auto ">
-        <p className="mi_titulo col-12 m-auto p-2"> Actualizar información del recurso </p>
+        <p className="mi_titulo col-12 m-auto p-2 mt-4 border-top"> Actualizar información del recurso: {recurso.nombre} </p>
         <div className="card border-0 col-12 m-auto">
           <div className="card-body">
             
             <form className="row" onSubmit={handleActualizar} encType="multipart/form-data">
-              <div className="col-md-8 my-2">
+              <div className="col-md-8 mb-2">
                 <label htmlFor="nombre" className="form-label my_label">
                   Nombre del Recurso
                 </label>
@@ -238,7 +238,7 @@ export const ActualizarRecurso = ({ recurso, onCancel, onSubmit }) => {
                 <button type="button" className="btn btn-outline-secondary" onClick={onCancel}> Cancelar <i className="fas fa-ban"></i></button>
             </div>
             <div className="col-lg-6 col-sm-10 col-xs-12 text-center ">
-            <button type="submit" className="btn btn-outline-secondary" onClick={handleActualizar}>Actualizar <i className="far fa-thumbs-up"></i></button>
+            <button type="submit" className="btn btn-outline-secondary mb-4" onClick={handleActualizar}>Actualizar <i className="far fa-thumbs-up"></i></button>
             </div>
           </div>
               

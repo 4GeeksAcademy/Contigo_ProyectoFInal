@@ -146,10 +146,8 @@ export const Perfil = () => {
             <div className="col-8 justify-content-center">
               <div className="row">
                 <div className="card shadow bg-light rounded p-4 mb-3">
-                  <h5>Recursos Cargados</h5>
-                  <div className="card bg-white mt-3 p-2 d-flex">
+                  <h5 className="mi_titulo">Recursos que ofrece la ONG</h5>
                   <GestionRecurso/>
-                  </div>
                   <div className="col-12 mt-3 text-center">
                     <button
                       className="btn btn primario"
@@ -162,9 +160,6 @@ export const Perfil = () => {
             </div>
             </div>
           )}
-
-
-        
 
         {mostrarPeticiones && !mostrarTarjetas && !mostrarDatos && (
           <div className="row justify-content-center d-flex m-lg-5">
