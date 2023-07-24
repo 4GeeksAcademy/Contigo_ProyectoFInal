@@ -1,16 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/formulario.css";
 
 
-export const FormularioRecurso = () => {
-  const [data, setData] = useState({});
+export const ActualizarRecurso = ({ recurso, onCancel, onSubmit }) => {
   const [virtual, setVirtual] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [fichero, setFichero] = useState(null);
-  const [error, setError] = useState(null);
 
+  const [datosFormulario, setDatosFormulario] = useState({
+    nombre: '',
+    categoria: '',
+    direccion: '',
+    codigo_postal: '',
+    telefono: '',
+    img: '',
+    fichero: '',
+    descripcion: '',
+  });
 
+  useEffect(() => {
+    setDatosFormulario({
+      nombre: recurso.nombre || '',
+      categoria: recurso.categoria || '', 
+      direccion: recurso.direccion || '', 
+      codigo_postal: recurso.codigo_postal || '', 
+      telefono: recurso.telefono || '', 
+      img: recurso.img || '', 
+      descripcion: recurso.descripcion || '', 
+    });
+  }, [recurso]);
+
+  
   const handleChange = (event) => {
   const { id, type, value, checked, files } = event.target;
   const fieldValue = type === "checkbox" ? checked : type === "file" ? files[0] : value;
@@ -18,8 +38,8 @@ export const FormularioRecurso = () => {
     if (type === "file") {
       setFichero(files[0]); // Asociar el archivo seleccionado a la variable "fichero"
     } else {
-      setData((prevData) => ({
-        ...prevData,
+      setDatosFormulario((prevDatosFormulario) => ({
+        ...prevDatosFormulario,
         [id]: fieldValue,
       }));
 
@@ -29,12 +49,9 @@ export const FormularioRecurso = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleActualizar = (event) => {
     event.preventDefault();
-
-
-    const requestData = { ...data, virtual: virtual };
-
+    const requestData = { ...datosFormulario, virtual: virtual };
     const formData = new FormData();
 
     for (const key in requestData) {
@@ -44,14 +61,14 @@ export const FormularioRecurso = () => {
     formData.append("fichero", fichero);
 
     const config = {
-      method: "POST",
+      method: "PUT",
       body: formData,
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("jwt-token")}`,
         },
     };
 
-    fetch(process.env.BACKEND_URL + "api/recursos", config)
+    fetch(process.env.BACKEND_URL + `api/recursos/${recurso.id}`, config)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Error en la solicitud");
@@ -60,7 +77,7 @@ export const FormularioRecurso = () => {
       })
       .then((response) => {
         console.log("Éxito:", response);
-        setSuccess(true);
+        onSubmit();
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -72,21 +89,12 @@ export const FormularioRecurso = () => {
   return (
     <>
       <div className="row m-auto ">
-        <h2 className="subtitulo col-lg-8 col-md-10 col-sm-12 m-auto p-4"> Nuevo Recurso </h2>
-        <div className="card col-8 m-auto shadow">
+        <p className="mi_titulo col-12 m-auto p-2 mt-4 border-top"> Actualizar información del recurso: {recurso.nombre} </p>
+        <div className="card border-0 col-12 m-auto">
           <div className="card-body">
-            {success && (
-              <div className="alert alert-success" role="alert">
-                El recurso se cargó correctamente.
-              </div>
-            )}
-            {error && (
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
-            )}
-            <form className="row" onSubmit={handleSubmit} encType="multipart/form-data">
-              <div className="col-md-8 my-2">
+            
+            <form className="row" onSubmit={handleActualizar} encType="multipart/form-data">
+              <div className="col-md-8 mb-2">
                 <label htmlFor="nombre" className="form-label my_label">
                   Nombre del Recurso
                 </label>
@@ -97,6 +105,7 @@ export const FormularioRecurso = () => {
                   name="nombre"
                   placeholder="Nombre"
                   onChange={handleChange}
+                  value={datosFormulario.nombre}
                 />
               </div>
               <div className="col-4 my-2">
@@ -107,7 +116,7 @@ export const FormularioRecurso = () => {
                   className="form-select my_input form-control"
                   aria-label="Default select example"
                   id="categoria"
-                  value={data.categoria}
+                  value={datosFormulario.categoria}
                   onChange={handleChange}
                 >
                   <option value="">Selecciona...</option>
@@ -146,6 +155,7 @@ export const FormularioRecurso = () => {
                   name="direccion"
                   placeholder="Dirección"
                   onChange={handleChange}
+                  value={datosFormulario.direccion}
                 />
               </div>
               <div className="col-md-2 my-2">
@@ -162,6 +172,7 @@ export const FormularioRecurso = () => {
                   name="codigo_postal"
                   placeholder="CP"
                   onChange={handleChange}
+                  value={datosFormulario.codigo_postal}
                 />
               </div>
               <div className="col-md-4 my-2">
@@ -175,6 +186,7 @@ export const FormularioRecurso = () => {
                   name="telefono"
                   placeholder="Teléfono"
                   onChange={handleChange}
+                  value={datosFormulario.telefono}
                 />
               </div>
               <div className="col-md-4 my-2">
@@ -188,6 +200,7 @@ export const FormularioRecurso = () => {
                   name="img"
                   placeholder="Imagen alusiva"
                   onChange={handleChange}
+                  value={datosFormulario.img}
                 />
               </div>
               <div className="col-md-4 my-2">
@@ -213,16 +226,20 @@ export const FormularioRecurso = () => {
                   name="descripcion"
                   placeholder="Completa con una breve descripción"
                   onChange={handleChange}
+                  value={datosFormulario.descripcion}
                 ></textarea>
               </div>
           
             </form>
           </div>
 
-          <div className="col-md-12 card-footer text-body-secondary gap-2 d-flex justify-content-end">
-            <Link to="/perfil"><button type="button" className="btn secundario">
-              Cancelar</button></Link>         
-            <button type="submit" className="btn primario"  onClick={handleSubmit}>Guardar recurso</button>
+          <div className="row justify-content-center d-grid gap-2 d-md-flex">
+            <div className="col-lg-6 col-sm-10 col-xs-12 text-center ">
+                <button type="button" className="btn btn-outline-secondary" onClick={onCancel}> Cancelar <i className="fas fa-ban"></i></button>
+            </div>
+            <div className="col-lg-6 col-sm-10 col-xs-12 text-center ">
+            <button type="submit" className="btn btn-outline-secondary mb-4" onClick={handleActualizar}>Actualizar <i className="far fa-thumbs-up"></i></button>
+            </div>
           </div>
               
         </div>
@@ -231,4 +248,4 @@ export const FormularioRecurso = () => {
   );
 };
 
-export default FormularioRecurso;
+export default ActualizarRecurso;

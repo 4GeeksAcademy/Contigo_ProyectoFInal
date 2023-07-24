@@ -34,6 +34,18 @@ def info_recurso(id):
     return jsonify(recurso.serialize()), 200
 
 
+@api.route('/recursos/<int:recurso_id>', methods=['DELETE'])
+def eliminar_recurso(recurso_id):
+    recurso = Recurso.query.get(recurso_id)
+    if recurso is None:
+        return jsonify({'message': 'Recurso no encontrado'}), 404
+
+    db.session.delete(recurso)
+    db.session.commit()
+
+    return jsonify({'message': 'Recurso eliminado exitosamente'}), 200
+
+
 @api.route('/recursos/<categoria>', methods=['GET'])
 def obtener_recursos_por_categoria(categoria):
     recursos = Recurso.query.filter_by(categoria=categoria).all()
@@ -117,6 +129,64 @@ def post_recurso():
     db.session.commit()
 
     return jsonify({'message': 'Recurso creado correctamente'}), 200
+
+
+@api.route('/recursos/<int:id>', methods=['PUT'])
+@jwt_required()
+def actualizar_recurso(id):
+    recurso = Recurso.query.get(id)
+
+    # Comprueba si el recurso existe en la base de datos
+    if not recurso:
+        return jsonify({"error": "Recurso no encontrado"}), 404
+
+    user_id = get_jwt_identity()
+    user = Usuario.query.filter_by(id=user_id).first()
+    ong = ONG.query.get(user.ong_id)
+
+    # Obtener los datos enviados en la solicitud PUT usando request.form y request.files
+    nombre = request.form.get('nombre', recurso.nombre)
+    categoria = request.form.get('categoria', recurso.categoria)
+    virtual = request.form.get('virtual', recurso.virtual)
+    direccion = request.form.get('direccion', recurso.direccion)
+    codigo_postal = request.form.get('codigo_postal', recurso.codigo_postal)
+    telefono = request.form.get('telefono', recurso.telefono)
+    descripcion = request.form.get('descripcion', recurso.descripcion)
+    img = request.form.get('img', recurso.img)
+
+    # Convertir el valor "virtual" a un booleano
+    if virtual:
+        virtual = virtual.lower() == 'true'
+    else:
+        virtual = False
+
+    fichero = request.files.get('fichero')
+
+    if fichero:
+        result = cloudinary.uploader.upload(fichero, folder='recursos')
+        fichero_url = result['secure_url'] if result.get('secure_url') else None
+    else:
+        fichero_url = recurso.fichero
+
+    # Actualizar los campos del recurso con los datos enviados
+    recurso.nombre = nombre
+    recurso.categoria = categoria
+    recurso.virtual = virtual
+    recurso.direccion = direccion
+    recurso.codigo_postal = codigo_postal
+    recurso.telefono = telefono
+    recurso.descripcion = descripcion
+    recurso.img = img
+    recurso.fichero = fichero_url
+
+    # Realizar las operaciones de guardado en la base de datos
+    try:
+        db.session.commit()
+        return jsonify(recurso.serialize()), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"error": "Error al actualizar el recurso"}), 500
+
 
 
 @api.route('/ong', methods=['GET'])

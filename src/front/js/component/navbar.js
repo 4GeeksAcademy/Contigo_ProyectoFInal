@@ -22,10 +22,10 @@ export const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         
-        <div className="justify-content-end d-flex">
+        <div className="justify-content-end d-flex align-items-center">
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
 
-            <ul className="navbar-nav ml-auto mb-2 mb-lg-0 ">
+            <ul className="navbar-nav ml-auto mb-2 align-items-center">
               <li className="nav-item">
                 <Link to="/asociaciones">Asociaciones</Link>
               </li>

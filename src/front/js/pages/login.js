@@ -31,16 +31,16 @@ export const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <h1 className="icon mb-4"><i className="fa-regular fa-circle-user"></i></h1>
                     
-                    <div class="form-floating my-3">
-                        <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <div className="form-floating my-3">
+                        <input type="email" className="form-control" id="email" placeholder="nombre@ejemplo.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
                         <label className="my_label" htmlFor="email">Email</label>
                     </div>
-                    <div class="form-floating my-3">
-                        <input type="password" class="form-control" id="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <div className="form-floating my-3">
+                        <input type="password" className="form-control" id="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)}/>
                         <label className="my_label" htmlFor="password">Contraseña</label>
                     </div>
                     
-                    <div class="checkbox mb-3">
+                    <div className="checkbox mb-3">
                         <label className="my_label mb-4">
                             <input type="checkbox" value="remember-me"/> Recordarme
                         </label>
@@ -51,15 +51,15 @@ export const Login = () => {
 
             <div className= "col-lg-6 align-items-stretch">
                 <div className="row">
-                    <div class="jumbotron_3 h-100 p-5 text-white rounded-3 mb-3 shadow">
+                    <div className="jumbotron_3 h-100 p-5 text-white rounded-3 mb-3 shadow">
                         <h3 className="fs-5">¿Aun no te has registrado?</h3>
                         <p>Necesitarás el código de registro de la ONG en la que trabajas.</p>
-                        <Link to="/user_registration"><button class="btn btn-outline-light" type="button">Registrarse</button></Link>
+                        <Link to="/user_registration"><button className="btn btn-outline-light" type="button">Registrarse</button></Link>
                     </div>
                 </div>
 
                 <div className="row">
-                    <div class="jumbotron_2 h-100 p-5 bg-light border rounded-3 mb-3 shadow">
+                    <div className="jumbotron_2 h-100 p-5 bg-light border rounded-3 mb-3 shadow">
                         <h3 className="fs-5"><strong>Registro de ONG</strong></h3>
                         <p>Antes de registrarte, debes asegurarte de registrar la ONG en la que trabajas.</p>
                         <Link to="/ong_registration"><button className="boton_3 btn" type="button">Registrar ONG</button></Link>
