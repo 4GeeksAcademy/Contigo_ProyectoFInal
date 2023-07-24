@@ -22,7 +22,7 @@ export const DescripcionRecurso = ({id, nombre, descripcion, direccion, ong_id, 
         <div className="col-lg-6 col-md-10 col-sm-11 card shadow">
           <div className="row g-0">
             <div className="col-md-4">
-              <img src="https://loremflickr.com/800/500/dogs" className="img-fluid rounded-top" style={{ objectFit: 'cover', height: '100%' }} alt="imagen_recurso" />
+              <img src={img} className="img-fluid rounded-top" style={{ objectFit: 'cover', height: '100%' }} alt="imagen_recurso" />
             </div>
             <div className="col-md-8 card-body">
               <h5 className="card-title">{nombre}</h5>
@@ -31,7 +31,7 @@ export const DescripcionRecurso = ({id, nombre, descripcion, direccion, ong_id, 
                 <li className="list-group-item"><strong>ONG:</strong> {ongName}</li>
                 <li className="list-group-item"><strong>Dirección:</strong><a href={mapURL} target="_blank" rel="noopener noreferrer"> {direccion} - {codigo_postal} <i className="fas fa-map-marked-alt"></i></a></li>
                 <li className="list-group-item"><strong>Tel:</strong> {telefono}</li>
-                <li className="list-group-item"><strong>Descargar información</strong> <i className="fas fa-file-download"></i></li>
+                <li className="list-group-item"><a href={fichero} target="_blank"><strong>Descargar información</strong> <i className="fas fa-file-download"></i></a></li>
               </ul>
             </div>
           </div>

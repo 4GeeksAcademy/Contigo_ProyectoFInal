@@ -67,6 +67,7 @@ export const ListaRecursos = () => {
                   descripcion={recurso.descripcion}
                   ong_id={recurso.ong_id}
                   direccion={recurso.direccion}
+                  img={recurso.img}
                 />
               </div> 
             ))
