@@ -37,14 +37,14 @@ export const ListaRecursos = () => {
               <span className="fs-5">Elegir otra categoría</span>
             </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li className="dropdown-item" onClick={() => seleccionarCategoria('alimentos')}>Alimentos</li>
-                  <li className="dropdown-item" onClick={() => seleccionarCategoria('salud')}>Salud</li>
-                  <li className="dropdown-item" onClick={() => seleccionarCategoria('ropa')}>Ropa</li>
-                  <li className="dropdown-item" onClick={() => seleccionarCategoria('vivienda')}>Vivienda</li>
-                  <li className="dropdown-item" onClick={() => seleccionarCategoria('formacion')}>Formación</li>
-                  <li className="dropdown-item" onClick={() => seleccionarCategoria('empleo')}>Empleo</li>
-                  <li className="dropdown-item" onClick={() => seleccionarCategoria('legales')}>Legales</li>
-                  <li className="dropdown-item" onClick={() => seleccionarCategoria('ocio')}>Ocio</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('Alimentos')}>Alimentos</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('Salud')}>Salud</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('Ropa')}>Ropa</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('Vivienda')}>Vivienda</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('Formacion')}>Formación</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('Empleo')}>Empleo</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('Legales')}>Legales</li>
+                  <li className="dropdown-item" onClick={() => seleccionarCategoria('Ocio')}>Ocio</li>
                 </ul>
           </div>
         </div>
