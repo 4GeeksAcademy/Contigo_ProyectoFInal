@@ -110,6 +110,7 @@ class Peticion(db.Model):
     telefono = db.Column(db.Integer(), unique=False, nullable=True)
     email = db.Column(db.String(60), unique=False, nullable=True)
     recurso_id = db.Column(db.Integer, db.ForeignKey('recurso.id'))
+    
 
     def __repr__(self):
         return f'<User {self.email}>'
