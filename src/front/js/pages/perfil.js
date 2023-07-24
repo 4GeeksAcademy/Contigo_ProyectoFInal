@@ -6,6 +6,7 @@ import DatosPersonales from "../component/datosPersonales";
 import { Context } from "../store/appContext";
 import GestionRecurso from "../component/gestionRecurso";
 import { Ver_peticiones } from "../component/ver_peticiones";
+import oficina from "../../img/oficina.jpg";
 
 export const Perfil = () => {
   const { store, actions } = useContext(Context);
@@ -35,7 +36,7 @@ export const Perfil = () => {
         throw new Error("Error al acceder al área privada");
       }
 
-      const userData = await response.json(); // Convertir la respuesta a JSON
+      const userData = await response.json();
       setUserData(userData);
       setLoading(false);
     } catch (error) {
@@ -78,8 +79,12 @@ export const Perfil = () => {
         </div>
       ) : (
         <>
-          <div className="row justify-content-center d-flex m-5">
-            <div className="col-8 text-start">
+          <div className="row">
+            <img src={oficina} className="d-block w-100" alt="..." />
+          </div>
+
+          <div className="row justify-content-center d-flex m-5 border-bottom">
+            <div className="col-8 text-center">
               <h5 className="mi_titulo">
                 Te damos la Bienvenida, {userData.nombre}{" "}
                 <i className="fa-regular fa-face-smile"></i>
@@ -91,7 +96,7 @@ export const Perfil = () => {
             <div className="col-lg-4 col-sm-10 m-auto text-center">
               <button
                 type="button"
-                className="btn btn-lg primario m-3"
+                className="btn btn-lg btn-outline-secondary m-3"
                 onClick={() => {
                   setMostrarPeticiones(true);
                   setMostrarTarjetas(false);
@@ -105,7 +110,7 @@ export const Perfil = () => {
             <div className="col-lg-4 col-sm-10 m-auto text-center">
               <button
                 type="button"
-                className="btn btn-lg btn primario m-3"
+                className="btn btn-lg btn-outline-secondary m-3"
                 onClick={() => {
                   setMostrarPeticiones(false);
                   setMostrarTarjetas(true);
@@ -119,7 +124,7 @@ export const Perfil = () => {
             <div className="col-lg-4 col-sm-10 m-auto text-center">
               <button
                 type="button"
-                className="btn btn-lg primario m-3"
+                className="btn btn-lg btn-outline-secondary m-3"
                 onClick={() => {
                   setMostrarPeticiones(false);
                   setMostrarTarjetas(false);
@@ -136,11 +141,11 @@ export const Perfil = () => {
             <div className="row justify-content-center d-flex m-lg-5">
               <div className="col-8 justify-content-center">
                 <div className="row">
-                  <div className="card shadow bg-light rounded p-4">
-                    <h5>Recursos Cargados</h5>
-                    <div className="card bg-white mt-3 p-2 d-flex">
-                      <GestionRecurso />
-                    </div>
+                  <div className="card shadow bg-light rounded p-4 mb-3">
+                    <h5 className="mi_titulo text-center">
+                      Recursos que ofrece la ONG
+                    </h5>
+                    <GestionRecurso />
                     <div className="col-12 mt-3 text-center">
                       <button
                         className="btn btn primario"
@@ -160,7 +165,7 @@ export const Perfil = () => {
             <Ver_peticiones />
           )}
 
-          <div className="col-10  d-flex justify-content-center">
+          <div className="container-fluid p-4 justify-content-center">
             {mostrarFormulario && <FormularioRecurso />}
           </div>
 

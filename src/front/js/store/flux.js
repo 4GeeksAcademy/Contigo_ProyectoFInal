@@ -118,6 +118,23 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ ver_peticion: response });
           });
       },
+
+      eliminarRecurso: (recursoId) => {
+        fetch(process.env.BACKEND_URL + `api/recursos/${recursoId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log(`Recurso ${recursoId} eliminado correctamente`);
+            } else {
+              console.error(`Error al eliminar el recurso con ID ${recursoId}`);
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      },
     },
   };
 };
