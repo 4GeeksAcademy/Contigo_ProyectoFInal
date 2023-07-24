@@ -37,7 +37,7 @@ export const Perfil = () => {
           throw new Error("Error al acceder al área privada");
         }
 
-        const userData = await response.json(); // Convertir la respuesta a JSON
+        const userData = await response.json(); 
         setUserData(userData);
         setLoading(false);
       }
@@ -203,7 +203,7 @@ export const Perfil = () => {
           </div>
         )}
 
-         <div className="col-10  d-flex justify-content-center">
+         <div className="container-fluid p-4 justify-content-center">
           {mostrarFormulario && (
             <FormularioRecurso />
           )}

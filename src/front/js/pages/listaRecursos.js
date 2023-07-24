@@ -75,7 +75,7 @@ export const ListaRecursos = () => {
             ) : (
               <div className="container my-5">
               <div className="my_jumbotron jumbotron p-5 col-10 m-auto text-center rounded-3">
-                <h3 className="display-6">¡Ups! <i class="fas fa-surprise"></i></h3>
+                <h3 className="display-6">¡Ups! <i className="fas fa-surprise"></i></h3>
                 <p className="col-10 mx-auto mb-3 fs-5 text-muted">
                   No hay recursos para mostrar de esta categoría, sigue explorando otras.
                 </p>
