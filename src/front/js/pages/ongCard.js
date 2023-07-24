@@ -48,12 +48,12 @@ export const OngCard = () => {
         </div>
       </div>
 
-      <div className="row m-4 text-center">
+      {/*<div className="row m-4 text-center">
         <MapComponent 
           direccion={store.infoOng.direccion}
         />
 
-      </div>
+  </div> */}
         
       <div className="row m-3">
         <div className="row text-center align-items-center justify-content-center m-auto">

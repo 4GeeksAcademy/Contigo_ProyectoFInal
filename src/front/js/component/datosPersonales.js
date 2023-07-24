@@ -108,13 +108,13 @@ const token = localStorage.getItem('jwt-token');
                             <div className="col-lg-6 col-sm-10 col-xs-12 text-center ">
                 
                             {editMode ? (
-                                <button type="button" className="btn btn-outline-secondary mb-1" onClick={handleSaveChanges}>Guardar cambios <i class="far fa-check-circle"></i></button>
+                                <button type="button" className="btn btn-outline-secondary mb-1" onClick={handleSaveChanges}>Guardar cambios <i className="far fa-check-circle"></i></button>
                             ) : (
-                                <button type="button" className="btn btn-outline-secondary mb-1" onClick={() => setEditMode(true)}>Cambiar datos <i class="fas fa-edit"></i></button>
+                                <button type="button" className="btn btn-outline-secondary mb-1" onClick={() => setEditMode(true)}>Cambiar datos <i className="fas fa-edit"></i></button>
                             )}
                             </div>
                             <div className="col-lg-6 col-sm-10 col-xs-12 text-center ">
-                            <button type="button" className="btn btn-outline-secondary">Cambiar contraseña <i class="fas fa-key"></i></button>
+                            <button type="button" className="btn btn-outline-secondary">Cambiar contraseña <i className="fas fa-key"></i></button>
                             </div>
                         </div>
                     </div>

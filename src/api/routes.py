@@ -34,6 +34,18 @@ def info_recurso(id):
     return jsonify(recurso.serialize()), 200
 
 
+@api.route('/recursos/<int:recurso_id>', methods=['DELETE'])
+def eliminar_recurso(recurso_id):
+    recurso = Recurso.query.get(recurso_id)
+    if recurso is None:
+        return jsonify({'message': 'Recurso no encontrado'}), 404
+
+    db.session.delete(recurso)
+    db.session.commit()
+
+    return jsonify({'message': 'Recurso eliminado exitosamente'}), 200
+
+
 @api.route('/recursos/<categoria>', methods=['GET'])
 def obtener_recursos_por_categoria(categoria):
     recursos = Recurso.query.filter_by(categoria=categoria).all()

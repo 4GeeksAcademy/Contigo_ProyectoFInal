@@ -145,7 +145,7 @@ export const Perfil = () => {
           <div className="row justify-content-center d-flex m-lg-5">
             <div className="col-8 justify-content-center">
               <div className="row">
-                <div className="card shadow bg-light rounded p-4">
+                <div className="card shadow bg-light rounded p-4 mb-3">
                   <h5>Recursos Cargados</h5>
                   <div className="card bg-white mt-3 p-2 d-flex">
                   <GestionRecurso/>
@@ -153,8 +153,7 @@ export const Perfil = () => {
                   <div className="col-12 mt-3 text-center">
                     <button
                       className="btn btn primario"
-                      onClick={mostrarFormularioRecurso}
-                    >
+                      onClick={mostrarFormularioRecurso}>
                       Crear nuevo recurso
                     </button>
                   </div>
