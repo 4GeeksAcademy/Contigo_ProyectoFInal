@@ -46,7 +46,7 @@ export const GestionRecurso =  () => {
           <h5><strong>{recurso.nombre}</strong></h5>
           <p>{recurso.descripcion}</p>
              </div>
-             <div className="col-2 d-flex gap-2 justify-content-end">
+             <div className="col-2 d-flex gap-2 justify-content-end align-items-center">
               <button className="btn btn-danger me-2" onClick={() => handleEliminarRecurso(recurso.id)}>
                 <i className="fa-solid fa-trash"></i>
               </button>

@@ -5,6 +5,7 @@ import FormularioRecurso from '../component/formularioRecurso';
 import DatosPersonales from '../component/datosPersonales';
 import { Context } from "../store/appContext";
 import GestionRecurso from '../component/gestionRecurso';
+import oficina from "../../img/oficina.jpg";
 
 
 export const Perfil = () => {
@@ -68,7 +69,7 @@ export const Perfil = () => {
         </div>
 
       ) : store.token == null ? (
-
+   
         <div className="row m-5 justify-content-center">
           <div className="col-8 m-5 text-center">
               <div className="alert alert-warning" role="alert">
@@ -85,20 +86,21 @@ export const Perfil = () => {
       ) : (
 
         <>
-    
-      <div className="row justify-content-center d-flex m-5">
-        <div className="col-8 text-start">
-        <h5 className="mi_titulo">Te damos la Bienvenida, {userData.nombre} <i className="fa-regular fa-face-smile"></i></h5>
-        </div>
-       
+      <div className="row">
+        <img src={oficina} className="d-block w-100" alt="..."/>
+      </div> 
 
+      <div className="row justify-content-center d-flex m-5 border-bottom">
+        <div className="col-8 text-center">
+          <h5 className="mi_titulo">Te damos la Bienvenida, {userData.nombre} <i className="fa-regular fa-face-smile"></i></h5>
+        </div>
       </div>
 
       <div className="row justify-content-center d-flex m-lg-5 my-3">
         <div className="col-lg-4 col-sm-10 m-auto text-center">
           <button
             type="button"
-            className="btn btn-lg primario m-3"
+            className="btn btn-lg btn-outline-secondary m-3"
             onClick={() => {
               setMostrarPeticiones(true);
               setMostrarTarjetas(false);
@@ -112,7 +114,7 @@ export const Perfil = () => {
         <div className="col-lg-4 col-sm-10 m-auto text-center">
           <button
             type="button"
-            className="btn btn-lg btn primario m-3"
+            className="btn btn-lg btn-outline-secondary m-3"
             onClick={() => {
               setMostrarPeticiones(false);
               setMostrarTarjetas(true);
@@ -126,7 +128,7 @@ export const Perfil = () => {
           <div className="col-lg-4 col-sm-10 m-auto text-center">
           <button
             type="button"
-            className="btn btn-lg primario m-3"
+            className="btn btn-lg btn-outline-secondary m-3"
             onClick={() => {
               setMostrarPeticiones(false);
               setMostrarTarjetas(false);
@@ -146,7 +148,7 @@ export const Perfil = () => {
             <div className="col-8 justify-content-center">
               <div className="row">
                 <div className="card shadow bg-light rounded p-4 mb-3">
-                  <h5 className="mi_titulo">Recursos que ofrece la ONG</h5>
+                  <h5 className="mi_titulo text-center">Recursos que ofrece la ONG</h5>
                   <GestionRecurso/>
                   <div className="col-12 mt-3 text-center">
                     <button
