@@ -13,7 +13,6 @@ export const GestionRecurso =  () => {
 
   const handleEliminarRecurso = (recursoId) => {
     actions.eliminarRecurso(recursoId);
-    actions.getrecursoOngUsuario();
   };
 
   const [mostrarActualizar, setMostrarActualizar] = useState(false);

@@ -120,6 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       eliminarRecurso: (recursoId) => {
+        const actions = getActions()
         fetch(process.env.BACKEND_URL + `api/recursos/${recursoId}`, {
           method: "DELETE",
           headers: {
@@ -128,6 +129,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         })
           .then((response) => {
             if (response.ok) {
+              actions.getrecursoOngUsuario();
               console.log(`Recurso ${recursoId} eliminado correctamente`);
             } else {
               console.error(`Error al eliminar el recurso con ID ${recursoId}`);
