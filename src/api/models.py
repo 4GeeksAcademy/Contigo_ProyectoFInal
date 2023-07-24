@@ -123,6 +123,6 @@ class Peticion(db.Model):
             "preferencia": self.preferencia,
             "telefono": self.telefono,
             "email": self.email,
-            "recurso_id": self.recurso_id,
+            "recurso_id": self.recurso_id
             # do not serialize the password, its a security breach
         }
