@@ -61,9 +61,12 @@ export const OngCard = () => {
             <h5 className="mi_titulo">Estos son los recursos que ofrece <span className="texto_especial">{store.infoOng.nombre}</span></h5>
           </div>
         </div>
+
+        { store.recursosOng.length > 0 ? (
+
         <div id="carouselExample" className="col-lg-6 col-sm-12 align-items-center justify-content-center m-auto carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
           <div className="carousel-inner">
-          {store.recursosOng.map((recurso, index) => ( 
+         { store.recursosOng.map((recurso, index) => ( 
             <div className= {`carousel-item my-3${index === 0 ? ' active' : ''}`} key={recurso.id}>
               <CardRecursos
                 key={recurso.id}
@@ -76,8 +79,8 @@ export const OngCard = () => {
               />
             </div> 
         ))}
-        
-      </div>
+
+        </div>
 
       <button className="carousel-control-prev w-auto" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -89,9 +92,23 @@ export const OngCard = () => {
           </button>
 
         </div>
-      </div>  
+
+        ) : (
+              
+        <div className="container my-5">
+          <div className="my_jumbotron jumbotron p-5 col-lg-6 col-md-12 col-xs-12 m-auto text-center rounded-3">
+            <h3 className="display-6">¡Ups! <i className="fas fa-surprise"></i></h3>
+            <p className="col-10 mx-auto mb-3 fs-5 text-muted">
+            Esta ONG aún no ha cargado sus recursos, sigue explorando otras.
+            </p>
+          </div>
+        </div>  
+      
+        )}
         
-      <div className="text-start m-5 ">
+      </div>  
+
+      <div className="text-center m-5">
         <button className="btn secundario" style={{ width: '150px' }} onClick={()=> navigate(-1)}>Volver</button>
       </div>
     </>

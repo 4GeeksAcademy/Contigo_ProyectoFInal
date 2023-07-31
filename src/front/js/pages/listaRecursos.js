@@ -8,12 +8,10 @@ export const ListaRecursos = () => {
   const { store, actions } = useContext(Context);
   const { categoria } = useParams();
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
     actions.get_recurso_categoria(categoria)
-    setLoading(false)
   }, [categoria]);
 
   const seleccionarCategoria = (nuevaCategoria) => {
@@ -50,29 +48,27 @@ export const ListaRecursos = () => {
         </div>
       </div>
       
-      <div className="row">
-        <div id="carouselExample" className="col-lg-6 col-sm-12 align-items-center justify-content-center m-auto carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="false">
-          <div className="carousel-inner">
+      <div className="row d-flex align-items-center justify-content-center m-auto px-5">
 
-          {loading ? (
-            <p>Cargando recursos...</p>
-          ) : store.recursosCategoria.length > 0 ? (
+          { store.recursosCategoria.length > 0 ? (
 
-            store.recursosCategoria.map((recurso, index) => ( 
-              <div className= {`carousel-item my-3${index === 0 ? ' active' : ''}`} key={recurso.id}>
+            store.recursosCategoria.map((recurso) => ( 
+              
+              <div className="col-lg-3 col-md-6 col-xs-12" key={recurso.id}>
                 <CardRecursos
                   key={recurso.id}
                   id={recurso.id}
                   nombre={recurso.nombre}
                   descripcion={recurso.descripcion}
                   ong_id={recurso.ong_id}
-                  direccion={recurso.direccion}
+                  codigo_postal={recurso.codigo_postal}
                   img={recurso.img}
                 />
               </div> 
             ))
 
             ) : (
+
               <div className="container my-5">
               <div className="my_jumbotron jumbotron p-5 col-10 m-auto text-center rounded-3">
                 <h3 className="display-6">¡Ups! <i className="fas fa-surprise"></i></h3>
@@ -83,19 +79,7 @@ export const ListaRecursos = () => {
             </div>  
             
             )}
-
-          </div>
-
-          <button className="carousel-control-prev w-auto" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button className="carousel-control-next w-auto" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
-
-        </div>
+       
       </div>  
 
         <div className= "d-flex justify-content-center">
