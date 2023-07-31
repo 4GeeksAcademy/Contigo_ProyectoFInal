@@ -71,7 +71,7 @@ export const FormularioRecurso = () => {
 
   return (
     <>
-      <div className="row m-auto ">
+      <div className="row m-auto">
         <h2 className="subtitulo col-lg-8 col-md-10 col-sm-12 m-auto p-4"> Nuevo Recurso </h2>
         <div className="card col-8 m-auto shadow">
           <div className="card-body">
@@ -216,15 +216,13 @@ export const FormularioRecurso = () => {
                 ></textarea>
               </div>
           
-            </form>
+            </form> 
+
           </div>
 
-          <div className="col-md-12 card-footer text-body-secondary gap-2 d-flex justify-content-end">
-            <Link to="/perfil"><button type="button" className="btn secundario">
-              Cancelar</button></Link>         
-            <button type="submit" className="btn primario"  onClick={handleSubmit}>Guardar recurso</button>
-          </div>
-              
+          <div className="col-md-12 card-footer text-body-secondary gap-2 d-flex justify-content-end">       
+            <button type="submit" className="btn primario" onClick={handleSubmit}>Guardar recurso</button>
+          </div>  
         </div>
       </div>
     </>

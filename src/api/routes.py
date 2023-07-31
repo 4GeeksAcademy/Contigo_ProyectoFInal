@@ -355,7 +355,16 @@ def peticiones():
     
     return jsonify(data), 200
 
+@api.route('/peticion/<int:peticion_id>', methods=['DELETE'])
+def eliminar_peticion(peticion_id):
+    peticion = Peticion.query.get(peticion_id)
+    if peticion is None:
+        return jsonify({'message': 'Peticion no encontrada'}), 404
 
+    db.session.delete(peticion)
+    db.session.commit()
+
+    return jsonify({'message': 'Recurso eliminado exitosamente'}), 200
 
 @api.route('/peticion', methods=['GET'])
 def get_peticion():

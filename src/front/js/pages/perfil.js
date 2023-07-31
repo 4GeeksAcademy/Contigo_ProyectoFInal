@@ -161,21 +161,33 @@ export const Perfil = () => {
           )}
 
           {mostrarPeticiones && !mostrarTarjetas && !mostrarDatos && (
-            // componente ver_peticiones
-            <Ver_peticiones />
-          )}
-
-          <div className="container-fluid p-4 justify-content-center">
-            {mostrarFormulario && <FormularioRecurso />}
+          <div className="row justify-content-center d-flex m-lg-5">
+            <div className="col-8 justify-content-center">
+              <div className="row">
+                <div className="card shadow bg-light rounded p-4 mb-3">
+                  <h5 className="mi_titulo text-center">
+                    Peticiones de usuarios
+                  </h5>
+                    <Ver_peticiones />
+                </div>
+              </div>
+            </div>
           </div>
 
-          {mostrarDatos && !mostrarPeticiones && !mostrarTarjetas && (
+          )}
+
+           {mostrarDatos && !mostrarPeticiones && !mostrarTarjetas && (
             <div className="row justify-content-center d-flex m-lg-5 my-5">
               <div className="col-lg-6 col-md-8 col-sm-12 col-xs-12">
                 <DatosPersonales userData={userData} />
               </div>
             </div>
           )}
+          
+          <div className="container-fluid p-4 justify-content-center">
+            {mostrarFormulario && <FormularioRecurso />}
+          </div>
+          
         </>
       )}
     </>

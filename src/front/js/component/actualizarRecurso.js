@@ -90,11 +90,11 @@ export const ActualizarRecurso = ({ recurso, onCancel, onSubmit }) => {
     <>
       <div className="row m-auto ">
         <p className="mi_titulo col-12 m-auto p-2 mt-4 border-top"> Actualizar información del recurso: {recurso.nombre} </p>
-        <div className="card border-0 col-12 m-auto">
+        <div className="card border-0 col-12 m-auto bg-light">
           <div className="card-body">
             
             <form className="row" onSubmit={handleActualizar} encType="multipart/form-data">
-              <div className="col-md-8 mb-2">
+              <div className="col-md-8 my-2">
                 <label htmlFor="nombre" className="form-label my_label">
                   Nombre del Recurso
                 </label>

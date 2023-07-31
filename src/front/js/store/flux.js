@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       nombreOng: [],
       recursoOngUsuario: [], // Add the property to the store
       ver_peticion: [],
+      nombreRecurso: [],
     },
 
     actions: {
@@ -133,6 +134,25 @@ const getState = ({ getStore, getActions, setStore }) => {
               console.log(`Recurso ${recursoId} eliminado correctamente`);
             } else {
               console.error(`Error al eliminar el recurso con ID ${recursoId}`);
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      },
+
+      eliminarPeticion: (peticionId) => {
+        const actions = getActions()
+        fetch(process.env.BACKEND_URL + `api/peticion/${peticionId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              actions.get_peticiones();
+              console.log(`Peticion ${peticionId} eliminado correctamente`);
+            } else {
+              console.error(`Error al eliminar la petición con ID ${peticionId}`);
             }
           })
           .catch((error) => console.error("Error:", error));
