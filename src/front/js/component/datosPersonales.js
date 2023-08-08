@@ -7,7 +7,8 @@ const token = localStorage.getItem('jwt-token');
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+
 
   const [formData, setFormData] = useState({
     nombre: '',
@@ -27,11 +28,12 @@ const token = localStorage.getItem('jwt-token');
 
   const handleChangePassword = async () => {
     if (newPassword !== confirmPassword) {
-      setError('Las contraseñas no coinciden');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+      setMessage('Las contraseñas no coinciden');
       return;
     }
-
-    setError('');
 
     try {
       const response = await fetch((process.env.BACKEND_URL + "api/password"), {
@@ -45,9 +47,17 @@ const token = localStorage.getItem('jwt-token');
 
       if (response.ok) {
         console.log('Contraseña cambiada con éxito');
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setMessage('Contraseña cambiada con éxito');
 
       } else {
         console.error('Error al cambiar la contraseña');
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setMessage('Error al cambiar la contraseña');
       }
 
     } catch (error) {
@@ -94,6 +104,8 @@ const token = localStorage.getItem('jwt-token');
             <h3 className="mi_titulo col-12 mb-3"> Tus datos de usuario </h3>
 			    <div className="card col-12 m-auto shadow">
 				    <div className="card-body ">
+            {message && <div className="alert alert-warning" role="alert">{message}</div>}
+
               <form className="row m-3 justify-content-center" onSubmit={handleSaveChanges}>
                   <div className="col-10">
                   <label htmlFor="nombre" className="form-label my_label">Nombre:</label>
@@ -160,12 +172,9 @@ const token = localStorage.getItem('jwt-token');
                             <h5 className="modal-title" id="exampleModalLabel">Cambiar contraseña</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
-                        <form className="row m-3 justify-content-center">
 
                           <div className="modal-body">
                               
-                          {error && <div className="alert alert-warning" role="alert">{error}</div>}
-
                               <div className="my-2">
                                 <label htmlFor="currentPassword" className="form-label my_label">Contraseña actual:</label>
                                 <input
@@ -199,17 +208,13 @@ const token = localStorage.getItem('jwt-token');
                           </div>
                           <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" className="btn btn-primary" onClick={handleChangePassword}>Guardar</button>
+                            <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handleChangePassword}>Guardar</button>
                           </div>
-                          </form>
-
                         </div>
                       </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
       </div>
 
