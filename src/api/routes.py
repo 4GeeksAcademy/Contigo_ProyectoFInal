@@ -328,8 +328,6 @@ def update_user_profile():
             user.apellido = data['apellido']
         if 'email' in data:
             user.email = data['email']
-        if 'password' in data:
-            user.contraseña = data['contraseña']
         
         db.session.add(user)
         db.session.commit()
@@ -338,6 +336,29 @@ def update_user_profile():
 
     except Exception as e:
         return jsonify({"message": "Error al actualizar los datos del usuario", "error": str(e)}), 500
+    
+
+@api.route('/password', methods=['PUT'])
+@jwt_required()
+def change_password():
+    try:
+        user_id = get_jwt_identity()
+        user = Usuario.query.filter_by(id=user_id).first()
+
+        data = request.get_json()
+        current_password = data.get('currentPassword')
+        new_password = data.get('newPassword')
+
+        if user and user.password == current_password:
+            user.password = new_password
+            db.session.add(user)
+            db.session.commit()
+            return jsonify({'message': 'Contraseña cambiada con éxito'}), 200
+        else:
+            return jsonify({'message': 'Contraseña actual incorrecta'}), 400
+        
+    except Exception as e:
+        return jsonify({'message': 'Error al cambiar la contraseña', 'error': str(e)}), 500
     
 
 @api.route('/peticiones', methods=['GET'])
