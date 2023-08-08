@@ -94,7 +94,8 @@ export const ActualizarRecurso = ({ recurso, onCancel, onSubmit }) => {
           <div className="card-body">
             
             <form className="row" onSubmit={handleActualizar} encType="multipart/form-data">
-              <div className="col-md-8 my-2">
+            <div className="row">
+              <div className="col-md-8 col-sm-12 my-2">
                 <label htmlFor="nombre" className="form-label my_label">
                   Nombre del Recurso
                 </label>
@@ -108,7 +109,7 @@ export const ActualizarRecurso = ({ recurso, onCancel, onSubmit }) => {
                   value={datosFormulario.nombre}
                 />
               </div>
-              <div className="col-4 my-2">
+              <div className="col-md-4 col-sm-12 my-2">
                 <label htmlFor="categoria" className="form-label my_label">
                   Categoria
                 </label>
@@ -129,6 +130,7 @@ export const ActualizarRecurso = ({ recurso, onCancel, onSubmit }) => {
                   <option value="Ropa">Ropa</option>
                   <option value="Vivienda">Vivienda</option>
                 </select>
+              </div>
               </div>
               <div className="col-md-2 my-2">
                 <label htmlFor="virtual" className="form-label my_label">

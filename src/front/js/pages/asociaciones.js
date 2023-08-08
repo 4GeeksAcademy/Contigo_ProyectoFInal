@@ -20,14 +20,14 @@ export const Asociaciones = () => {
                 <img src={working}className="d-block w-100" alt="..."/>
             </div>
 
-            <div className="row px-5 container-fluid text-center d-flex align-items-center justify-content-center">
-                <div className="col-10 px-5 pt-5">
+            <div className="row px-5 container-fluid text-center d-flex align-items-center justify-content-center m-auto">
+                <div className="col-md-10 col-sm-12 px-md-5 pt-5">
                     <h2 className="mi_titulo">ONG y Asociaciones</h2>
                     <p className="mi_texto mt-4 ">
                         Estas son las asociaciones y ONG que forman parte de la comunidad de <em>Contigo</em>. Puedes hacer click en sus logos para obtener más información y ponerte en contacto con cada una de ellas.
                     </p> 
                 </div>
-                <div className="col-10 p-5 pt-3">
+                <div className="col-md-10 col-sm-12 py-4">
                     <img src={doodle} className="img-fluid" alt="..." style={{ maxWidth: '80%'}}/>
                 </div>
             </div>

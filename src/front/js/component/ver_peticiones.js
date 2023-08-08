@@ -23,35 +23,41 @@ export const Ver_peticiones = () => {
       ) : (
     
       store.ver_peticion.map((peticion) => (
-        <div className="card bg-white mt-3 d-flex" key={peticion.id}>
-          <div className="card-body d-flex justify-content-between">
+        <div className="col-12 card bg-white mt-3 d-flex" key={peticion.id}>
+          <div className="col-12 card-body">
             <div>
-              <h5 className="card-title">
+              <h5 className="col-sm-10 card-title">
                 <strong>
                   {peticion.nombre} {peticion.apellido}
                 </strong>
               </h5>
-              <p className="card-text">
+              <p className="col-sm-10 card-text">
                 <strong>Mensaje:</strong> {peticion.texto}
               </p>
               
                 <NombreRecurso recurso_id={peticion.recurso_id} />
               
-              <div className="d-flex align-items-center">
-                <p className="mb-0 me-3">
-                  <strong>Preferencia:</strong> {peticion.preferencia}
+              <div className="row align-items-center">
+                <div className="col-lg-4 col-md-4 col-sm-12 m-auto">
+                <p className="mb-0">
+                  <strong>Contacto:</strong> {peticion.preferencia}
                 </p>
-                <p className="mb-0 me-3">
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 m-auto">
+                <p className="mb-0">
                   <i className="fas fa-phone"></i> {peticion.telefono}
                 </p>
-                <p className="mb-0 me-3">
+                </div>
+                <div className="col-lg-4 col-md-4 col-sm-12 m-auto">
+                <p className="mb-0">
                   <i className="far fa-envelope"></i> {peticion.email}
                 </p>
+                </div>
               </div>
             </div>
 
-             <div className="d-inline-flex align-items-center">
-              <button className="btn btn-danger me-2" onClick={() => handleEliminarPeticion(peticion.id)}>
+             <div className="align-items-center">
+              <button className="btn btn-outline-danger mt-3" onClick={() => handleEliminarPeticion(peticion.id)}>
                 <i className="fa-solid fa-trash"></i>
               </button>
             </div>

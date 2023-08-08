@@ -138,8 +138,8 @@ export const Perfil = () => {
           </div>
 
           {mostrarTarjetas && !mostrarPeticiones && !mostrarDatos && (
-            <div className="row justify-content-center d-flex m-lg-5">
-              <div className="col-8 justify-content-center">
+            <div className="row justify-content-center d-flex mx-3">
+              <div className="col-lg-10 col-md-12 col-sm-12 justify-content-center">
                 <div className="row">
                   <div className="card shadow bg-light rounded p-4 mb-3">
                     <h5 className="mi_titulo text-center">
@@ -161,10 +161,10 @@ export const Perfil = () => {
           )}
 
           {mostrarPeticiones && !mostrarTarjetas && !mostrarDatos && (
-          <div className="row justify-content-center d-flex m-lg-5">
-            <div className="col-8 justify-content-center">
+          <div className="row justify-content-center d-flex mx-3">
+            <div className="col-lg-12 col-md-12 col-sm-12 justify-content-center ">
               <div className="row">
-                <div className="card shadow bg-light rounded p-4 mb-3">
+                <div className="card col-lg-10 col-md-12 col-sm-12 m-auto shadow bg-light rounded p-4 mb-3">
                   <h5 className="mi_titulo text-center">
                     Peticiones de usuarios
                   </h5>

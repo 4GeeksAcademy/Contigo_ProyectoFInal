@@ -68,11 +68,11 @@ export const Enviar_peticion = () => {
     ) : (
 
     <div className="container-fluid mb-4">
-      <h2 className="subtitulo col-8 m-auto text-center py-4">
+      <h2 className="subtitulo col-lg-8 col-md-8 col-sm-12 m-auto m-auto text-center py-4">
         ¿Quieres que la ONG se ponga en contacto contigo?
       </h2>
 
-      <div className="card col-8 m-auto shadow">
+      <div className="card col-lg-8 col-md-8 col-sm-12 m-auto mb-5 m-auto shadow">
         <div className="card-body">
           <form className="row" onSubmit={handleSubmit}>
             <div className="col-md-6 my-2">
@@ -202,7 +202,7 @@ export const Enviar_peticion = () => {
 
     </div>  
     
-    )};
+    )}
     </>
-  );
+  )
 };

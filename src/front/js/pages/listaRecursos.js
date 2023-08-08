@@ -48,7 +48,7 @@ export const ListaRecursos = () => {
         </div>
       </div>
       
-      <div className="row d-flex align-items-center justify-content-center m-auto px-5">
+      <div className="row d-flex align-items-center justify-content-center m-auto">
 
           { store.recursosCategoria.length > 0 ? (
 

@@ -74,7 +74,7 @@ export const OngCard = () => {
                 nombre={recurso.nombre}
                 descripcion={recurso.descripcion}
                 ong_id={recurso.ong_id}
-                direccion={recurso.direccion}
+                codigo_postal={recurso.codigo_postal}
                 img={recurso.img}
               />
             </div> 

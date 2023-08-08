@@ -71,9 +71,9 @@ export const User_register = () => {
             ) : (
 			
 			<div className="container-fluid">
-        		<h2 className="subtitulo col-8 m-auto py-4"> Registro de usuario </h2>
+        		<h2 className="subtitulo col-lg-8 col-md-8 col-sm-12 m-auto py-4"> Registro de usuario </h2>
 				
-				<div className="card col-8 m-auto shadow">
+				<div className="card col-lg-8 col-md-8 col-sm-12 m-auto mb-5 shadow">
 					<div className="card-body">
 						<form className="row" onSubmit={handleSubmit}>
 							
@@ -109,9 +109,9 @@ export const User_register = () => {
 
 				</div>
 			</div>
-            )};
+            )}
 			
 			
     		</>
-	);
+	)
 }
