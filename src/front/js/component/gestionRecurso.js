@@ -38,28 +38,25 @@ export const GestionRecurso =  () => {
       ) : (
     
     recursosOngUsuario.map((recurso) => (
-      <div key={recurso.id} className="row align-items-center justify-content-center px-4 py-2">
-        <div className="row card bg-white">
-          <div className="row d-flex card-body justify-content-center m-auto">
-          <div className="col-10">
-          <h5><strong>{recurso.nombre}</strong></h5>
-          <p>{recurso.descripcion}</p>
-             </div>
-             <div className="col-2 d-flex gap-2 justify-content-end align-items-center">
-              <button className="btn btn-danger me-2" onClick={() => handleEliminarRecurso(recurso.id)}>
+      <div key={recurso.id} className="row align-items-center m-auto p-2">
+          <div className="col-12 card bg-white">
+            <div className="row card-body d-flex">
+                <div className="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                  <h5><strong>{recurso.nombre}</strong></h5>
+                  <p>{recurso.descripcion}</p>
+                </div>
+
+             <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12 d-flex gap-2 justify-content-end align-items-center">
+              <button className="btn btn-outline-danger me-2" onClick={() => handleEliminarRecurso(recurso.id)}>
                 <i className="fa-solid fa-trash"></i>
               </button>
-              <button className="btn btn-secondary" onClick={() => handleActualizarRecurso(recurso)}>
+              <button className="btn btn-outline-secondary" onClick={() => handleActualizarRecurso(recurso)}>
                 <i className="fa-solid fa-pen-to-square"></i>
               </button>
             </div>
-         
-          </div>
-
-      </div>
-
-      </div>
-
+            </div>
+                   </div>
+                </div>
 
     ))
   )}

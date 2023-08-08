@@ -20,21 +20,18 @@ export const About_us = () => {
                 <div className="carousel-item active">
                 <img src={caja} className="d-block w-100" alt="..." />
                 <div className="carousel-caption">
-                    <h2>Colaboración para transformar vidas</h2>
                     <h5><em>Contigo</em> une a las asociaciones y ONG de Madrid para ofrecer apoyo en vivienda, salud, formación y más.</h5>
                 </div>
                 </div>
                 <div className="carousel-item">
                 <img src={donaciones} className="d-block w-100" alt="..."/>
                 <div className="carousel-caption">
-                    <h2>Encuentra tu oportunidad</h2>
                     <h5>¡Descubre las oportunidades que las ONG de Madrid ofrecen para tu desarrollo personal y profesional!</h5>
                 </div>
                 </div>
                 <div className="carousel-item">
                 <img src={manos} className="d-block w-100" alt="..."/>
                 <div className="carousel-caption">
-                    <h2>Un espacio pensado para ti</h2>
                     <h5><em>Contigo</em> es una plataforma accesible, diseñada para encontrar información relavante de forma sencilla y rápida.</h5>
                 </div>
                 </div>
@@ -50,8 +47,8 @@ export const About_us = () => {
             </div>
         
 
-            <div className="row px-5 container-fluid text-center d-flex align-items-center justify-content-center">
-                <div className="col-md-12 col-lg-6 p-5">
+            <div className="row px-5 m-auto container-fluid text-center d-flex align-items-center justify-content-center">
+                <div className="col-lg-6 col-md-10 col-sm-12 px-md-5 pt-5">
                     <h2 className="mi_titulo">Nuestro proyecto</h2>
                     <p className="mi_texto mt-4 ">
                         <em>Contigo</em> conecta las necesidades de las personas en mayor situación
@@ -68,12 +65,12 @@ export const About_us = () => {
                         salud, vivienda, empleo, ocio, entre otras. 
                     </p> 
                 </div>
-                <div className="col-md-12 col-lg-6 p-5">
+                <div className="col-lg-6 col-md-10 col-sm-12">
                     <img src={aid} className="img-fluid" alt="..." style={{ maxWidth: '80%'}}/>
                 </div>
             </div>
 
-        <div className="row container-fluid my-5">
+        <div className="row container-fluid m-auto my-5">
             
                 <div className="my_jumbotron jumbotron p-5 col-lg-6 col-sm-10 m-auto text-center rounded-3">
                     <p className="mx-auto mb-3 fs-3 text-muted">

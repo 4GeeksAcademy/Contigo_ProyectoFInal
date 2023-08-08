@@ -66,8 +66,8 @@ export const Ong_register = () => {
             ) : (
 
 				<div className="container-fluid">
-					<h2 className="subtitulo col-8 m-auto py-4"> Registro de ONG </h2>
-						<div className="card col-8 m-auto shadow">
+					<h2 className="subtitulo col-lg-8 col-md-8 col-sm-12 m-auto py-4"> Registro de ONG </h2>
+						<div className="card col-lg-8 col-md-8 col-sm-12 m-auto mb-5 m-auto shadow">
 							<div className="card-body">
 								<form className="row" onSubmit={handleSubmit}>
 										<div className="col-md-8 my-2">
@@ -111,8 +111,8 @@ export const Ong_register = () => {
 					</div>
 				</div>
 			</div>
-            )};
+            )}
 
     		</>
-	);
+	)
 }

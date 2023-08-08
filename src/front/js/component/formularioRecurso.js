@@ -73,7 +73,7 @@ export const FormularioRecurso = () => {
     <>
       <div className="row m-auto">
         <h2 className="subtitulo col-lg-8 col-md-10 col-sm-12 m-auto p-4"> Nuevo Recurso </h2>
-        <div className="card col-8 m-auto shadow">
+        <div className="card col-lg-8 col-md-8 col-sm-12 mb-5 m-auto shadow">
           <div className="card-body">
             {success && (
               <div className="alert alert-success" role="alert">
@@ -86,7 +86,8 @@ export const FormularioRecurso = () => {
               </div>
             )}
             <form className="row" onSubmit={handleSubmit} encType="multipart/form-data">
-              <div className="col-md-8 my-2">
+              <div className="row">
+              <div className="col-md-8 col-sm-12 my-2">
                 <label htmlFor="nombre" className="form-label my_label">
                   Nombre del Recurso
                 </label>
@@ -99,7 +100,7 @@ export const FormularioRecurso = () => {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-4 my-2">
+              <div className="col-md-4 col-sm-12 my-2">
                 <label htmlFor="categoria" className="form-label my_label">
                   Categoria
                 </label>
@@ -120,6 +121,7 @@ export const FormularioRecurso = () => {
                   <option value="Ropa">Ropa</option>
                   <option value="Vivienda">Vivienda</option>
                 </select>
+              </div>
               </div>
               <div className="col-md-2 my-2">
                 <label htmlFor="virtual" className="form-label my_label">
